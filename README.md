@@ -63,6 +63,11 @@ ex)
 ex)
 `[#1] feat : 추가 버튼 컴포넌트 생성 및 로직 구현`
 
+## 기타
+### branch 한 눈에 보기
+- Insights 탭 -> Network
+
 ## 참고할만한 것들
 - [Git 뉴비를 위한 기초 사용법 - 시작하기](https://evan-moon.github.io/2019/07/25/git-tutorial/)
 - [자주 사용하는 기초 Git 명령어 정리하기](https://medium.com/@pks2974/%EC%9E%90%EC%A3%BC-%EC%82%AC%EC%9A%A9%ED%95%98%EB%8A%94-%EA%B8%B0%EC%B4%88-git-%EB%AA%85%EB%A0%B9%EC%96%B4-%EC%A0%95%EB%A6%AC%ED%95%98%EA%B8%B0-533b3689db81)
+ 
