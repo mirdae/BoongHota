@@ -25,7 +25,10 @@
 `git commit -m '[커밋 메세지]'`
 
 3. 리모트(깃허브) 브랜치로 push 하기  
-`git push --set-upstream origin [브랜치명]`
+  3-1. push할 리모트 브랜치 정의   
+  `git push --set-upstream origin [브랜치명(로컬 브랜치와 같은 이름으)]`
+  3-2. push  
+  `git push`
 
 ### Pull Request
 1. push하면 리모트(깃허브) 저장소에 new pull request 알림이 뜸 -> 클릭
