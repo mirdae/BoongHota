@@ -1,3 +1,5 @@
+@import 'antd/dist/antd.css';
+
 body {
   background-color: #e8ded8;
 }
@@ -5,4 +7,14 @@ body {
 * {
   padding: 0;
   margin: 0;
+}
+
+.App {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  h2 {
+    margin: 10vh 0;
+  }
 }
