@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
 import Boong from '../FoodIcons/Boong';
 import Ho from '../FoodIcons/Ho';
 import Ta from '../FoodIcons/Ta';
@@ -17,9 +18,15 @@ const LandingPage = () => {
   return (
     <div className="landing-container">
       <main>
-        <Boong />
-        <Ta />
-        <Ho />
+        <Link to="/map/boong">
+          <Boong />
+        </Link>
+        <Link to="/map/ta">
+          <Ta />
+        </Link>
+        <Link to="/map/ho">
+          <Ho />
+        </Link>
       </main>
       <button onClick={handleModal}>붕호타 + </button>
       {openModal && <Modal setOpenModal={setOpenModal} />}
