@@ -11,8 +11,7 @@ const LandingPage = () => {
 
   const handleModal = async (e) => {
     e.preventDefault();
-    await setOpenModal(true);
-    setOpenModal(false);
+    setOpenModal(true);
   };
 
   return (
@@ -23,7 +22,7 @@ const LandingPage = () => {
         <Ho />
       </main>
       <button onClick={handleModal}>붕호타 + </button>
-      <Modal openModal={openModal} />
+      {openModal && <Modal setOpenModal={setOpenModal} />}
     </div>
   );
 };

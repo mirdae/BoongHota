@@ -8,6 +8,7 @@
   background-color: rgba(147, 124, 111, 0.7);
   .kind-box {
     width: 70%;
+    height: 8vh;
     display: flex;
     justify-content: space-between;
     li {
@@ -85,8 +86,11 @@
         }
       }
       .input-box_time {
-        .time-picker {
+        .time {
           width: 100%;
+        }
+        .ant-picker-focused .ant-picker-active-bar {
+          display: none;
         }
       }
       label {
@@ -114,12 +118,4 @@
       }
     }
   }
-}
-
-.show {
-  display: block;
-}
-
-.hide {
-  display: none;
 }

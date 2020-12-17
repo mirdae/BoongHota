@@ -7,8 +7,7 @@ const { RangePicker } = TimePicker;
 
 import './styles.scss';
 
-const ModalPage = ({ openModal }) => {
-  const [visible, setVisible] = useState(false);
+const ModalPage = ({ setOpenModal }) => {
   const [food, setFood] = useState('');
   const [name, setName] = useState('');
   const [location, setLocation] = useState([0, 0]);
@@ -17,13 +16,13 @@ const ModalPage = ({ openModal }) => {
   const handleOk = (e) => {
     e.preventDefault();
     console.log('handleOk여기실행됏니');
-    setVisible(false);
+    setOpenModal(false);
   };
 
   const handleCancel = (e) => {
     e.preventDefault();
     console.log('handleCancel여기실행됏니');
-    setVisible(false);
+    setOpenModal(false);
   };
 
   const selectFood = (e) => {
@@ -31,15 +30,8 @@ const ModalPage = ({ openModal }) => {
     setFood(e.target.classList[0]);
   };
 
-  useEffect(() => {
-    console.log(openModal, visible);
-    if (openModal) {
-      setVisible(true);
-    }
-  });
-
   return (
-    <div className={'modal-container ' + (visible ? 'show' : 'hide')}>
+    <div className={'modal-container'}>
       <form className="modal-form">
         <ul className="kind-box">
           <li
@@ -73,11 +65,7 @@ const ModalPage = ({ openModal }) => {
           </div>
           <div className="input-box_time">
             <label htmlFor="time">영업시간</label>
-            <RangePicker
-              format="HH:mm"
-              bordered={false}
-              className="time-picker"
-            />
+            <RangePicker format="HH:mm" bordered={false} className="time" />
           </div>
         </div>
         <div className="button-box">
