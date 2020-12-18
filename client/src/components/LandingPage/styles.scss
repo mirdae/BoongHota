@@ -6,8 +6,11 @@
   main {
     width: 80%;
     display: flex;
-    align-items: center;
-    justify-content: space-around;
+    & a {
+      display: flex;
+      justify-content: center;
+      width: 33%;
+    }
   }
   button {
     margin-top: 18vh;
@@ -24,15 +27,5 @@
     &:hover {
       background-color: #dfaa79;
     }
-  }
-
-  .ho {
-    height: 200px;
-    width: 200px;
-  }
-
-  .ta {
-    height: 190px;
-    width: 190px;
   }
 }

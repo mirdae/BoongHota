@@ -12,9 +12,35 @@
 }
 
 .ho {
+  height: 200px;
+  width: 200px;
   background-image: url('https://media.vlpt.us/images/dolarge/post/18a0d072-1987-44e6-a8dc-74fb5d40a337/%ED%98%B8%EB%96%A1.png');
 }
 
 .ta {
   background-image: url('https://media.vlpt.us/images/dolarge/post/9afdecdf-2a14-4079-9c06-487d657c6c7e/%ED%83%80%EC%BD%94.png');
+  position: absolute;
+  box-sizing: border-box;
+  height: 200px;
+  width: 200px;
+}
+
+.roll {
+  animation-duration: 2s;
+  animation-name: taMove;
+}
+
+@keyframes taMove {
+  0% {
+    transform: rotate(0deg);
+    margin-left: 0;
+  }
+  50% {
+    transform: rotate(360deg);
+    margin-left: 1000px;
+  }
+  100% {
+    margin-left: 0;
+    transform: rotate(0deg);
+  }
 }
