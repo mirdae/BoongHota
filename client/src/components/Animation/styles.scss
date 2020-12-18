@@ -15,6 +15,13 @@
   height: 200px;
   width: 200px;
   background-image: url('https://media.vlpt.us/images/dolarge/post/18a0d072-1987-44e6-a8dc-74fb5d40a337/%ED%98%B8%EB%96%A1.png');
+  position: relative;
+  img {
+    display: block;
+    position: absolute;
+    top: -20%;
+    left: 35%;
+  }
 }
 
 .ta {
@@ -30,6 +37,13 @@
   animation-name: taMove;
 }
 
+.fall {
+  img {
+    animation-duration: 3s;
+    animation-name: hoSmoke;
+  }
+}
+
 @keyframes taMove {
   0% {
     transform: rotate(0deg);
@@ -42,5 +56,30 @@
   100% {
     margin-left: 0;
     transform: rotate(0deg);
+  }
+}
+
+@keyframes hoSmoke {
+  0% {
+    opacity: 0;
+  }
+  20% {
+    opacity: 80%;
+    top: -30%;
+  }
+  40% {
+    opacity: 40%;
+    top: -20%;
+  }
+  60% {
+    opacity: 80%;
+    top: -30%;
+  }
+  80% {
+    opacity: 40%;
+    top: -20%;
+  }
+  100% {
+    opacity: 0;
   }
 }
