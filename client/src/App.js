@@ -1,5 +1,5 @@
 import './App.scss';
-import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
+import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom';
 import LandingPage from './components/LandingPage';
 import MapPage from './components/MapPage/Container';
 
@@ -7,7 +7,11 @@ function App() {
   return (
     <div className="App">
       <Router>
-        <h2>어디있니 붕호타</h2>
+        <header>
+          <Link to="/">
+            <img src="https://media.vlpt.us/images/dolarge/post/0f4e3ed7-c07c-4e48-afea-dba71b3b306b/logo.png" />
+          </Link>
+        </header>
         <Switch>
           <Route path="/" exact component={LandingPage} />
           <Route path="/map/:id" component={MapPage} />

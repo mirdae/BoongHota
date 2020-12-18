@@ -21,11 +21,11 @@ const LandingPage = () => {
         <Link to="/map/boong">
           <Boong />
         </Link>
-        <Link to="/map/ta">
-          <Ta />
-        </Link>
         <Link to="/map/ho">
           <Ho />
+        </Link>
+        <Link to="/map/ta">
+          <Ta />
         </Link>
       </main>
       <button onClick={handleModal}>붕호타 + </button>
