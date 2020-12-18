@@ -3,7 +3,12 @@
 }
 
 .boong {
+  height: 170px;
+  width: 220px;
   background-image: url('https://media.vlpt.us/images/dolarge/post/9df7aa9c-5827-4928-8711-25763612cc5f/%EB%B6%95%EC%96%B4.png');
+  background-size: cover;
+  background-position: center center;
+  will-change: transform;
 }
 
 .ho {
