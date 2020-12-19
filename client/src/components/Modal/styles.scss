@@ -63,23 +63,22 @@
       div {
         margin: 1vh 0;
       }
-      .input-box_title {
-        input {
-          width: 100%;
-        }
+      input {
+        width: 100%;
       }
       .input-box_location {
         margin: 2vh 0;
-        input {
-          width: 70%;
-        }
-        .location-btn {
-          padding: 2%;
-          float: right;
-          margin: 0;
-          background-color: #988989;
-          &:hover {
-            background-color: #635959;
+        .button-box_location {
+          display: flex;
+          justify-content: space-between;
+          button {
+            width: 45%;
+            padding: 1vh 0;
+            margin: 0;
+            background-color: #988989;
+            &:hover {
+              background-color: #635959;
+            }
           }
         }
       }

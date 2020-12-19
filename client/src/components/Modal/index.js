@@ -24,7 +24,7 @@ const ModalPage = ({ setOpenModal }) => {
     setOpenModal(false);
   };
 
-  const findAddress = () => {
+  const findMyAddress = () => {
     if (navigator.geolocation) {
       navigator.geolocation.getCurrentPosition(function (position) {
         const lat = position.coords.latitude; // 위도
@@ -45,6 +45,8 @@ const ModalPage = ({ setOpenModal }) => {
     }
   };
 
+  const findMapAddress = () => {};
+
   const selectFood = (e) => {
     e.preventDefault();
     setFood(e.target.classList[0]);
@@ -59,12 +61,10 @@ const ModalPage = ({ setOpenModal }) => {
             onClick={selectFood}
             className={'boong-mini ' + (food === 'boong-mini' ? 'clicked' : '')}
           />
-
           <li
             onClick={selectFood}
             className={'ho-mini ' + (food === 'ho-mini' ? 'clicked' : '')}
           />
-
           <li
             onClick={selectFood}
             className={'ta-mini ' + (food === 'ta-mini' ? 'clicked' : '')}
@@ -84,9 +84,10 @@ const ModalPage = ({ setOpenModal }) => {
           <div className="input-box_location">
             <label htmlFor="location">가게위치</label>
             <input id="location" required name="location" value={location} />
-            <button className="location-btn" onClick={findAddress}>
-              위치찾기
-            </button>
+            <div className="button-box_location">
+              <button onClick={findMapAddress}>지도에서 찾기</button>
+              <button onClick={findMyAddress}>현재 위치</button>
+            </div>
           </div>
           <div className="input-box_time">
             <label htmlFor="time">영업시간</label>
