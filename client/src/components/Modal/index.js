@@ -5,12 +5,14 @@ import Ta from '../FoodIcons/Ta';
 import { TimePicker } from 'antd';
 const { RangePicker } = TimePicker;
 
+const { kakao } = window;
+
 import './styles.scss';
 
 const ModalPage = ({ setOpenModal }) => {
   const [food, setFood] = useState('');
   const [name, setName] = useState('');
-  const [location, setLocation] = useState([0, 0]);
+  const [location, setLocation] = useState();
   const [time, setTime] = useState(['00:00', '00:00']);
 
   const handleOk = (e) => {
@@ -23,6 +25,27 @@ const ModalPage = ({ setOpenModal }) => {
     e.preventDefault();
     console.log('handleCancel여기실행됏니');
     setOpenModal(false);
+  };
+
+  const findAddress = () => {
+    if (navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition(function (position) {
+        const lat = position.coords.latitude; // 위도
+        const lon = position.coords.longitude; // 경도
+        const geocoder = new kakao.maps.services.Geocoder();
+
+        const coord = new kakao.maps.LatLng(lat, lon);
+        const callback = function (result, status) {
+          if (status === kakao.maps.services.Status.OK) {
+            setLocation(result[0].address.address_name);
+          }
+        };
+
+        geocoder.coord2Address(coord.getLng(), coord.getLat(), callback);
+      });
+    } else {
+      alert('geolocation을 사용할수 없어요..');
+    }
   };
 
   const selectFood = (e) => {
@@ -60,8 +83,10 @@ const ModalPage = ({ setOpenModal }) => {
           </div>
           <div className="input-box_location">
             <label htmlFor="location">가게위치</label>
-            <input id="location" required name="location" />
-            <button className="location-btn">위치찾기</button>
+            <input id="location" required name="location" value={location} />
+            <button className="location-btn" onClick={findAddress}>
+              위치찾기
+            </button>
           </div>
           <div className="input-box_time">
             <label htmlFor="time">영업시간</label>
