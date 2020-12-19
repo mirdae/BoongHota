@@ -1,7 +1,4 @@
 import React, { useEffect, useState } from 'react';
-import Boong from '../FoodIcons/Boong';
-import Ho from '../FoodIcons/Ho';
-import Ta from '../FoodIcons/Ta';
 import { TimePicker } from 'antd';
 const { RangePicker } = TimePicker;
 
@@ -51,6 +48,7 @@ const ModalPage = ({ setOpenModal }) => {
   const selectFood = (e) => {
     e.preventDefault();
     setFood(e.target.classList[0]);
+    console.dir(e.target);
   };
 
   return (
@@ -59,16 +57,18 @@ const ModalPage = ({ setOpenModal }) => {
         <ul className="kind-box">
           <li
             onClick={selectFood}
-            className={food === 'boong' ? 'clicked' : ''}
-          >
-            <Boong />
-          </li>
-          <li onClick={selectFood} className={food === 'ho' ? 'clicked' : ''}>
-            <Ho />
-          </li>
-          <li onClick={selectFood} className={food === 'ta' ? 'clicked' : ''}>
-            <Ta />
-          </li>
+            className={'boong-mini ' + (food === 'boong-mini' ? 'clicked' : '')}
+          />
+
+          <li
+            onClick={selectFood}
+            className={'ho-mini ' + (food === 'ho-mini' ? 'clicked' : '')}
+          />
+
+          <li
+            onClick={selectFood}
+            className={'ta-mini ' + (food === 'ta-mini' ? 'clicked' : '')}
+          />
         </ul>
         <div className="input-box">
           <div className="input-box_title">

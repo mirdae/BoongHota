@@ -23,39 +23,37 @@
       height: 8vh;
       display: flex;
       justify-content: space-between;
+      align-items: center;
       li {
         list-style: none;
-        width: 30%;
-        float: left;
-        display: flex;
-        justify-content: center;
-        align-items: center;
         cursor: pointer;
+        background-size: 100% 100%;
       }
-      .boong {
-        height: 45px;
+      .boong-mini {
+        background-image: url('https://media.vlpt.us/images/dolarge/post/9df7aa9c-5827-4928-8711-25763612cc5f/%EB%B6%95%EC%96%B4.png');
         width: 65px;
-      }
-      .ho {
-        height: 50px;
-        width: 50px;
-      }
-      .ta {
         height: 45px;
-        width: 45px;
-      }
-      .clicked {
-        .boong {
-          height: 65px;
+        &.clicked {
           width: 85px;
-        }
-        .ho {
-          height: 70px;
-          width: 70px;
-        }
-        .ta {
           height: 65px;
+        }
+      }
+      .ho-mini {
+        background-image: url('https://media.vlpt.us/images/dolarge/post/9afdecdf-2a14-4079-9c06-487d657c6c7e/%ED%83%80%EC%BD%94.png');
+        width: 50px;
+        height: 50px;
+        &.clicked {
+          width: 70px;
+          height: 70px;
+        }
+      }
+      .ta-mini {
+        background-image: url('https://media.vlpt.us/images/dolarge/post/18a0d072-1987-44e6-a8dc-74fb5d40a337/%ED%98%B8%EB%96%A1.png');
+        width: 45px;
+        height: 45px;
+        &.clicked {
           width: 65px;
+          height: 65px;
         }
       }
     }
