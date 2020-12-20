@@ -6,8 +6,31 @@
   min-height: 100vh;
   z-index: 1000;
   background-color: rgba(147, 124, 111, 0.7);
+  .mini-map-container {
+    width: 50%;
+    height: 65vh;
+    margin: 0 auto;
+    position: relative;
+    margin-top: 20vh;
+    .mini-map-box {
+      width: 100%;
+      height: 100%;
+    }
+    .close-btn {
+      height: 50px;
+      padding: 0 1.5vw;
+      margin: 0;
+      position: absolute;
+      top: -50px;
+      right: 0;
+      z-index: 999;
+      border-radius: 0px;
+      outline: none;
+    }
+  }
   .modal-form {
     width: 50%;
+    height: 65vh;
     padding: 5vh 3vw;
     margin: 0 auto;
     margin-top: 20vh;
