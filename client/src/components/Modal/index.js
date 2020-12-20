@@ -54,6 +54,10 @@ const ModalPage = ({ setOpenModal }) => {
     setOpenMap(true);
   };
 
+  const addNewPlace = () => {
+    setOpenMap(false);
+  };
+
   const showMap = () => {};
 
   const selectFood = (e) => {
@@ -68,13 +72,8 @@ const ModalPage = ({ setOpenModal }) => {
         <>
           <div className="mini-map-container">
             <div ref={ref} className="mini-map-box"></div>
-            <button
-              className="close-btn"
-              onClick={() => {
-                setOpenMap(false);
-              }}
-            >
-              뒤로가기
+            <button className="add-btn" onClick={addNewPlace}>
+              <p>+</p>
             </button>
           </div>
         </>

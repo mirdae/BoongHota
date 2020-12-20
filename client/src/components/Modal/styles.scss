@@ -16,16 +16,22 @@
       width: 100%;
       height: 100%;
     }
-    .close-btn {
+    button {
       height: 50px;
-      padding: 0 1.5vw;
+      width: 50px;
+      padding: 0;
       margin: 0;
       position: absolute;
-      top: -50px;
-      right: 0;
+      top: 20px;
+      right: 20px;
       z-index: 999;
-      border-radius: 0px;
+      border-radius: 50px;
       outline: none;
+      background-color: #4969da;
+      font-size: 30px;
+      &:hover {
+        background-color: #1641dc;
+      }
     }
   }
   .modal-form {
