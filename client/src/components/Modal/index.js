@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useRef, useState } from 'react';
 import { TimePicker } from 'antd';
 const { RangePicker } = TimePicker;
 
@@ -7,9 +7,11 @@ const { kakao } = window;
 import './styles.scss';
 
 const ModalPage = ({ setOpenModal }) => {
+  const ref = useRef();
   const [food, setFood] = useState('');
   const [name, setName] = useState('');
   const [location, setLocation] = useState();
+  const [openMap, setOpenMap] = useState(false);
   const [time, setTime] = useState(['00:00', '00:00']);
 
   const handleOk = (e) => {
@@ -24,7 +26,9 @@ const ModalPage = ({ setOpenModal }) => {
     setOpenModal(false);
   };
 
-  const findMyAddress = () => {
+  const findMyAddress = (e) => {
+    e.preventDefault();
+
     if (navigator.geolocation) {
       navigator.geolocation.getCurrentPosition(function (position) {
         const lat = position.coords.latitude; // 위도
@@ -45,7 +49,12 @@ const ModalPage = ({ setOpenModal }) => {
     }
   };
 
-  const findMapAddress = () => {};
+  const findMapAddress = (e) => {
+    e.preventDefault();
+    setOpenMap(true);
+  };
+
+  const showMap = () => {};
 
   const selectFood = (e) => {
     e.preventDefault();
@@ -55,50 +64,67 @@ const ModalPage = ({ setOpenModal }) => {
 
   return (
     <div className={'modal-container'}>
-      <form className="modal-form">
-        <ul className="kind-box">
-          <li
-            onClick={selectFood}
-            className={'boong-mini ' + (food === 'boong-mini' ? 'clicked' : '')}
-          />
-          <li
-            onClick={selectFood}
-            className={'ho-mini ' + (food === 'ho-mini' ? 'clicked' : '')}
-          />
-          <li
-            onClick={selectFood}
-            className={'ta-mini ' + (food === 'ta-mini' ? 'clicked' : '')}
-          />
-        </ul>
-        <div className="input-box">
-          <div className="input-box_title">
-            <label htmlFor="name">가게명</label>
-            <input
-              onChange={(e) => setName(e.currentTarget.value)}
-              value={name}
-              id="name"
-              required
-              name="name"
-            />
+      {openMap ? (
+        <>
+          <div className="mini-map-container">
+            <div ref={ref} className="mini-map-box"></div>
+            <button
+              className="close-btn"
+              onClick={() => {
+                setOpenMap(false);
+              }}
+            >
+              뒤로가기
+            </button>
           </div>
-          <div className="input-box_location">
-            <label htmlFor="location">가게위치</label>
-            <input id="location" required name="location" value={location} />
-            <div className="button-box_location">
-              <button onClick={findMapAddress}>지도에서 찾기</button>
-              <button onClick={findMyAddress}>현재 위치</button>
+        </>
+      ) : (
+        <form className="modal-form">
+          <ul className="kind-box">
+            <li
+              onClick={selectFood}
+              className={
+                'boong-mini ' + (food === 'boong-mini' ? 'clicked' : '')
+              }
+            />
+            <li
+              onClick={selectFood}
+              className={'ho-mini ' + (food === 'ho-mini' ? 'clicked' : '')}
+            />
+            <li
+              onClick={selectFood}
+              className={'ta-mini ' + (food === 'ta-mini' ? 'clicked' : '')}
+            />
+          </ul>
+          <div className="input-box">
+            <div className="input-box_title">
+              <label htmlFor="name">가게명</label>
+              <input
+                onChange={(e) => setName(e.currentTarget.value)}
+                value={name}
+                id="name"
+                name="name"
+              />
+            </div>
+            <div className="input-box_location">
+              <label htmlFor="location">가게위치</label>
+              <input id="location" name="location" value={location} />
+              <div className="button-box_location">
+                <button onClick={findMapAddress}>지도에서 찾기</button>
+                <button onClick={findMyAddress}>현재 위치</button>
+              </div>
+            </div>
+            <div className="input-box_time">
+              <label htmlFor="time">영업시간</label>
+              <RangePicker format="HH:mm" bordered={false} className="time" />
             </div>
           </div>
-          <div className="input-box_time">
-            <label htmlFor="time">영업시간</label>
-            <RangePicker format="HH:mm" bordered={false} className="time" />
+          <div className="button-box">
+            <button onClick={handleCancel}>뒤로가기</button>
+            <button onClick={handleOk}>등록하기</button>
           </div>
-        </div>
-        <div className="button-box">
-          <button onClick={handleCancel}>뒤로가기</button>
-          <button onClick={handleOk}>등록하기</button>
-        </div>
-      </form>
+        </form>
+      )}
     </div>
   );
 };
