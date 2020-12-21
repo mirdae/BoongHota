@@ -13,9 +13,9 @@ const ModalPage = ({ setOpenModal }) => {
   const [food, setFood] = useState('');
   const [name, setName] = useState('');
   const [location, setLocation] = useState();
+  const [locationNum, setLocationNum] = useState([0, 0]);
   const [openMap, setOpenMap] = useState(false);
   const [time, setTime] = useState(['00:00', '00:00']);
-  const [locationNum, setLocationNum] = useState([0, 0]);
 
   const handleOk = (e) => {
     e.preventDefault();
@@ -53,6 +53,7 @@ const ModalPage = ({ setOpenModal }) => {
       navigator.geolocation.getCurrentPosition(function (position) {
         const lat = position.coords.latitude; // 위도
         const lon = position.coords.longitude; // 경도
+        setLocationNum([lat, lon]);
         getAddress(lat, lon);
       });
     } else {
