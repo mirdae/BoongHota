@@ -1,39 +1,43 @@
 import React, { useRef, useState } from 'react';
-import { TimePicker } from 'antd';
-import moment from 'moment';
-
-const { RangePicker } = TimePicker;
-
+import Map from './Map';
+import ModalForm from './ModalForm';
 const { kakao } = window;
 
-import './styles.scss';
-
-const ModalPage = ({ setOpenModal }) => {
+const Container = ({ setOpenModal }) => {
   const ref = useRef();
   const [food, setFood] = useState('');
-  const [name, setName] = useState('');
+  const [storeName, setStoreName] = useState('');
   const [location, setLocation] = useState();
   const [locationNum, setLocationNum] = useState([0, 0]);
   const [openMap, setOpenMap] = useState(false);
   const [time, setTime] = useState(['00:00', '00:00']);
 
+  // form을 submit하는 함수
   const handleOk = (e) => {
     e.preventDefault();
     console.log('handleOk여기실행됏니');
     setOpenModal(false);
-    console.log(food);
-    console.log(name);
+    console.log(food.split('-')[0]);
+    console.log(storeName);
     console.log(location);
     console.log(locationNum);
     console.log(time);
   };
 
+  // 모달을 끄는 함수
   const handleCancel = (e) => {
     e.preventDefault();
     console.log('handleCancel여기실행됏니');
     setOpenModal(false);
   };
 
+  // 등록할 음식종류를 고르는 함수
+  const selectFood = (e) => {
+    e.preventDefault();
+    setFood(e.target.classList[0]);
+  };
+
+  // lat, lon을 받아와 구 주소로 변경해주는 함수
   const getAddress = (lat, lon) => {
     const geocoder = new kakao.maps.services.Geocoder();
     const coord = new kakao.maps.LatLng(lat, lon);
@@ -46,6 +50,7 @@ const ModalPage = ({ setOpenModal }) => {
     geocoder.coord2Address(coord.getLng(), coord.getLat(), callback);
   };
 
+  // 나의 현재위치를 얻어오는 함수
   const findMyAddress = (e) => {
     e.preventDefault();
 
@@ -61,17 +66,20 @@ const ModalPage = ({ setOpenModal }) => {
     }
   };
 
+  // map상에서 위치를 찾음
   const findMapAddress = (e) => {
     e.preventDefault();
     setOpenMap(true);
     showMap();
   };
 
+  // map 상에서 추가할 위치를 찾으면 그 위치를 등록하는 함수
   const addNewPlace = () => {
     setOpenMap(false);
     getAddress(...locationNum);
   };
 
+  // 실제 map을 보여주고 map과 관련된 설정을 하는 함수
   const showMap = () => {
     if (navigator.geolocation) {
       navigator.geolocation.getCurrentPosition(function (position) {
@@ -106,77 +114,26 @@ const ModalPage = ({ setOpenModal }) => {
     }
   };
 
-  const selectFood = (e) => {
-    e.preventDefault();
-    setFood(e.target.classList[0]);
-    console.dir(e.target);
-  };
-
   return (
     <div className={'modal-container'}>
       {openMap ? (
-        <>
-          <div className="mini-map-container">
-            <div ref={ref} className="mini-map-box"></div>
-            <button className="add-btn" onClick={addNewPlace}>
-              <p>+</p>
-            </button>
-          </div>
-        </>
+        <Map ref={ref} addNewPlace={addNewPlace} />
       ) : (
-        <form className="modal-form">
-          <ul className="kind-box">
-            <li
-              onClick={selectFood}
-              className={
-                'boong-mini ' + (food === 'boong-mini' ? 'clicked' : '')
-              }
-            />
-            <li
-              onClick={selectFood}
-              className={'ho-mini ' + (food === 'ho-mini' ? 'clicked' : '')}
-            />
-            <li
-              onClick={selectFood}
-              className={'ta-mini ' + (food === 'ta-mini' ? 'clicked' : '')}
-            />
-          </ul>
-          <div className="input-box">
-            <div className="input-box_title">
-              <label htmlFor="name">가게명</label>
-              <input
-                onChange={(e) => setName(e.currentTarget.value)}
-                value={name}
-                id="name"
-                name="name"
-              />
-            </div>
-            <div className="input-box_location">
-              <label htmlFor="location">가게위치</label>
-              <input id="location" name="location" value={location} />
-              <div className="button-box_location">
-                <button onClick={findMapAddress}>지도에서 찾기</button>
-                <button onClick={findMyAddress}>현재 위치</button>
-              </div>
-            </div>
-            <div className="input-box_time">
-              <label htmlFor="time">영업시간</label>
-              <RangePicker
-                format="HH:mm"
-                bordered={false}
-                className="time"
-                onChange={(_, b) => setTime(moment(b)._i)}
-              />
-            </div>
-          </div>
-          <div className="button-box">
-            <button onClick={handleCancel}>뒤로가기</button>
-            <button onClick={handleOk}>등록하기</button>
-          </div>
-        </form>
+        <ModalForm
+          food={food}
+          storeName={storeName}
+          location={location}
+          selectFood={selectFood}
+          findMapAddress={findMapAddress}
+          findMyAddress={findMyAddress}
+          setStoreName={setStoreName}
+          setTime={setTime}
+          handleCancel={handleCancel}
+          handleOk={handleOk}
+        />
       )}
     </div>
   );
 };
 
-export default ModalPage;
+export default Container;
