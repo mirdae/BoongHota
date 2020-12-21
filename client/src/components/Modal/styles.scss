@@ -36,8 +36,8 @@
   }
   .modal-form {
     width: 50%;
-    height: 65vh;
-    padding: 5vh 3vw;
+    min-height: 65vh;
+    padding: 2% 3%;
     margin: 0 auto;
     margin-top: 20vh;
     background-color: rgb(226, 217, 212);
@@ -55,6 +55,7 @@
       align-items: center;
       li {
         list-style: none;
+        transition: 0.5s;
         cursor: pointer;
         background-size: 100% 100%;
       }
