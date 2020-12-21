@@ -1,5 +1,7 @@
 import React, { useRef, useState } from 'react';
 import { TimePicker } from 'antd';
+import moment from 'moment';
+
 const { RangePicker } = TimePicker;
 
 const { kakao } = window;
@@ -19,6 +21,11 @@ const ModalPage = ({ setOpenModal }) => {
     e.preventDefault();
     console.log('handleOk여기실행됏니');
     setOpenModal(false);
+    console.log(food);
+    console.log(name);
+    console.log(location);
+    console.log(locationNum);
+    console.log(time);
   };
 
   const handleCancel = (e) => {
@@ -153,7 +160,12 @@ const ModalPage = ({ setOpenModal }) => {
             </div>
             <div className="input-box_time">
               <label htmlFor="time">영업시간</label>
-              <RangePicker format="HH:mm" bordered={false} className="time" />
+              <RangePicker
+                format="HH:mm"
+                bordered={false}
+                className="time"
+                onChange={(_, b) => setTime(moment(b)._i)}
+              />
             </div>
           </div>
           <div className="button-box">
