@@ -1,8 +1,9 @@
-import {combineReducers} from 'redux';
-import {all, fork} from 'redux-saga/effects';
+import { combineReducers } from 'redux';
+import { all, fork } from 'redux-saga/effects';
+import { storeSaga, store } from './store';
 
-export const rootReducer = combineReducers({});
+export const rootReducer = combineReducers({ store });
 
 export function* rootSaga() {
-    yield all([]);
+  yield all([fork(storeSaga)]);
 }

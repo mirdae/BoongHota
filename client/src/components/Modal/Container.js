@@ -1,10 +1,15 @@
 import React, { useRef, useState } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
+import { createStore } from '../../modules/store';
 import Map from './Map';
 import ModalForm from './ModalForm';
+
 const { kakao } = window;
 
 const Container = ({ setOpenModal }) => {
   const ref = useRef();
+  const dispatch = useDispatch();
+
   const [food, setFood] = useState('');
   const [storeName, setStoreName] = useState('');
   const [location, setLocation] = useState();
@@ -17,11 +22,14 @@ const Container = ({ setOpenModal }) => {
     e.preventDefault();
     console.log('handleOk여기실행됏니');
     setOpenModal(false);
-    console.log(food.split('-')[0]);
-    console.log(storeName);
-    console.log(location);
-    console.log(locationNum);
-    console.log(time);
+    const payload = {
+      food: food.split('-')[0],
+      storeName,
+      location,
+      locationNum,
+      time,
+    };
+    dispatch(createStore(payload));
   };
 
   // 모달을 끄는 함수
