@@ -26,13 +26,55 @@ export function* storeSaga() {
   yield takeLatest(CREATE_STORE, createStoreSaga);
 }
 
+// test case
+const store1 = {
+  name: '호호붕어빵',
+  type: 'boong',
+  longitude: 488.591214,
+  latitude: 35.879481,
+  address: '대구 북구 고성동',
+  start_time: '09:00',
+  end_time: '19:00',
+};
+
+const store2 = {
+  name: '하하붕어빵',
+  type: 'boong',
+  longitude: 488.613911,
+  latitude: 35.887381,
+  address: '대구 북구 신암북로',
+  start_time: '11:00',
+  end_time: '19:00',
+};
+
+const store3 = {
+  name: '대머리타코야키',
+  type: 'ta',
+  longitude: 488.612261,
+  latitude: 35.885643,
+  address: '대구 북구 경대로',
+  start_time: '16:00',
+  end_time: '22:00',
+};
+
+const store4 = {
+  name: '호호호빵',
+  type: 'ho',
+  longitude: 488.607672,
+  latitude: 35.882929,
+  address: '대구 북구 대현로',
+  start_time: '09:00',
+  end_time: '19:00',
+};
+
 const initialState = {
-  stores: [],
+  stores: [store1, store2, store3, store4],
 };
 
 export const store = handleActions(
   {
     [CREATE_STORE_SUCCESS]: (state, payload) => ({ ...state, payload }),
+    [CREATE_STORE_FAILURE]: (state, payload) => ({ ...state }),
   },
   initialState,
 );
