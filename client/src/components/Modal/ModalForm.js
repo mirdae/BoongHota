@@ -6,33 +6,43 @@ const { RangePicker } = TimePicker;
 import './styles.scss';
 
 const ModalForm = ({
-  food,
   storeName,
-  selectFood,
   location,
   findMapAddress,
   findMyAddress,
   setStoreName,
   setTime,
   handleCancel,
-  handleOk,
+  handleSumbit,
 }) => {
   return (
-    <form className="modal-form">
-      <ul className="kind-box">
-        <li
-          onClick={selectFood}
-          className={'boong-mini ' + (food === 'boong-mini' ? 'clicked' : '')}
+    <form className="modal-form" onSubmit={handleSumbit}>
+      <div className="kind-box">
+        <input
+          name="food"
+          type="radio"
+          value="boong"
+          id="boong"
+          className="boong-mini"
         />
-        <li
-          onClick={selectFood}
-          className={'ho-mini ' + (food === 'ho-mini' ? 'clicked' : '')}
+        <label className="boong-label" htmlFor="boong" />
+        <input
+          name="food"
+          type="radio"
+          id="ho"
+          value="ho"
+          className="ho-mini"
         />
-        <li
-          onClick={selectFood}
-          className={'ta-mini ' + (food === 'ta-mini' ? 'clicked' : '')}
+        <label className="ho-label" htmlFor="ho" />
+        <input
+          name="food"
+          type="radio"
+          id="ta"
+          value="ta"
+          className="ta-mini"
         />
-      </ul>
+        <label className="ta-label" htmlFor="ta" />
+      </div>
       <div className="input-box">
         <div className="input-box_title">
           <label htmlFor="name">가게명</label>
@@ -63,7 +73,7 @@ const ModalForm = ({
       </div>
       <div className="button-box">
         <button onClick={handleCancel}>뒤로가기</button>
-        <button onClick={handleOk}>등록하기</button>
+        <button type="submit">등록하기</button>
       </div>
     </form>
   );

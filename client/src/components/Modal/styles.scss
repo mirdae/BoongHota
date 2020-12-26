@@ -53,38 +53,44 @@
       display: flex;
       justify-content: space-between;
       align-items: center;
-      li {
-        list-style: none;
-        transition: 0.5s;
+      input[type='radio'] {
+        width: 0;
+        height: 0;
+        position: absolute;
+        left: -9999px;
+      }
+      input[type='radio'] + label {
         cursor: pointer;
         background-size: 100% 100%;
       }
-      .boong-mini {
-        background-image: url('https://media.vlpt.us/images/dolarge/post/9df7aa9c-5827-4928-8711-25763612cc5f/%EB%B6%95%EC%96%B4.png');
-        width: 65px;
-        height: 45px;
-        &.clicked {
+      input[type='radio']:checked + label {
+        &.boong-label {
           width: 85px;
           height: 65px;
         }
-      }
-      .ho-mini {
-        background-image: url('https://media.vlpt.us/images/dolarge/post/9afdecdf-2a14-4079-9c06-487d657c6c7e/%ED%83%80%EC%BD%94.png');
-        width: 50px;
-        height: 50px;
-        &.clicked {
+        &.ho-label {
           width: 70px;
           height: 70px;
         }
-      }
-      .ta-mini {
-        background-image: url('https://media.vlpt.us/images/dolarge/post/18a0d072-1987-44e6-a8dc-74fb5d40a337/%ED%98%B8%EB%96%A1.png');
-        width: 45px;
-        height: 45px;
-        &.clicked {
+        &.ta-label {
           width: 65px;
           height: 65px;
         }
+      }
+      .boong-label {
+        background-image: url('https://media.vlpt.us/images/dolarge/post/9df7aa9c-5827-4928-8711-25763612cc5f/%EB%B6%95%EC%96%B4.png');
+        width: 65px;
+        height: 45px;
+      }
+      .ho-label {
+        background-image: url('https://media.vlpt.us/images/dolarge/post/18a0d072-1987-44e6-a8dc-74fb5d40a337/%ED%98%B8%EB%96%A1.png');
+        width: 50px;
+        height: 50px;
+      }
+      .ta-label {
+        background-image: url('https://media.vlpt.us/images/dolarge/post/9afdecdf-2a14-4079-9c06-487d657c6c7e/%ED%83%80%EC%BD%94.png');
+        width: 45px;
+        height: 45px;
       }
     }
     .input-box {

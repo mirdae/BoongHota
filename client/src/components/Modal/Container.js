@@ -18,12 +18,11 @@ const Container = ({ setOpenModal }) => {
   const [time, setTime] = useState(['00:00', '00:00']);
 
   // form을 submit하는 함수
-  const handleOk = (e) => {
+  const handleSumbit = (e) => {
     e.preventDefault();
-    console.log('handleOk여기실행됏니');
     setOpenModal(false);
     const payload = {
-      food: food.split('-')[0],
+      food: e.target.food.value,
       storeName,
       location,
       locationNum,
@@ -35,7 +34,6 @@ const Container = ({ setOpenModal }) => {
   // 모달을 끄는 함수
   const handleCancel = (e) => {
     e.preventDefault();
-    console.log('handleCancel여기실행됏니');
     setOpenModal(false);
   };
 
@@ -137,7 +135,7 @@ const Container = ({ setOpenModal }) => {
           setStoreName={setStoreName}
           setTime={setTime}
           handleCancel={handleCancel}
-          handleOk={handleOk}
+          handleSumbit={handleSumbit}
         />
       )}
     </div>
