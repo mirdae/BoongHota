@@ -2,22 +2,31 @@ import React from 'react';
 import moment from 'moment';
 import { TimePicker } from 'antd';
 const { RangePicker } = TimePicker;
+import Map from './Map';
+import useSnackInput from '../../hooks/useSnackInput';
 
 import './styles.scss';
 
-const ModalForm = ({
-  storeName,
-  location,
-  findMapAddress,
-  findMyAddress,
-  setStoreName,
-  setTime,
-  handleCancel,
-  handleSumbit,
-}) => {
+const ModalForm = ({ location, findMapAddress, findMyAddress }) => {
+  const {
+    inputs,
+    onChangeTitle,
+    onChangeFood,
+    onChangeLocation,
+    onChangeTime,
+    onSubmit,
+    onCancle,
+  } = useSnackInput();
+
   return (
-    <form className="modal-form" onSubmit={handleSumbit}>
-      <div className="kind-box">
+    <form
+      className="modal-form"
+      onSubmit={(e) => {
+        e.preventDefault();
+        onSubmit();
+      }}
+    >
+      <div className="kind-box" onChange={(e) => onChangeFood(e.target.value)}>
         <input
           name="food"
           type="radio"
@@ -47,8 +56,8 @@ const ModalForm = ({
         <div className="input-box_title">
           <label htmlFor="name">가게명</label>
           <input
-            onChange={(e) => setStoreName(e.currentTarget.value)}
-            value={storeName}
+            onChange={(e) => onChangeTitle(e.target.value)}
+            value={inputs && inputs.title}
             id="name"
             name="name"
           />
@@ -67,12 +76,19 @@ const ModalForm = ({
             format="HH:mm"
             bordered={false}
             className="time"
-            onChange={(_, b) => setTime(moment(b)._i)}
+            onChange={(_, b) => onChangeTime(moment(b)._i)}
           />
         </div>
       </div>
       <div className="button-box">
-        <button onClick={handleCancel}>뒤로가기</button>
+        <button
+          onClick={(e) => {
+            e.preventDefault();
+            onCancle();
+          }}
+        >
+          뒤로가기
+        </button>
         <button type="submit">등록하기</button>
       </div>
     </form>

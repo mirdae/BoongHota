@@ -1,9 +1,9 @@
 import { combineReducers } from 'redux';
 import { all, fork } from 'redux-saga/effects';
-import { storeSaga, store } from './store';
+import { newSnackSaga, newSnack } from './newSnack';
 
-export const rootReducer = combineReducers({ store });
+export const rootReducer = combineReducers({ newSnack });
 
 export function* rootSaga() {
-  yield all([fork(storeSaga)]);
+  yield all([fork(newSnackSaga)]);
 }

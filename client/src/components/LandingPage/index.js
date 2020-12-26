@@ -1,18 +1,18 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { Link } from 'react-router-dom';
 import Boong from '../Animation/Boong';
 import Ho from '../Animation/Ho';
 import Ta from '../Animation/Ta';
 import Modal from '../Modal/Container';
+import useSnackInput from '../../hooks/useSnackInput';
 
 import './styles.scss';
 
 const LandingPage = () => {
-  const [openModal, setOpenModal] = useState(false);
-  const handleModal = async (e) => {
-    e.preventDefault();
-    setOpenModal(true);
-  };
+  const {
+    inputs: { isModalVisible },
+    onOpenForm,
+  } = useSnackInput();
 
   return (
     <div className="landing-container">
@@ -27,8 +27,8 @@ const LandingPage = () => {
           <Ta />
         </Link>
       </main>
-      <button onClick={handleModal}>붕호타 + </button>
-      {openModal && <Modal setOpenModal={setOpenModal} />}
+      <button onClick={() => onOpenForm()}>붕호타 + </button>
+      {isModalVisible && <Modal />}
     </div>
   );
 };

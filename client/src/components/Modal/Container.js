@@ -1,47 +1,16 @@
 import React, { useRef, useState } from 'react';
-import { useSelector, useDispatch } from 'react-redux';
-import { createStore } from '../../modules/store';
+import useSnackInput from '../../hooks/useSnackInput';
+
 import Map from './Map';
 import ModalForm from './ModalForm';
 
 const { kakao } = window;
 
-const Container = ({ setOpenModal }) => {
+const Container = () => {
   const ref = useRef();
-  const dispatch = useDispatch();
-
-  const [food, setFood] = useState('');
-  const [storeName, setStoreName] = useState('');
   const [location, setLocation] = useState();
   const [locationNum, setLocationNum] = useState([0, 0]);
   const [openMap, setOpenMap] = useState(false);
-  const [time, setTime] = useState(['00:00', '00:00']);
-
-  // form을 submit하는 함수
-  const handleSumbit = (e) => {
-    e.preventDefault();
-    setOpenModal(false);
-    const payload = {
-      food: e.target.food.value,
-      storeName,
-      location,
-      locationNum,
-      time,
-    };
-    dispatch(createStore(payload));
-  };
-
-  // 모달을 끄는 함수
-  const handleCancel = (e) => {
-    e.preventDefault();
-    setOpenModal(false);
-  };
-
-  // 등록할 음식종류를 고르는 함수
-  const selectFood = (e) => {
-    e.preventDefault();
-    setFood(e.target.classList[0]);
-  };
 
   // lat, lon을 받아와 구 주소로 변경해주는 함수
   const getAddress = (lat, lon) => {
@@ -126,16 +95,9 @@ const Container = ({ setOpenModal }) => {
         <Map ref={ref} addNewPlace={addNewPlace} />
       ) : (
         <ModalForm
-          food={food}
-          storeName={storeName}
           location={location}
-          selectFood={selectFood}
           findMapAddress={findMapAddress}
           findMyAddress={findMyAddress}
-          setStoreName={setStoreName}
-          setTime={setTime}
-          handleCancel={handleCancel}
-          handleSumbit={handleSumbit}
         />
       )}
     </div>
