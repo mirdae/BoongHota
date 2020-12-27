@@ -35,7 +35,6 @@ export const openMap = createAction(OPEN_MAP);
 export const closeMap = createAction(CLOSE_MAP);
 
 function* createSnackSaga(snackInfo) {
-  yield console.log(snackInfo);
   try {
     const result = yield call(postSnackInfo, snackInfo);
     yield put({ type: CREATE_SNACK_SUCCESS, payload: result });
@@ -61,8 +60,13 @@ const initialState = {
 
 export const newSnack = handleActions(
   {
-    [CREATE_SNACK_SUCCESS]: (state) => ({ ...state, formClose: true }),
-    [CREATE_SNACK_FAILURE]: (state, payload) => ({ ...state }),
+    [CREATE_SNACK_SUCCESS]: (state, payload) => {
+      console.log('성공함' + payload);
+      return { ...state, formClose: true };
+    },
+    [CREATE_SNACK_FAILURE]: (state, payload) => {
+      console.log('실패함' + payload);
+    },
     [CHANGE_TITLE]: (state, { payload: title }) => ({
       ...state,
       title,
