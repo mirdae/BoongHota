@@ -1,5 +1,6 @@
 import { createAction, handleActions } from 'redux-actions';
 import { takeLatest, takeEvery } from 'redux-saga/effects';
+import axios from 'axios';
 
 const CREATE_SNACK = 'newSnack/CREATE_SNACK';
 const CREATE_SNACK_SUCCESS = 'newSnack/CREATE_SNACK_SUCCESS';
@@ -35,6 +36,11 @@ export const closeMap = createAction(CLOSE_MAP);
 
 function* createSnackSaga() {
   yield console.log('여기까지 왔는교?');
+  try {
+    yield axios.get('/api/snack');
+  } catch (error) {
+    console.log(error);
+  }
 }
 
 export function* newSnackSaga() {
