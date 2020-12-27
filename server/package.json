@@ -4,7 +4,8 @@
   "description": "1. 프로젝트를 생성할 로컬 디렉토리로 이동",
   "main": "index.js",
   "scripts": {
-    "start": "babel-node index.js"
+    "start": "nodemon --exec babel-node index.js --delay 2",
+    "dev": "concurrently \"npm start\" \"npm start --prefix ../client\""
   },
   "repository": {
     "type": "git",
