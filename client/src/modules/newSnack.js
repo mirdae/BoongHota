@@ -1,6 +1,6 @@
 import { createAction, handleActions } from 'redux-actions';
-import { takeLatest, takeEvery } from 'redux-saga/effects';
-import axios from 'axios';
+import { takeLatest, takeEvery, call, put } from 'redux-saga/effects';
+import { postSnackInfo } from '../api/snack';
 
 const CREATE_SNACK = 'newSnack/CREATE_SNACK';
 const CREATE_SNACK_SUCCESS = 'newSnack/CREATE_SNACK_SUCCESS';
@@ -37,8 +37,10 @@ export const closeMap = createAction(CLOSE_MAP);
 function* createSnackSaga(snackInfo) {
   yield console.log(snackInfo);
   try {
-    yield axios.get('/api/snack');
+    const result = yield call(postSnackInfo, snackInfo);
+    yield put({ type: CREATE_SNACK_SUCCESS, payload: result });
   } catch (error) {
+    yield put({ type: CREATE_SNACK_FAILURE, payload: error });
     console.log(error);
   }
 }
