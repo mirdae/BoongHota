@@ -4,7 +4,7 @@
   "description": "1. 프로젝트를 생성할 로컬 디렉토리로 이동",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "babel-node index.js"
   },
   "repository": {
     "type": "git",
