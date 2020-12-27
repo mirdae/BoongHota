@@ -8,9 +8,12 @@ const CREATE_SNACK_FAILURE = 'newSnack/CREATE_SNACK_FAILURE';
 const CHANGE_TITLE = 'newSnack/CHANGE_TITLE';
 const CHANGE_FOOD = 'newSnack/CHANGE_FOOD';
 const CHANGE_LOCATION = 'newSnack/CHANGE_LOCATION';
+const CHANGE_LOCATION_NUM = 'newSnack/CHANGE_LOCATION_NUM';
 const CHANGE_TIME = 'newSnack/CHANGE_TIME';
 const CLOSE_FORM = 'newSnack/CLOSE_FORM';
 const OPEN_FORM = 'newSnack/OPEN_FORM';
+const OPEN_MAP = 'newSnack/OPEN_MAP';
+const CLOSE_MAP = 'newSnack/CLOSE_MAP';
 
 export const createSnack = createAction(CREATE_SNACK, (snackInfo) => snackInfo);
 export const changeTitle = createAction(CHANGE_TITLE, (title) => title);
@@ -19,14 +22,19 @@ export const changeLocation = createAction(
   CHANGE_LOCATION,
   (location) => location,
 );
+export const changeLocationNum = createAction(
+  CHANGE_LOCATION_NUM,
+  (locationNum) => locationNum,
+);
 
 export const changeTime = createAction(CHANGE_TIME, (time) => time);
-export const closeForm = createAction(CLOSE_FORM);
 export const openForm = createAction(OPEN_FORM);
+export const closeForm = createAction(CLOSE_FORM);
+export const openMap = createAction(OPEN_MAP);
+export const closeMap = createAction(CLOSE_MAP);
 
-function* createSnackSaga(snackInfo) {
+function* createSnackSaga() {
   yield console.log('여기까지 왔는교?');
-  yield console.log(snackInfo);
 }
 
 export function* newSnackSaga() {
@@ -36,9 +44,11 @@ export function* newSnackSaga() {
 const initialState = {
   title: '',
   food: '',
-  location: [0, 0, ''],
+  locationNum: [0, 0],
+  location: '',
   time: ['00:00', '00:00'],
-  isModalVisible: true,
+  isModalVisible: false,
+  isMapVisible: false,
 };
 
 export const newSnack = handleActions(
@@ -54,13 +64,26 @@ export const newSnack = handleActions(
       ...state,
       location,
     }),
+    [CHANGE_LOCATION_NUM]: (state, { payload: locationNum }) => ({
+      ...state,
+      locationNum,
+    }),
     [CHANGE_TIME]: (state, { payload: time }) => ({ ...state, time }),
+    [OPEN_FORM]: () => ({
+      ...initialState,
+      isModalVisible: true,
+    }),
     [CLOSE_FORM]: (state) => ({
       ...state,
       isModalVisible: false,
     }),
-    [OPEN_FORM]: () => ({
-      ...initialState,
+    [OPEN_MAP]: (state) => ({
+      ...state,
+      isMapVisible: true,
+    }),
+    [CLOSE_MAP]: (state) => ({
+      ...state,
+      isMapVisible: false,
     }),
   },
   initialState,

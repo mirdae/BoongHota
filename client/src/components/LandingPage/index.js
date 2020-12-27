@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import Boong from '../Animation/Boong';
 import Ho from '../Animation/Ho';
 import Ta from '../Animation/Ta';
-import Modal from '../Modal/Container';
+import Modal from '../Modal';
 import useSnackInput from '../../hooks/useSnackInput';
 
 import './styles.scss';

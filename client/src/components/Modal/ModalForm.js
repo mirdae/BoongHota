@@ -2,21 +2,22 @@ import React from 'react';
 import moment from 'moment';
 import { TimePicker } from 'antd';
 const { RangePicker } = TimePicker;
-import Map from './Map';
+
 import useSnackInput from '../../hooks/useSnackInput';
+import useMap from '../../hooks/useMap';
 
 import './styles.scss';
 
-const ModalForm = ({ location, findMapAddress, findMyAddress }) => {
+const ModalForm = () => {
   const {
     inputs,
     onChangeTitle,
     onChangeFood,
-    onChangeLocation,
     onChangeTime,
     onSubmit,
     onCancle,
   } = useSnackInput();
+  const { findMyAddress, findMapAddress } = useMap(window);
 
   return (
     <form
@@ -64,10 +65,28 @@ const ModalForm = ({ location, findMapAddress, findMyAddress }) => {
         </div>
         <div className="input-box_location">
           <label htmlFor="location">가게위치</label>
-          <input id="location" name="location" value={location} />
+          <input
+            id="location"
+            name="location"
+            value={inputs && inputs.location}
+          />
           <div className="button-box_location">
-            <button onClick={findMapAddress}>지도에서 찾기</button>
-            <button onClick={findMyAddress}>현재 위치</button>
+            <button
+              onClick={(e) => {
+                e.preventDefault();
+                findMapAddress();
+              }}
+            >
+              지도에서 찾기
+            </button>
+            <button
+              onClick={(e) => {
+                e.preventDefault();
+                findMyAddress();
+              }}
+            >
+              현재 위치
+            </button>
           </div>
         </div>
         <div className="input-box_time">

@@ -4,7 +4,6 @@ import {
   createSnack,
   changeTitle,
   changeFood,
-  changeLocation,
   changeTime,
   closeForm,
   openForm,
@@ -12,7 +11,6 @@ import {
 
 const useSnackInput = () => {
   const inputs = useSelector((state) => state.newSnack);
-  console.log(inputs);
   const dispatch = useDispatch();
 
   const onChangeTitle = useCallback(
@@ -24,20 +22,13 @@ const useSnackInput = () => {
   const onChangeFood = useCallback((food) => dispatch(changeFood(food)), [
     dispatch,
   ]);
-  const onChangeLocation = useCallback(
-    (location) => dispatch(changeLocation(location)),
-    [dispatch],
-  );
   const onChangeTime = useCallback((time) => dispatch(changeTime(time)), [
     dispatch,
   ]);
-  const onSubmit = useCallback(
-    (snackInfo) => {
-      dispatch(closeForm());
-      dispatch(createSnack(snackInfo));
-    },
-    [dispatch],
-  );
+  const onSubmit = useCallback(() => {
+    dispatch(closeForm());
+    dispatch(createSnack());
+  }, [dispatch]);
   const onCancle = useCallback(() => dispatch(closeForm()), [dispatch]);
   const onOpenForm = useCallback(() => dispatch(openForm()), [dispatch]);
 
@@ -45,7 +36,6 @@ const useSnackInput = () => {
     inputs,
     onChangeTitle,
     onChangeFood,
-    onChangeLocation,
     onChangeTime,
     onSubmit,
     onCancle,
