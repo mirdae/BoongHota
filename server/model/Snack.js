@@ -2,10 +2,9 @@ import mongoose from 'mongoose';
 
 const snackSchema = new mongoose.Schema({
   storeName: { type: String, required: true },
-  foodtype: { type: String, enum: ['boong', 'ho', 'ta'], required: true },
-  longitude: { type: String, required: true },
-  latitude: { type: String, required: true },
-  address: { type: String, required: true },
+  food: { type: String, enum: ['boong', 'ho', 'ta'], required: true },
+  locationNum: { type: Array, required: true },
+  location: { type: String, required: true },
   time: { type: Array, required: true }
 });
 
