@@ -1,9 +1,17 @@
-import React, { forwardRef } from 'react';
+import React, { useRef, useEffect } from 'react';
+import useFullMap from '../../hooks/useFullMap';
 import { Link } from 'react-router-dom';
 import { HomeFilled } from '@ant-design/icons';
+const { kakao } = window;
 import './styles.scss';
 
-const Presenter = forwardRef((props, ref) => {
+const Presenter = () => {
+  const ref = useRef();
+  const { drawMap } = useFullMap(window, ref);
+  useEffect(() => {
+    drawMap();
+  }, []);
+
   return (
     <div className="map-container">
       <div id="map" className="map-box" ref={ref}></div>
@@ -28,6 +36,6 @@ const Presenter = forwardRef((props, ref) => {
       </ul>
     </div>
   );
-});
+};
 
 export default Presenter;
