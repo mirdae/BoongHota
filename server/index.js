@@ -4,6 +4,8 @@ import helmet from 'helmet';
 import morgan from 'morgan';
 import bodyParser from 'body-parser';
 
+import './db';
+
 const app = express();
 const PORT = process.env.PORT || 5000;
 
