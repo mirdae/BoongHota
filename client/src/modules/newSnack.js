@@ -34,8 +34,8 @@ export const closeForm = createAction(CLOSE_FORM);
 export const openMap = createAction(OPEN_MAP);
 export const closeMap = createAction(CLOSE_MAP);
 
-function* createSnackSaga() {
-  yield console.log('여기까지 왔는교?');
+function* createSnackSaga(snackInfo) {
+  yield console.log(snackInfo);
   try {
     yield axios.get('/api/snack');
   } catch (error) {
