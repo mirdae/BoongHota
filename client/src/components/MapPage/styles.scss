@@ -1,0 +1,57 @@
+.map-container {
+  width: 100%;
+  height: 100vh;
+  .map-box {
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    z-index: 900;
+    top: 0;
+    left: 0;
+  }
+  .button-box {
+    width: 20vw;
+    height: 50px;
+    background-color: rgba(56, 56, 56, 0.741);
+    box-shadow: 3px 0px 2px 2px rgba(56, 56, 56, 0.741);
+    position: fixed;
+    z-index: 999;
+    top: 0;
+    left: 0;
+    li {
+      list-style: none;
+      float: left;
+      width: 20%;
+      height: 50px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      .home-icon {
+        color: rgb(191, 163, 133);
+        svg {
+          width: 1.7em;
+          height: 2em;
+        }
+      }
+      img {
+        cursor: pointer;
+      }
+      &:nth-child(2) img {
+        width: 1.9em;
+        height: 1.9em;
+      }
+      &:nth-child(3) img {
+        width: 2em;
+        height: 1.4em;
+      }
+      &:nth-child(4) img {
+        width: 1.8em;
+        height: 1.4em;
+      }
+      &:nth-child(5) img {
+        width: 1.6em;
+        height: 1.5em;
+      }
+    }
+  }
+}
