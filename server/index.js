@@ -3,6 +3,7 @@ import dotenv from 'dotenv';
 import helmet from 'helmet';
 import morgan from 'morgan';
 import bodyParser from 'body-parser';
+import snackRouter from './snackRouter';
 
 import './db';
 
@@ -13,6 +14,8 @@ app.use(helmet());
 app.use(morgan('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
+
+app.use('/api/snack', snackRouter);
 
 app.listen(PORT, () => {
   console.log(`✅ Listening on port: ${PORT}`);
