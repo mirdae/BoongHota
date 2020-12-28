@@ -40,4 +40,4 @@ server 경로에서
 
 # 기술 스택
 ***
-<img src="https://img.shields.io/badge/React-61dafb?style=flat-square&logo=React&logoColor=white&color=white"/></a>&nbsp;
+<img src="https://img.shields.io/badge/React-61dafb?style=flat-square&logo=React&logoColor=white"/></a>&nbsp;
