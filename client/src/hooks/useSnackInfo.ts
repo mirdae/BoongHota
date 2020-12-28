@@ -2,6 +2,7 @@ import { useCallback } from 'react';
 import { allSnacks, selectedSnack } from '../modules/snacks';
 
 import { useDispatch } from 'react-redux';
+import { Food } from '../types';
 
 const useSnackInfo = () => {
   const dispatch = useDispatch();
@@ -11,7 +12,7 @@ const useSnackInfo = () => {
   }, [dispatch]);
 
   const getSelectedSnacks = useCallback(
-    (snackType) => {
+    (snackType: Food) => {
       dispatch(selectedSnack(snackType));
     },
     [dispatch],

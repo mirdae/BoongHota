@@ -8,32 +8,34 @@ import {
   closeForm,
   openForm,
 } from '../modules/newSnack';
+import { RootState } from '../modules';
+import { StoreName, Food, Time, NewSnack } from '../types';
 
 const useSnackInput = () => {
-  const inputs = useSelector((state) => state.newSnack);
+  const inputs = useSelector((state: RootState) => state.newSnack);
   const dispatch = useDispatch();
 
   const onChangeStoreName = useCallback(
-    (storeName) => {
+    (storeName: StoreName) => {
       dispatch(changeStoreName(storeName));
     },
     [dispatch],
   );
-  const onChangeFood = useCallback((food) => dispatch(changeFood(food)), [
+  const onChangeFood = useCallback((food: Food) => dispatch(changeFood(food)), [
     dispatch,
   ]);
-  const onChangeTime = useCallback((time) => dispatch(changeTime(time)), [
+  const onChangeTime = useCallback((time: Time) => dispatch(changeTime(time)), [
     dispatch,
   ]);
   const onSubmit = useCallback(
-    (snackInfo) => {
+    (snackInfo: NewSnack) => {
       dispatch(closeForm());
       dispatch(createSnack(snackInfo));
     },
     [dispatch],
   );
   const onCancel = useCallback(
-    (e) => {
+    (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
       e.preventDefault();
       dispatch(closeForm());
     },

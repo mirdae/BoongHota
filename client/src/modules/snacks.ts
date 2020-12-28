@@ -1,7 +1,7 @@
 import { createAction, createReducer, ActionType } from 'typesafe-actions';
 import { takeEvery, call, put } from 'redux-saga/effects';
 import { getAllSnackInfo, getSelectedSnackInfo } from '../api/snack';
-import { snack } from '../types';
+import { Snack, Food } from '../types';
 
 const ALL_SNACKS = 'newSnack/ALL_SNACKS';
 const ALL_SNACKS_SUCCESS = 'newSnack/ALL_SNACKS_SUCCESS';
@@ -22,7 +22,7 @@ export const allSnacksFailure = createAction(
 export const selectedSnack = createAction(
   SELECTED_SNACK,
   (snackType) => snackType,
-)<'boong' | 'ho' | 'ta' | ''>();
+)<Food>();
 export const selectedSnackSuccess = createAction(
   SELECTED_SNACK_SUCCESS,
   (snackInfo) => snackInfo,
@@ -47,10 +47,10 @@ const selectedSnackActions = {
   selectedSnackFailure,
 };
 
-type snacksAction = ActionType<typeof actions>;
-type selectedSnacksAction = ActionType<typeof selectedSnackActions>;
-type snacksState = {
-  snacks: snack[];
+type SnacksAction = ActionType<typeof actions>;
+type SelectedSnacksAction = ActionType<typeof selectedSnackActions>;
+type SnacksState = {
+  snacks: Snack[];
 };
 
 function* allSnackSaga() {
@@ -63,7 +63,7 @@ function* allSnackSaga() {
   }
 }
 
-function* selectedSnackSaga({ payload }: selectedSnacksAction) {
+function* selectedSnackSaga({ payload }: SelectedSnacksAction) {
   try {
     const result = yield call(getSelectedSnackInfo, payload);
     yield put({ type: SELECTED_SNACK_SUCCESS, payload: result });
@@ -77,11 +77,11 @@ export function* snacksSaga() {
   yield takeEvery(SELECTED_SNACK, selectedSnackSaga);
 }
 
-const initialState: snacksState = {
+const initialState: SnacksState = {
   snacks: [],
 };
 
-export const snacks = createReducer<snacksState, snacksAction>(initialState, {
+export const snacks = createReducer<SnacksState, SnacksAction>(initialState, {
   [ALL_SNACKS_SUCCESS]: (state, { payload }) => {
     const {
       data: { allSnacks },

@@ -4,6 +4,7 @@ import useFullMap from '../../hooks/useFullMap';
 import useSnackInfo from '../../hooks/useSnackInfo';
 import { Link } from 'react-router-dom';
 import { HomeFilled } from '@ant-design/icons';
+import { RootState } from '../../modules';
 
 import './styles.scss';
 
@@ -11,11 +12,11 @@ const Presenter = () => {
   const ref = useRef();
   const { drawMap } = useFullMap(window, ref);
   const { getAllSnacks, getSelectedSnacks } = useSnackInfo();
-  const { snacks } = useSelector((state) => state.snacks);
+  const { snacks } = useSelector((state: RootState) => state.snacks);
   useEffect(() => {
     drawMap();
     console.log(snacks);
-  }, [snacks]);
+  }, [drawMap, snacks]);
 
   return (
     <div className="map-container">

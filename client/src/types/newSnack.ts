@@ -1,9 +1,11 @@
-export type newSnack = {
-  storeName: string;
-  food: 'boong' | 'ho' | 'ta' | '';
-  locationNum: [number, number];
-  location: string;
-  time: [string, string];
+import { StoreName, Food, Location, LocationNum, Time } from './snacks';
+
+export type NewSnack = {
+  storeName: StoreName;
+  food: Food;
+  locationNum: LocationNum;
+  location: Location;
+  time: Time;
   isModalVisible: boolean;
   isMapVisible: boolean;
   formClose?: boolean;

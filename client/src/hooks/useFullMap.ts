@@ -1,6 +1,6 @@
 import { useCallback } from 'react';
 
-const useFullMap = (window, ref) => {
+const useFullMap = (window: any, ref: any) => {
   const { kakao } = window;
 
   const displayMarker = useCallback(
@@ -26,7 +26,9 @@ const useFullMap = (window, ref) => {
   const getAddress = useCallback(
     (map) => {
       if (window.navigator.geolocation) {
-        window.navigator.geolocation.getCurrentPosition(function (position) {
+        window.navigator.geolocation.getCurrentPosition(function (
+          position: any,
+        ) {
           const lat = position.coords.latitude; // 위도
           const lon = position.coords.longitude; // 경도
           const locPosition = new kakao.maps.LatLng(lat, lon);
