@@ -26,8 +26,7 @@ const useSnackInput = () => {
     dispatch,
   ]);
   const onSubmit = useCallback(
-    (snackInfo, e) => {
-      e.preventDefault();
+    (snackInfo) => {
       dispatch(closeForm());
       dispatch(createSnack(snackInfo));
     },

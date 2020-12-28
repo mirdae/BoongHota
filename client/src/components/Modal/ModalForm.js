@@ -19,8 +19,25 @@ const ModalForm = () => {
   } = useSnackInput();
   const { findMyAddress, findMapAddress } = useMap(window);
 
+  const submitWithCheck = (e) => {
+    e.preventDefault();
+    if (inputs.storeName === '') {
+      alert('가게이름뭔데');
+      return;
+    }
+    if (inputs.food === '') {
+      return;
+    }
+    if (inputs.location === '') {
+      return;
+    }
+    if (inputs.time[0] === '00:00' || inputs.time[1] === '00:00') {
+      return;
+    }
+    onSubmit(inputs);
+  };
   return (
-    <form className="modal-form" onSubmit={(e) => onSubmit(inputs, e)}>
+    <form className="modal-form" onSubmit={submitWithCheck}>
       <div className="kind-box" onChange={(e) => onChangeFood(e.target.value)}>
         <input
           name="food"
