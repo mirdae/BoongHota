@@ -40,4 +40,10 @@ server 경로에서
 
 # 기술 스택
 ***
+## Front
+<img src="https://img.shields.io/badge/React-61dafb?style=flat-square&logo=React&logoColor=white"/></a>&nbsp;
+<img src="https://img.shields.io/badge/TypeScript-3178c6?style=flat-square&logo=TypeScript&logoColor=white"/></a>&nbsp;
+<img src="https://img.shields.io/badge/Sass-cc6699?style=flat-square&logo=Sass&logoColor=white"/></a>&nbsp;
+<img src="https://img.shields.io/badge/Redux-764abc?style=flat-square&logo=Redux&logoColor=white"/></a>&nbsp;
+<img src="https://img.shields.io/badge/Ant Design-0170fe?style=flat-square&logo=Ant Design&logoColor=white"/></a>&nbsp;
 <img src="https://img.shields.io/badge/React-61dafb?style=flat-square&logo=React&logoColor=white"/></a>&nbsp;
