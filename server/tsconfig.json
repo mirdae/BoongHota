@@ -1,0 +1,20 @@
+{
+  "compilerOptions": {
+    "strict": false,
+    "declaration": true,
+    "moduleResolution": "node",
+    "target": "ES2018",
+    "allowJs": true,
+    "module": "CommonJS",
+    "outDir": "./dist",
+    "esModuleInterop": true,
+    "skipLibCheck": true,
+    "allowSyntheticDefaultImports": true,
+    "resolveJsonModule": true,
+    "experimentalDecorators": true,
+    "emitDecoratorMetadata": true,
+    "types": ["node", "jest"]
+  },
+  "include": ["src/index.ts", "src/app.ts"],
+  "exclude": ["node_modules", "build"]
+}
