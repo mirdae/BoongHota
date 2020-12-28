@@ -1,6 +1,7 @@
-import { createAction, handleActions } from 'redux-actions';
+import { createAction, createReducer, ActionType } from 'typesafe-actions';
 import { takeLatest, takeEvery, call, put } from 'redux-saga/effects';
 import { postSnackInfo } from '../api/snack';
+import { newSnack as newSnackType } from '../types';
 
 const CREATE_SNACK = 'newSnack/CREATE_SNACK';
 const CREATE_SNACK_SUCCESS = 'newSnack/CREATE_SNACK_SUCCESS';
@@ -11,34 +12,69 @@ const CHANGE_FOOD = 'newSnack/CHANGE_FOOD';
 const CHANGE_LOCATION = 'newSnack/CHANGE_LOCATION';
 const CHANGE_LOCATION_NUM = 'newSnack/CHANGE_LOCATION_NUM';
 const CHANGE_TIME = 'newSnack/CHANGE_TIME';
+
 const CLOSE_FORM = 'newSnack/CLOSE_FORM';
 const OPEN_FORM = 'newSnack/OPEN_FORM';
+
 const OPEN_MAP = 'newSnack/OPEN_MAP';
 const CLOSE_MAP = 'newSnack/CLOSE_MAP';
 
-export const createSnack = createAction(CREATE_SNACK, (snackInfo) => snackInfo);
+export const createSnack = createAction(
+  CREATE_SNACK,
+  (snackInfo) => snackInfo,
+)<newSnackType>();
+export const createSnackSuccess = createAction(
+  CREATE_SNACK_SUCCESS,
+  (snackInfo) => snackInfo,
+)<newSnackType>();
+export const createSnackFailure = createAction(
+  CREATE_SNACK_FAILURE,
+  (error) => error,
+)<Error>();
 
 export const changeStoreName = createAction(
   CHANGE_STORE_NAME,
   (storeName) => storeName,
-);
-export const changeFood = createAction(CHANGE_FOOD, (food) => food);
+)<string>();
+export const changeFood = createAction(CHANGE_FOOD, (food) => food)<
+  'boong' | 'ho' | 'ta' | ''
+>();
 export const changeLocation = createAction(
   CHANGE_LOCATION,
   (location) => location,
-);
+)<string>();
 export const changeLocationNum = createAction(
   CHANGE_LOCATION_NUM,
   (locationNum) => locationNum,
-);
+)<[number, number]>();
 
-export const changeTime = createAction(CHANGE_TIME, (time) => time);
-export const openForm = createAction(OPEN_FORM);
-export const closeForm = createAction(CLOSE_FORM);
-export const openMap = createAction(OPEN_MAP);
-export const closeMap = createAction(CLOSE_MAP);
+export const changeTime = createAction(CHANGE_TIME, (time) => time)();
 
-function* createSnackSaga(snackInfo) {
+export const openForm = createAction(OPEN_FORM)();
+export const closeForm = createAction(CLOSE_FORM)();
+
+export const openMap = createAction(OPEN_MAP)();
+export const closeMap = createAction(CLOSE_MAP)();
+
+const actions = {
+  createSnack,
+  createSnackSuccess,
+  createSnackFailure,
+  changeStoreName,
+  changeFood,
+  changeLocation,
+  changeLocationNum,
+  changeTime,
+  openForm,
+  closeForm,
+  openMap,
+  closeMap,
+};
+
+type newSnackAction = ActionType<typeof actions>;
+type newSnackState = newSnackType;
+
+function* createSnackSaga(snackInfo: newSnackAction) {
   try {
     const result = yield call(postSnackInfo, snackInfo);
     yield put({ type: CREATE_SNACK_SUCCESS, payload: result });
@@ -47,11 +83,12 @@ function* createSnackSaga(snackInfo) {
     console.log(error);
   }
 }
+
 export function* newSnackSaga() {
   yield takeEvery(CREATE_SNACK, createSnackSaga);
 }
 
-const initialState = {
+const initialState: newSnackState = {
   storeName: '',
   food: '',
   locationNum: [0, 0],
@@ -61,14 +98,15 @@ const initialState = {
   isMapVisible: false,
 };
 
-export const newSnack = handleActions(
+export const newSnack = createReducer<newSnackState, newSnackAction>(
+  initialState,
   {
-    [CREATE_SNACK_SUCCESS]: (state, payload) => {
+    [CREATE_SNACK_SUCCESS]: (state, action) => {
       return { ...state, formClose: true };
     },
-    [CREATE_SNACK_FAILURE]: (state, payload) => {
-      console.log('실패함' + payload);
-    },
+    [CREATE_SNACK_FAILURE]: (state, action) => ({
+      ...state,
+    }),
     [CHANGE_STORE_NAME]: (state, { payload: storeName }) => ({
       ...state,
       storeName,
@@ -100,5 +138,4 @@ export const newSnack = handleActions(
       isMapVisible: false,
     }),
   },
-  initialState,
 );
