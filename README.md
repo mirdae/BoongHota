@@ -20,12 +20,9 @@ server 경로에서
 ***
 `
 ├  BoongHota  
-
  ├ client  
- 
   ├  public  
   ├  src  
-  
     ├  api  # Api call functions  
     ├  components  # components  
      ├ common  # Common components  
