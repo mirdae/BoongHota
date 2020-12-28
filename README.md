@@ -18,16 +18,17 @@ server 경로에서
 
 # 디렉토리 구조
 ***
+`
 ├  BoongHota  
  ├ client  
-  ├  public    
+  ├  public  
   ├  src  
     ├  api  # Api call functions  
     ├  components  # components  
      ├ common  # Common components  
     ├  hooks  # Custom hooks  
     ├  modules  # Redux actions, reducers, saga  
-    ├  App.js    
+    ├  App.js  
     ├  index.js    
  ├ server  
   ├ model # Data model(mongoose)  
@@ -35,3 +36,4 @@ server 경로에서
   ├ db.js # db connect settings  
   ├ index.js  
   ├ snackRouter.js # router  
+`
