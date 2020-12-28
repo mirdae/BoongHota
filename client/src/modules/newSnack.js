@@ -27,6 +27,12 @@ const OPEN_MAP = 'newSnack/OPEN_MAP';
 const CLOSE_MAP = 'newSnack/CLOSE_MAP';
 
 export const createSnack = createAction(CREATE_SNACK, (snackInfo) => snackInfo);
+export const allSnacks = createAction(ALL_SNACKS);
+export const selectedSnack = createAction(
+  SELECTED_SNACK,
+  (snackInfo) => snackInfo,
+);
+
 export const changeStoreName = createAction(
   CHANGE_STORE_NAME,
   (storeName) => storeName,
