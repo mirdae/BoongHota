@@ -45,7 +45,7 @@ server 경로에서
 <img src="https://img.shields.io/badge/TypeScript-3178c6?style=flat-square&logo=TypeScript&logoColor=white"/></a>&nbsp;
 <img src="https://img.shields.io/badge/Sass-cc6699?style=flat-square&logo=Sass&logoColor=white"/></a>&nbsp;
 <img src="https://img.shields.io/badge/Redux-764abc?style=flat-square&logo=Redux&logoColor=white"/></a>&nbsp;
-<img src="https://img.shields.io/badge/AntDesign-0170fe?style=flat-square&logo=AntDesign&logoColor=white"/></a>&nbsp;
+<img src="https://img.shields.io/badge/Ant&nbsp;Design-0170fe?style=flat-square&logo=Ant&nbsp;Design&logoColor=white"/></a>&nbsp;
 
 ## Back
 <img src="https://img.shields.io/badge/Node.js-339933?style=flat-square&logo=Node.js&logoColor=white"/></a>&nbsp;
