@@ -1,10 +1,20 @@
 import { createAction, handleActions } from 'redux-actions';
 import { takeLatest, takeEvery, call, put } from 'redux-saga/effects';
-import { postSnackInfo } from '../api/snack';
+import {
+  postSnackInfo,
+  getAllSnackInfo,
+  getSelectedSnackInfo,
+} from '../api/snack';
 
 const CREATE_SNACK = 'newSnack/CREATE_SNACK';
 const CREATE_SNACK_SUCCESS = 'newSnack/CREATE_SNACK_SUCCESS';
 const CREATE_SNACK_FAILURE = 'newSnack/CREATE_SNACK_FAILURE';
+const ALL_SNACKS = 'newSnack/ALL_SNACKS';
+const ALL_SNACKS_SUCCESS = 'newSnack/ALL_SNACKS_SUCCESS';
+const ALL_SNACKS_FAILURE = 'newSnack/ALL_SNACKS_FAILURE';
+const SELECTED_SNACK = 'newSnack/SELECTED_SNACK';
+const SELECTED_SNACK_SUCCESS = 'newSnack/SELECTED_SNACK_SUCCESS';
+const SELECTED_SNACK_FAILURE = 'newSnack/SELECTED_SNACK_FAILURE';
 
 const CHANGE_STORE_NAME = 'newSnack/CHANGE_STORE_NAME';
 const CHANGE_FOOD = 'newSnack/CHANGE_FOOD';
@@ -47,8 +57,29 @@ function* createSnackSaga(snackInfo) {
   }
 }
 
+function* allSnackSaga() {
+  try {
+    const result = yield call(getAllSnackInfo);
+    yield put({ type: ALL_SNACKS_SUCCESS, payload: result });
+  } catch (error) {
+    yield put({ type: ALL_SNACKS_FAILURE, payload: error });
+    console.log(error);
+  }
+}
+
+function* selectedSnackSaga(snackInfo) {
+  try {
+    const result = yield call(getSelectedSnackInfo, snackInfo);
+    yield put({ type: SELECTED_SNACK_SUCCESS, payload: result });
+  } catch (error) {
+    yield put({ type: SELECTED_SNACK_FAILURE, payload: error });
+    console.log(error);
+  }
+}
 export function* newSnackSaga() {
-  yield takeLatest(CREATE_SNACK, createSnackSaga);
+  yield takeEvery(CREATE_SNACK, createSnackSaga);
+  yield takeEvery(ALL_SNACKS, allSnackSaga);
+  yield takeEvery(SELECTED_SNACK, selectedSnackSaga);
 }
 
 const initialState = {
@@ -64,10 +95,23 @@ const initialState = {
 export const newSnack = handleActions(
   {
     [CREATE_SNACK_SUCCESS]: (state, payload) => {
-      console.log('성공함' + payload);
       return { ...state, formClose: true };
     },
     [CREATE_SNACK_FAILURE]: (state, payload) => {
+      console.log('실패함' + payload);
+    },
+    [ALL_SNACKS_SUCCESS]: (state, payload) => {
+      console.log('성공함' + payload);
+      return { ...state, formClose: true };
+    },
+    [ALL_SNACKS_FAILURE]: (state, payload) => {
+      console.log('실패함' + payload);
+    },
+    [SELECTED_SNACK_SUCCESS]: (state, payload) => {
+      console.log('성공함' + payload);
+      return { ...state, formClose: true };
+    },
+    [SELECTED_SNACK_FAILURE]: (state, payload) => {
       console.log('실패함' + payload);
     },
     [CHANGE_STORE_NAME]: (state, { payload: storeName }) => ({
