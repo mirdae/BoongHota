@@ -49,7 +49,7 @@ const useMap = (window) => {
   const addNewAddress = useCallback(() => {
     dispatch(closeMap());
     getAddress(...locationNum);
-  }, [dispatch]);
+  }, [dispatch, locationNum]);
 
   const showMap = useCallback((ref) => {
     if (window.navigator.geolocation) {
@@ -76,7 +76,6 @@ const useMap = (window) => {
           let lat = latlng.getLat();
           let lon = latlng.getLng();
           dispatch(changeLocationNum([lat, lon]));
-
           // 마커 위치를 클릭한 위치로 옮깁니다
           marker.setPosition(latlng);
           // 마커를 옮길수 있습니다
