@@ -1,12 +1,11 @@
 import React from 'react';
 import moment from 'moment';
 import { TimePicker } from 'antd';
-const { RangePicker } = TimePicker;
-
 import useSnackInput from '../../hooks/useSnackInput';
 import useMap from '../../hooks/useMap';
 
 import './styles.scss';
+const { RangePicker } = TimePicker;
 
 const ModalForm = () => {
   const {
