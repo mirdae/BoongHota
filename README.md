@@ -1,8 +1,3 @@
-<div width="147px" align="center" >
-<img src="https://media.vlpt.us/images/dolarge/post/0f4e3ed7-c07c-4e48-afea-dba71b3b306b/logo.png" />
-</div>
-
-***
 # 시연
 
 <div width="800px" align="center" >
