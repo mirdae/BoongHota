@@ -1,6 +1,7 @@
 import Snack from './model/Snack';
 
 export const getAllSnacks = async (_, res) => {
+  console.log('server');
   try {
     const allSnacks = await Snack.find({});
     return res.status(200).json({ result: true, allSnacks });
@@ -14,10 +15,10 @@ export const getAllSnacks = async (_, res) => {
 
 export const getSelectedSnack = async (req, res) => {
   const {
-    query: { id }
+    params: { foodType }
   } = req;
   try {
-    const selectedSnack = await Snack.find({ food: id }).exec();
+    const selectedSnack = await Snack.find({ food: foodType }).exec();
     return res.status(200).json({ result: true, selectedSnack });
   } catch (error) {
     console.log(error);
