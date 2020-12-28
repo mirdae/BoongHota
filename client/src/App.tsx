@@ -1,10 +1,9 @@
 import './App.scss';
 import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom';
-
 import LandingPage from './components/LandingPage';
 import MapPage from './components/MapPage';
 
-function App() {
+const App = () => {
   return (
     <div className="App">
       <Router>
@@ -23,6 +22,6 @@ function App() {
       </Router>
     </div>
   );
-}
+};
 
 export default App;
