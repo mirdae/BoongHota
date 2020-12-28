@@ -4,7 +4,7 @@
 
 ***
 
-<img src="https://media.vlpt.us/images/dolarge/post/f1a2c81e-02b5-413c-8ff1-fda0819d14fc/image.png"/>
+<video src="https://media.vlpt.us/images/dolarge/post/b756bdff-a536-41d9-9f76-766282981d92/ezgif.com-gif-maker%20(6).gif"/>
 
 
 # 설치 및 실행
