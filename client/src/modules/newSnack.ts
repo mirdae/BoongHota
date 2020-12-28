@@ -76,12 +76,19 @@ const actions = {
   closeMap,
 };
 
+const createSnackActions = {
+  createSnack,
+  createSnackSuccess,
+  createSnackFailure,
+};
+
 type NewSnackAction = ActionType<typeof actions>;
+type CreateSnackActions = ActionType<typeof createSnackActions>;
 type NewSnackState = NewSnack;
 
-function* createSnackSaga(snackInfo: NewSnackAction) {
+function* createSnackSaga(snackInfo: CreateSnackActions) {
   try {
-    const result = yield call(postSnackInfo, snackInfo);
+    const result = yield call(postSnackInfo, snackInfo.payload);
     yield put({ type: CREATE_SNACK_SUCCESS, payload: result });
   } catch (error) {
     yield put({ type: CREATE_SNACK_FAILURE, payload: error });

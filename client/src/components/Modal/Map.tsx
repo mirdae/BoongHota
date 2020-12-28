@@ -4,13 +4,13 @@ import useMap from '../../hooks/useMap';
 import './styles.scss';
 
 const Map = () => {
-  const mapRef = useRef();
+  const mapRef: any = useRef();
   const { addNewAddress, isMapVisible, showMap } = useMap(window);
   useEffect(() => {
     if (isMapVisible) {
       showMap(mapRef);
     }
-  }, [isMapVisible]);
+  }, [isMapVisible, showMap]);
   return (
     <div className="mini-map-container">
       <div ref={mapRef} className="mini-map-box"></div>
