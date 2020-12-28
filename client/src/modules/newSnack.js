@@ -1,11 +1,12 @@
 import { createAction, handleActions } from 'redux-actions';
-import { takeLatest, takeEvery } from 'redux-saga/effects';
+import { takeLatest, takeEvery, call, put } from 'redux-saga/effects';
+import { postSnackInfo } from '../api/snack';
 
 const CREATE_SNACK = 'newSnack/CREATE_SNACK';
 const CREATE_SNACK_SUCCESS = 'newSnack/CREATE_SNACK_SUCCESS';
 const CREATE_SNACK_FAILURE = 'newSnack/CREATE_SNACK_FAILURE';
 
-const CHANGE_TITLE = 'newSnack/CHANGE_TITLE';
+const CHANGE_STORE_NAME = 'newSnack/CHANGE_STORE_NAME';
 const CHANGE_FOOD = 'newSnack/CHANGE_FOOD';
 const CHANGE_LOCATION = 'newSnack/CHANGE_LOCATION';
 const CHANGE_LOCATION_NUM = 'newSnack/CHANGE_LOCATION_NUM';
@@ -16,7 +17,10 @@ const OPEN_MAP = 'newSnack/OPEN_MAP';
 const CLOSE_MAP = 'newSnack/CLOSE_MAP';
 
 export const createSnack = createAction(CREATE_SNACK, (snackInfo) => snackInfo);
-export const changeTitle = createAction(CHANGE_TITLE, (title) => title);
+export const changeStoreName = createAction(
+  CHANGE_STORE_NAME,
+  (storeName) => storeName,
+);
 export const changeFood = createAction(CHANGE_FOOD, (food) => food);
 export const changeLocation = createAction(
   CHANGE_LOCATION,
@@ -33,8 +37,14 @@ export const closeForm = createAction(CLOSE_FORM);
 export const openMap = createAction(OPEN_MAP);
 export const closeMap = createAction(CLOSE_MAP);
 
-function* createSnackSaga() {
-  yield console.log('여기까지 왔는교?');
+function* createSnackSaga(snackInfo) {
+  try {
+    const result = yield call(postSnackInfo, snackInfo);
+    yield put({ type: CREATE_SNACK_SUCCESS, payload: result });
+  } catch (error) {
+    yield put({ type: CREATE_SNACK_FAILURE, payload: error });
+    console.log(error);
+  }
 }
 
 export function* newSnackSaga() {
@@ -42,7 +52,7 @@ export function* newSnackSaga() {
 }
 
 const initialState = {
-  title: '',
+  storeName: '',
   food: '',
   locationNum: [0, 0],
   location: '',
@@ -53,11 +63,16 @@ const initialState = {
 
 export const newSnack = handleActions(
   {
-    [CREATE_SNACK_SUCCESS]: (state) => ({ ...state, formClose: true }),
-    [CREATE_SNACK_FAILURE]: (state, payload) => ({ ...state }),
-    [CHANGE_TITLE]: (state, { payload: title }) => ({
+    [CREATE_SNACK_SUCCESS]: (state, payload) => {
+      console.log('성공함' + payload);
+      return { ...state, formClose: true };
+    },
+    [CREATE_SNACK_FAILURE]: (state, payload) => {
+      console.log('실패함' + payload);
+    },
+    [CHANGE_STORE_NAME]: (state, { payload: storeName }) => ({
       ...state,
-      title,
+      storeName,
     }),
     [CHANGE_FOOD]: (state, { payload: food }) => ({ ...state, food }),
     [CHANGE_LOCATION]: (state, { payload: location }) => ({

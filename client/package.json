@@ -8,6 +8,7 @@
     "@testing-library/react": "^11.1.0",
     "@testing-library/user-event": "^12.1.10",
     "antd": "^4.9.3",
+    "axios": "^0.21.1",
     "css-loader": "^5.0.1",
     "moment": "^2.29.1",
     "node-sass": "^4.14.1",
@@ -55,5 +56,6 @@
   "devDependencies": {
     "eslint-config-prettier": "^7.0.0",
     "eslint-plugin-prettier": "^3.3.0"
-  }
+  },
+  "proxy": "http://localhost:5000"
 }

@@ -29,27 +29,39 @@ const useMap = (window) => {
     [dispatch],
   );
 
-  const findMyAddress = useCallback(() => {
-    if (window.navigator.geolocation) {
-      window.navigator.geolocation.getCurrentPosition(function (position) {
-        const lat = position.coords.latitude; // 위도
-        const lon = position.coords.longitude; // 경도
-        dispatch(changeLocationNum([lat, lon]));
-        getAddress(lat, lon);
-      });
-    } else {
-      console.log('geolocation을 사용할수 없어요..');
-    }
-  }, [dispatch]);
+  const findMyAddress = useCallback(
+    (e) => {
+      e.preventDefault();
+      if (window.navigator.geolocation) {
+        window.navigator.geolocation.getCurrentPosition(function (position) {
+          const lat = position.coords.latitude; // 위도
+          const lon = position.coords.longitude; // 경도
+          dispatch(changeLocationNum([lat, lon]));
+          getAddress(lat, lon);
+        });
+      } else {
+        console.log('geolocation을 사용할수 없어요..');
+      }
+    },
+    [dispatch],
+  );
 
-  const findMapAddress = useCallback(() => {
-    dispatch(openMap());
-  }, [dispatch]);
+  const findMapAddress = useCallback(
+    (e) => {
+      e.preventDefault();
+      dispatch(openMap());
+    },
+    [dispatch],
+  );
 
-  const addNewAddress = useCallback(() => {
-    dispatch(closeMap());
-    getAddress(...locationNum);
-  }, [dispatch]);
+  const addNewAddress = useCallback(
+    (e) => {
+      e.preventDefault();
+      dispatch(closeMap());
+      getAddress(...locationNum);
+    },
+    [dispatch, locationNum],
+  );
 
   const showMap = useCallback((ref) => {
     if (window.navigator.geolocation) {
@@ -76,7 +88,6 @@ const useMap = (window) => {
           let lat = latlng.getLat();
           let lon = latlng.getLng();
           dispatch(changeLocationNum([lat, lon]));
-
           // 마커 위치를 클릭한 위치로 옮깁니다
           marker.setPosition(latlng);
           // 마커를 옮길수 있습니다
