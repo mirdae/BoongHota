@@ -18,20 +18,20 @@ server 경로에서
 
 # 디렉토리 구조
 ***
-├  BoongHota
- ├ client
-  ├  public  
-  ├  src
-    ├  api  # Api call functions
-    ├  components  # components
-     ├ common  # Common components
-    ├  hooks  # Custom hooks
-    ├  modules  # Redux actions, reducers, saga
-    ├  App.js  
-    ├  index.js  
- ├ server
-  ├ model # Data model(mongoose)
-  ├ controller.js # business logic
-  ├ db.js # db connect settings
-  ├ index.js
-  ├ snackRouter.js # router
+├  BoongHota  
+ ├ client  
+  ├  public    
+  ├  src  
+    ├  api  # Api call functions  
+    ├  components  # components  
+     ├ common  # Common components  
+    ├  hooks  # Custom hooks  
+    ├  modules  # Redux actions, reducers, saga  
+    ├  App.js    
+    ├  index.js    
+ ├ server  
+  ├ model # Data model(mongoose)  
+  ├ controller.js # business logic  
+  ├ db.js # db connect settings  
+  ├ index.js  
+  ├ snackRouter.js # router  
