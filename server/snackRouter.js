@@ -1,11 +1,11 @@
 import express from 'express';
-import { allSnacks, selectSnack, newSnack } from './controller';
+import { getSelectedSnack, getAllSnacks, postNewSnack } from './controller';
 
 const snackRouter = express.Router();
 
 // api/snack
-snackRouter.get('/:id', selectSnack);
-snackRouter.get('/', allSnacks);
-snackRouter.post('/', newSnack);
+snackRouter.get('/:id', getSelectedSnack);
+snackRouter.get('/', getAllSnacks);
+snackRouter.post('/', postNewSnack);
 
 export default snackRouter;
