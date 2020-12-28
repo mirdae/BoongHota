@@ -48,5 +48,4 @@ server 경로에서
 <img src="https://img.shields.io/badge/MongoDB-47A248?style=flat-square&logo=MongoDB&logoColor=white"/></a>&nbsp;
 <img src="https://img.shields.io/badge/Babel-f9dc3e?style=flat-square&logo=Babel&logoColor=white"/></a>&nbsp;
 
-# API 설계
-
+# [API 명세서](https://github.com/BoongHota/BoongHotaClient/wiki/API-%EB%AA%85%EC%84%B8%EC%84%9C)
