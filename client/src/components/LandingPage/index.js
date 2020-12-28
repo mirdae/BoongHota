@@ -27,7 +27,7 @@ const LandingPage = () => {
           <Ta />
         </Link>
       </main>
-      <button onClick={() => onOpenForm()}>붕호타 + </button>
+      <button onClick={onOpenForm}>붕호타 + </button>
       {isModalVisible && <Modal />}
     </div>
   );

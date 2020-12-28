@@ -9,12 +9,12 @@ export const selectSnack = (req, res) => {
 export const newSnack = async (req, res) => {
   const {
     body: {
-      payload: { title, food, locationNum, location, time }
+      payload: { storeName, food, locationNum, location, time }
     }
   } = req;
   try {
     const newSnack = await Modal.create({
-      storeName: title,
+      storeName,
       food,
       locationNum,
       location,

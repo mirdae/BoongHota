@@ -6,7 +6,7 @@ const CREATE_SNACK = 'newSnack/CREATE_SNACK';
 const CREATE_SNACK_SUCCESS = 'newSnack/CREATE_SNACK_SUCCESS';
 const CREATE_SNACK_FAILURE = 'newSnack/CREATE_SNACK_FAILURE';
 
-const CHANGE_TITLE = 'newSnack/CHANGE_TITLE';
+const CHANGE_STORE_NAME = 'newSnack/CHANGE_STORE_NAME';
 const CHANGE_FOOD = 'newSnack/CHANGE_FOOD';
 const CHANGE_LOCATION = 'newSnack/CHANGE_LOCATION';
 const CHANGE_LOCATION_NUM = 'newSnack/CHANGE_LOCATION_NUM';
@@ -17,7 +17,10 @@ const OPEN_MAP = 'newSnack/OPEN_MAP';
 const CLOSE_MAP = 'newSnack/CLOSE_MAP';
 
 export const createSnack = createAction(CREATE_SNACK, (snackInfo) => snackInfo);
-export const changeTitle = createAction(CHANGE_TITLE, (title) => title);
+export const changeStoreName = createAction(
+  CHANGE_STORE_NAME,
+  (storeName) => storeName,
+);
 export const changeFood = createAction(CHANGE_FOOD, (food) => food);
 export const changeLocation = createAction(
   CHANGE_LOCATION,
@@ -49,7 +52,7 @@ export function* newSnackSaga() {
 }
 
 const initialState = {
-  title: '',
+  storeName: '',
   food: '',
   locationNum: [0, 0],
   location: '',
@@ -67,9 +70,9 @@ export const newSnack = handleActions(
     [CREATE_SNACK_FAILURE]: (state, payload) => {
       console.log('실패함' + payload);
     },
-    [CHANGE_TITLE]: (state, { payload: title }) => ({
+    [CHANGE_STORE_NAME]: (state, { payload: storeName }) => ({
       ...state,
-      title,
+      storeName,
     }),
     [CHANGE_FOOD]: (state, { payload: food }) => ({ ...state, food }),
     [CHANGE_LOCATION]: (state, { payload: location }) => ({

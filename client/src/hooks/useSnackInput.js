@@ -2,7 +2,7 @@ import { useCallback } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import {
   createSnack,
-  changeTitle,
+  changeStoreName,
   changeFood,
   changeTime,
   closeForm,
@@ -13,9 +13,9 @@ const useSnackInput = () => {
   const inputs = useSelector((state) => state.newSnack);
   const dispatch = useDispatch();
 
-  const onChangeTitle = useCallback(
-    (title) => {
-      dispatch(changeTitle(title));
+  const onChangeStoreName = useCallback(
+    (storeName) => {
+      dispatch(changeStoreName(storeName));
     },
     [dispatch],
   );
@@ -26,22 +26,29 @@ const useSnackInput = () => {
     dispatch,
   ]);
   const onSubmit = useCallback(
-    (snackInfo) => {
+    (snackInfo, e) => {
+      e.preventDefault();
       dispatch(closeForm());
       dispatch(createSnack(snackInfo));
     },
     [dispatch],
   );
-  const onCancle = useCallback(() => dispatch(closeForm()), [dispatch]);
+  const onCancel = useCallback(
+    (e) => {
+      e.preventDefault();
+      dispatch(closeForm());
+    },
+    [dispatch],
+  );
   const onOpenForm = useCallback(() => dispatch(openForm()), [dispatch]);
 
   return {
     inputs,
-    onChangeTitle,
+    onChangeStoreName,
     onChangeFood,
     onChangeTime,
     onSubmit,
-    onCancle,
+    onCancel,
     onOpenForm,
   };
 };

@@ -11,22 +11,16 @@ import './styles.scss';
 const ModalForm = () => {
   const {
     inputs,
-    onChangeTitle,
+    onChangeStoreName,
     onChangeFood,
     onChangeTime,
     onSubmit,
-    onCancle,
+    onCancel,
   } = useSnackInput();
   const { findMyAddress, findMapAddress } = useMap(window);
 
   return (
-    <form
-      className="modal-form"
-      onSubmit={(e) => {
-        e.preventDefault();
-        onSubmit(inputs);
-      }}
-    >
+    <form className="modal-form" onSubmit={(e) => onSubmit(inputs, e)}>
       <div className="kind-box" onChange={(e) => onChangeFood(e.target.value)}>
         <input
           name="food"
@@ -54,11 +48,11 @@ const ModalForm = () => {
         <label className="ta-label" htmlFor="ta" />
       </div>
       <div className="input-box">
-        <div className="input-box_title">
+        <div className="input-box_name">
           <label htmlFor="name">가게명</label>
           <input
-            onChange={(e) => onChangeTitle(e.target.value)}
-            value={inputs && inputs.title}
+            onChange={(e) => onChangeStoreName(e.target.value)}
+            value={inputs && inputs.storeName}
             id="name"
             name="name"
           />
@@ -71,22 +65,8 @@ const ModalForm = () => {
             value={inputs && inputs.location}
           />
           <div className="button-box_location">
-            <button
-              onClick={(e) => {
-                e.preventDefault();
-                findMapAddress();
-              }}
-            >
-              지도에서 찾기
-            </button>
-            <button
-              onClick={(e) => {
-                e.preventDefault();
-                findMyAddress();
-              }}
-            >
-              현재 위치
-            </button>
+            <button onClick={findMapAddress}>지도에서 찾기</button>
+            <button onClick={findMyAddress}>현재 위치</button>
           </div>
         </div>
         <div className="input-box_time">
@@ -100,14 +80,7 @@ const ModalForm = () => {
         </div>
       </div>
       <div className="button-box">
-        <button
-          onClick={(e) => {
-            e.preventDefault();
-            onCancle();
-          }}
-        >
-          뒤로가기
-        </button>
+        <button onClick={onCancel}>뒤로가기</button>
         <button type="submit">등록하기</button>
       </div>
     </form>
