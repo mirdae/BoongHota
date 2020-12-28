@@ -1,6 +1,6 @@
 import { createAction, handleActions } from 'redux-actions';
-import { takeLatest, takeEvery } from 'redux-saga/effects';
-import axios from 'axios';
+import { takeLatest, takeEvery, call, put } from 'redux-saga/effects';
+import { postSnackInfo } from '../api/snack';
 
 const CREATE_SNACK = 'newSnack/CREATE_SNACK';
 const CREATE_SNACK_SUCCESS = 'newSnack/CREATE_SNACK_SUCCESS';
@@ -34,11 +34,12 @@ export const closeForm = createAction(CLOSE_FORM);
 export const openMap = createAction(OPEN_MAP);
 export const closeMap = createAction(CLOSE_MAP);
 
-function* createSnackSaga() {
-  yield console.log('여기까지 왔는교?');
+function* createSnackSaga(snackInfo) {
   try {
-    yield axios.get('/api/snack');
+    const result = yield call(postSnackInfo, snackInfo);
+    yield put({ type: CREATE_SNACK_SUCCESS, payload: result });
   } catch (error) {
+    yield put({ type: CREATE_SNACK_FAILURE, payload: error });
     console.log(error);
   }
 }
@@ -59,8 +60,13 @@ const initialState = {
 
 export const newSnack = handleActions(
   {
-    [CREATE_SNACK_SUCCESS]: (state) => ({ ...state, formClose: true }),
-    [CREATE_SNACK_FAILURE]: (state, payload) => ({ ...state }),
+    [CREATE_SNACK_SUCCESS]: (state, payload) => {
+      console.log('성공함' + payload);
+      return { ...state, formClose: true };
+    },
+    [CREATE_SNACK_FAILURE]: (state, payload) => {
+      console.log('실패함' + payload);
+    },
     [CHANGE_TITLE]: (state, { payload: title }) => ({
       ...state,
       title,

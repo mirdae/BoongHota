@@ -25,10 +25,13 @@ const useSnackInput = () => {
   const onChangeTime = useCallback((time) => dispatch(changeTime(time)), [
     dispatch,
   ]);
-  const onSubmit = useCallback(() => {
-    dispatch(closeForm());
-    dispatch(createSnack());
-  }, [dispatch]);
+  const onSubmit = useCallback(
+    (snackInfo) => {
+      dispatch(closeForm());
+      dispatch(createSnack(snackInfo));
+    },
+    [dispatch],
+  );
   const onCancle = useCallback(() => dispatch(closeForm()), [dispatch]);
   const onOpenForm = useCallback(() => dispatch(openForm()), [dispatch]);
 

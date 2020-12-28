@@ -24,7 +24,7 @@ const ModalForm = () => {
       className="modal-form"
       onSubmit={(e) => {
         e.preventDefault();
-        onSubmit();
+        onSubmit(inputs);
       }}
     >
       <div className="kind-box" onChange={(e) => onChangeFood(e.target.value)}>
