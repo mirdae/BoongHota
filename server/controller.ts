@@ -1,6 +1,8 @@
 import Snack from './model/Snack';
+import { Request, Response } from 'express';
+import { NewSnack } from './types';
 
-export const getAllSnacks = async (_, res) => {
+export const getAllSnacks = async (_: Request, res: Response) => {
   console.log('server');
   try {
     const allSnacks = await Snack.find({});
@@ -13,9 +15,9 @@ export const getAllSnacks = async (_, res) => {
   }
 };
 
-export const getSelectedSnack = async (req, res) => {
+export const getSelectedSnack = async (req: Request, res: Response) => {
   const {
-    params: { foodType }
+    params: { foodType },
   } = req;
   try {
     const selectedSnack = await Snack.find({ food: foodType }).exec();
@@ -27,11 +29,11 @@ export const getSelectedSnack = async (req, res) => {
       .json({ result: false, message: '데이터를 얻어오지 못했습니다.' });
   }
 };
-export const postNewSnack = async (req, res) => {
+export const postNewSnack = async (req: Request, res: Response) => {
   const {
     body: {
-      payload: { storeName, food, locationNum, location, time }
-    }
+      payload: { storeName, food, locationNum, location, time },
+    },
   } = req;
   try {
     const newSnack = await Snack.create({
@@ -39,7 +41,7 @@ export const postNewSnack = async (req, res) => {
       food,
       locationNum,
       location,
-      time
+      time,
     });
     return res.status(201).json({ result: true, newSnack });
   } catch (error) {

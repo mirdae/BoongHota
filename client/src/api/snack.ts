@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { Food, NewSnack } from '../types';
+import { Food, NewSnack } from '../../../server/types';
 
 export const postSnackInfo = (snackInfo: any) =>
   axios.post('/api/snack', snackInfo);

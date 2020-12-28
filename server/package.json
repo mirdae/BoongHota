@@ -4,7 +4,7 @@
   "description": "1. 프로젝트를 생성할 로컬 디렉토리로 이동",
   "main": "index.js",
   "scripts": {
-    "start": "nodemon --exec babel-node index.js --delay 2",
+    "start": " ts-node-dev --respawn --transpile-only index.ts",
     "dev": "concurrently \"npm start\" \"npm start --prefix ../client\""
   },
   "repository": {
@@ -28,7 +28,8 @@
     "helmet": "^4.2.0",
     "mongoose": "^5.11.8",
     "morgan": "^1.10.0",
-    "nodemon": "^2.0.6"
+    "nodemon": "^2.0.6",
+    "ts-node-dev": "^1.1.1"
   },
   "devDependencies": {
     "@types/express": "^4.17.9",

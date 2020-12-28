@@ -15,6 +15,6 @@
     "emitDecoratorMetadata": true,
     "types": ["node", "jest"]
   },
-  "include": ["src/index.ts", "src/app.ts"],
+  "include": ["/index.ts"],
   "exclude": ["node_modules", "build"]
 }

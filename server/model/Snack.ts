@@ -5,9 +5,9 @@ const snackSchema = new mongoose.Schema({
   food: { type: String, enum: ['boong', 'ho', 'ta'], required: true },
   locationNum: { type: Array, required: true },
   location: { type: String, required: true },
-  time: { type: Array, required: true }
+  time: { type: Array, required: true },
 });
 
-const model = mongoose.model('Snack', snackSchema);
+const model: any = mongoose.model('Snack', snackSchema);
 
 export default model;

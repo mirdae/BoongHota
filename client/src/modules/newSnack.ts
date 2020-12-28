@@ -88,7 +88,7 @@ type NewSnackState = NewSnack;
 
 function* createSnackSaga(snackInfo: CreateSnackActions) {
   try {
-    const result = yield call(postSnackInfo, snackInfo.payload);
+    const result = yield call(postSnackInfo, snackInfo);
     yield put({ type: CREATE_SNACK_SUCCESS, payload: result });
   } catch (error) {
     yield put({ type: CREATE_SNACK_FAILURE, payload: error });

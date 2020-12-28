@@ -22,7 +22,7 @@
   },
   "include": [
     "src"
-  ],
+, "../server/types/index.ts", "../server/types/snacks.ts"  ],
   "exclude": [
     "node_modules"
   ]

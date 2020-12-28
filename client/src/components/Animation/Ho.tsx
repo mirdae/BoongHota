@@ -15,7 +15,10 @@ const Ho = () => {
       onMouseOver={mouseOver}
     >
       {isFall && (
-        <img src="https://media.vlpt.us/images/dolarge/post/b97ad49f-d383-46dd-aa09-bdb33372eb2b/smoke.png" />
+        <img
+          src="https://media.vlpt.us/images/dolarge/post/b97ad49f-d383-46dd-aa09-bdb33372eb2b/smoke.png"
+          alt="smoke"
+        />
       )}
     </div>
   );

@@ -1,4 +1,4 @@
-import { StoreName, Food, Location, LocationNum, Time } from './snacks';
+import { StoreName, Food, Location, LocationNum, Time } from '../types/snacks';
 
 export type NewSnack = {
   storeName: StoreName;
