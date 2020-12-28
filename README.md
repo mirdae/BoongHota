@@ -35,10 +35,10 @@ $ ./tree-md .
  * [README.md](./README.md)
  * [dir3](./dir3)
 ***
-`
-| +-- BoongHota  
-  +--client  
->>>  public  
+```
+├ BoongHota  
+ ├ client  
+  ├ public  
 >>>  src  
 >>>>  api  # Api call functions  
 >>>>  components  # components  
@@ -52,4 +52,4 @@ $ ./tree-md .
 >>> db.js # db connect settings  
 >>> index.js  
 >>> snackRouter.js # router  
-`
+```
