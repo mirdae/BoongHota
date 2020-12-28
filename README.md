@@ -4,7 +4,6 @@
 
 ***
 # 설치 및 실행
-***
 ### Install dependencies
 `npm install`
 
@@ -17,8 +16,6 @@ server 경로에서
 
 
 # 디렉토리 구조
-
-***
 ```
 ├ BoongHota  
  ├ client  
@@ -39,7 +36,6 @@ server 경로에서
 ```
 
 # 기술 스택
-***
 ## Front
 <img src="https://img.shields.io/badge/React-61dafb?style=flat-square&logo=React&logoColor=white"/></a>&nbsp;
 <img src="https://img.shields.io/badge/TypeScript-3178c6?style=flat-square&logo=TypeScript&logoColor=white"/></a>&nbsp;
@@ -51,3 +47,6 @@ server 경로에서
 <img src="https://img.shields.io/badge/Nodemon-76d04b?style=flat-square&logo=Nodemon&logoColor=white"/></a>&nbsp;
 <img src="https://img.shields.io/badge/MongoDB-47A248?style=flat-square&logo=MongoDB&logoColor=white"/></a>&nbsp;
 <img src="https://img.shields.io/badge/Babel-f9dc3e?style=flat-square&logo=Babel&logoColor=white"/></a>&nbsp;
+
+# API 설계
+
