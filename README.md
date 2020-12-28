@@ -18,22 +18,6 @@ server 경로에서
 
 # 디렉토리 구조
 
-
-$ ./tree-md .
-# Project tree
-
-.
- * [tree-md](./tree-md)
- * [dir2](./dir2)
-   * [file21.ext](./dir2/file21.ext)
-   * [file22.ext](./dir2/file22.ext)
-   * [file23.ext](./dir2/file23.ext)
- * [dir1](./dir1)
-   * [file11.ext](./dir1/file11.ext)
-   * [file12.ext](./dir1/file12.ext)
- * [file_in_root.ext](./file_in_root.ext)
- * [README.md](./README.md)
- * [dir3](./dir3)
 ***
 ```
 ├ BoongHota  
@@ -46,10 +30,14 @@ $ ./tree-md .
    ├  modules  # Redux actions, reducers, saga  
    ├  App.js  
    ├  index.js    
- ├  server  
+ ├ server  
   ├  model # Data model(mongoose)  
   ├ controller.js # business logic  
   ├ db.js # db connect settings  
   ├ index.js  
   ├ snackRouter.js # router  
 ```
+
+# 기술 스택
+***
+<img src="https://img.shields.io/badge/React-61dafb?style=flat-square&logo=Python&logoColor=white"/></a>&nbsp;
