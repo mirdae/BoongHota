@@ -39,17 +39,17 @@ $ ./tree-md .
 ├ BoongHota  
  ├ client  
   ├ public  
->>>  src  
->>>>  api  # Api call functions  
->>>>  components  # components  
->>>>  hooks  # Custom hooks  
->>>>  modules  # Redux actions, reducers, saga  
->>>>  App.js  
->>>>  index.js    
->> server  
->>> model # Data model(mongoose)  
->>> controller.js # business logic  
->>> db.js # db connect settings  
->>> index.js  
->>> snackRouter.js # router  
+  ├  src  
+   ├  api  # Api call functions  
+   ├  components  # components  
+   ├  hooks  # Custom hooks  
+   ├  modules  # Redux actions, reducers, saga  
+   ├  App.js  
+   ├  index.js    
+ ├  server  
+  ├  model # Data model(mongoose)  
+  ├ controller.js # business logic  
+  ├ db.js # db connect settings  
+  ├ index.js  
+  ├ snackRouter.js # router  
 ```
