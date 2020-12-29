@@ -81,10 +81,36 @@ const initialState: SnacksState = {
   snacks: [],
 };
 
+// 보내는 가게 정보 1개
+// form : {
+//    storeName: 
+// sdfl;jkl
+// sdflkj
+// sdflk
+
+// }
+
+// 불러오는 가게 정보(들) 여러 개 
+// snackStores : {
+//  stores: [{asdf,asdkfj,}, {ㅁㅇㄴㄹ, ㅁㄴㅇㄹ,}]
+//  storeType: 'boong'
+// }
+
+// Map
+// map : {
+  
+// }
+
+// Modal 
+// modal: {
+//   isVisible: true,
+// }
+
+
 export const snacks = createReducer<SnacksState, SnacksAction>(initialState, {
   [ALL_SNACKS_SUCCESS]: (state, { payload }) => {
     const {
-      data: { allSnacks },
+      data: { allSnacks, },
     } = payload;
     return { snacks: allSnacks };
   },
