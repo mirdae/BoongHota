@@ -1,12 +1,11 @@
-import React from 'react';
+import React, { useCallback } from 'react';
 import moment from 'moment';
 import { TimePicker } from 'antd';
-const { RangePicker } = TimePicker;
-
 import useSnackInput from '../../hooks/useSnackInput';
 import useMap from '../../hooks/useMap';
 
 import './styles.scss';
+const { RangePicker } = TimePicker;
 
 const ModalForm = () => {
   const {
@@ -19,7 +18,7 @@ const ModalForm = () => {
   } = useSnackInput();
   const { findMyAddress, findMapAddress } = useMap(window);
 
-  const submitWithCheck = (e) => {
+  const submitWithCheck = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     if (inputs.storeName === '') {
       alert('가게이름뭔데');
@@ -36,9 +35,17 @@ const ModalForm = () => {
     }
     onSubmit(inputs);
   };
+
+  const momentAny = useCallback((b: any): any => {
+    return moment(b);
+  }, []);
+
   return (
     <form className="modal-form" onSubmit={submitWithCheck}>
-      <div className="kind-box" onChange={(e) => onChangeFood(e.target.value)}>
+      <div
+        className="kind-box"
+        onChange={(e: any) => onChangeFood(e.target.value)}
+      >
         <input
           name="food"
           type="radio"
@@ -68,7 +75,9 @@ const ModalForm = () => {
         <div className="input-box_name">
           <label htmlFor="name">가게명</label>
           <input
-            onChange={(e) => onChangeStoreName(e.target.value)}
+            onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
+              onChangeStoreName(e.target.value)
+            }
             value={inputs && inputs.storeName}
             id="name"
             name="name"
@@ -92,7 +101,7 @@ const ModalForm = () => {
             format="HH:mm"
             bordered={false}
             className="time"
-            onChange={(_, b) => onChangeTime(moment(b)._i)}
+            onChange={(_, b) => onChangeTime(momentAny(b)._i)}
           />
         </div>
       </div>

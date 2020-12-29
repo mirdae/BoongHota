@@ -8,3 +8,5 @@ export const rootReducer = combineReducers({ newSnack, snacks });
 export function* rootSaga() {
   yield all([fork(newSnackSaga), fork(snacksSaga)]);
 }
+
+export type RootState = ReturnType<typeof rootReducer>;
