@@ -1,15 +1,15 @@
 import React from 'react';
-import useMap from '../../hooks/useMap';
-import Map from './Map';
-import ModalForm from './ModalForm';
+import { useSelector } from 'react-redux';
+import { RootState } from '../../modules';
+import Map from '../Map';
+import Form from '../Form';
+import './styles.scss';
 
-const Container = () => {
-  const { isMapVisible } = useMap(window);
+const Modal = () => {
+  const { isMapVisible } = useSelector((state: RootState) => state.map);
   return (
-    <div className={'modal-container'}>
-      {isMapVisible ? <Map /> : <ModalForm />}
-    </div>
+    <div className={'modal-container'}>{isMapVisible ? <Map /> : <Form />}</div>
   );
 };
 
-export default Container;
+export default Modal;

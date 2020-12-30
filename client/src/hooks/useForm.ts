@@ -1,18 +1,15 @@
 import { useCallback } from 'react';
-import { useSelector, useDispatch } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import {
   createSnack,
   changeStoreName,
-  changeFood,
+  changeStoreType,
   changeTime,
-  closeForm,
-  openForm,
-} from '../modules/newSnack';
-import { RootState } from '../modules';
-import { StoreName, Food, Time, NewSnack } from '../types';
+} from '../modules/form';
+import { toggleModal } from '../modules/modal';
+import { StoreName, StoreType, Time, Snack } from '../types';
 
-const useSnackInput = () => {
-  const inputs = useSelector((state: RootState) => state.newSnack);
+const useForm = () => {
   const dispatch = useDispatch();
 
   const onChangeStoreName = useCallback(
@@ -21,32 +18,33 @@ const useSnackInput = () => {
     },
     [dispatch],
   );
-  const onChangeFood = useCallback((food: Food) => dispatch(changeFood(food)), [
-    dispatch,
-  ]);
+  const onChangeStoreType = useCallback(
+    (storeType: StoreType) => dispatch(changeStoreType(storeType)),
+    [dispatch],
+  );
   const onChangeTime = useCallback((time: Time) => dispatch(changeTime(time)), [
     dispatch,
   ]);
   const onSubmit = useCallback(
-    (snackInfo: NewSnack) => {
-      dispatch(closeForm());
-      dispatch(createSnack(snackInfo));
+    (storeInfo: Snack) => {
+      dispatch(toggleModal());
+      dispatch(createSnack(storeInfo));
     },
     [dispatch],
   );
   const onCancel = useCallback(
     (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
       e.preventDefault();
-      dispatch(closeForm());
+      dispatch(toggleModal());
     },
     [dispatch],
   );
-  const onOpenForm = useCallback(() => dispatch(openForm()), [dispatch]);
+
+  const onOpenForm = useCallback(() => dispatch(toggleModal()), [dispatch]);
 
   return {
-    inputs,
     onChangeStoreName,
-    onChangeFood,
+    onChangeStoreType,
     onChangeTime,
     onSubmit,
     onCancel,
@@ -54,4 +52,4 @@ const useSnackInput = () => {
   };
 };
 
-export default useSnackInput;
+export default useForm;

@@ -1,7 +1,9 @@
-import React, { useCallback } from 'react';
+import React, { useCallback, useEffect } from 'react';
+import { useSelector } from 'react-redux';
+import { RootState } from '../../modules';
 import moment from 'moment';
 import { TimePicker } from 'antd';
-import useSnackInput from '../../hooks/useSnackInput';
+import useForm from '../../hooks/useForm';
 import useMap from '../../hooks/useMap';
 
 import './styles.scss';
@@ -9,33 +11,39 @@ const { RangePicker } = TimePicker;
 
 const ModalForm = () => {
   const {
-    inputs,
     onChangeStoreName,
-    onChangeFood,
+    onChangeStoreType,
     onChangeTime,
     onSubmit,
     onCancel,
-  } = useSnackInput();
-  const { findMyAddress, findMapAddress } = useMap(window);
+  } = useForm();
+  const { findMyGeoLocation, findMapGeoLocation } = useMap(window);
+  const { storeName, storeType, time } = useSelector(
+    (state: RootState) => state.form,
+  );
+  const { geoLocation, address } = useSelector((state: RootState) => state.map);
 
   const submitWithCheck = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    if (inputs.storeName === '') {
+    if (storeName === '') {
       alert('가게이름뭔데');
       return;
     }
-    if (inputs.food === '') {
+    if (storeType === '') {
       return;
     }
-    if (inputs.location === '') {
+    if (address === '') {
       return;
     }
-    if (inputs.time[0] === '00:00' || inputs.time[1] === '00:00') {
+    if (time[0] === '00:00' || time[1] === '00:00') {
       return;
     }
-    onSubmit(inputs);
+    onSubmit({ storeName, storeType, geoLocation, address, time });
   };
 
+  useEffect(() => {
+    console.log(789);
+  }, [storeName, storeType, geoLocation, address, time]);
   const momentAny = useCallback((b: any): any => {
     return moment(b);
   }, []);
@@ -44,7 +52,7 @@ const ModalForm = () => {
     <form className="modal-form" onSubmit={submitWithCheck}>
       <div
         className="kind-box"
-        onChange={(e: any) => onChangeFood(e.target.value)}
+        onChange={(e: any) => onChangeStoreType(e.target.value)}
       >
         <input
           name="food"
@@ -78,21 +86,17 @@ const ModalForm = () => {
             onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
               onChangeStoreName(e.target.value)
             }
-            value={inputs && inputs.storeName}
+            value={storeName}
             id="name"
             name="name"
           />
         </div>
         <div className="input-box_location">
           <label htmlFor="location">가게위치</label>
-          <input
-            id="location"
-            name="location"
-            value={inputs && inputs.location}
-          />
+          <input id="location" name="location" value={address} />
           <div className="button-box_location">
-            <button onClick={findMapAddress}>지도에서 찾기</button>
-            <button onClick={findMyAddress}>현재 위치</button>
+            <button onClick={findMapGeoLocation}>지도에서 찾기</button>
+            <button onClick={findMyGeoLocation}>현재 위치</button>
           </div>
         </div>
         <div className="input-box_time">

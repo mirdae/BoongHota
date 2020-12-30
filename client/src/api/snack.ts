@@ -1,8 +1,8 @@
 import axios from 'axios';
-import { Food, NewSnack } from '../../../server/types';
+import { StoreType } from '../types';
 
-export const postSnackInfo = (snackInfo: any) =>
-  axios.post('/api/snack', snackInfo);
+export const postSnackInfo = (storeInfo: any) =>
+  axios.post('/api/snack', storeInfo);
 export const getAllSnackInfo = () => axios.get('/api/snack');
-export const getSelectedSnackInfo = (snackType: Food) =>
-  axios.get(`/api/snack/${snackType}`);
+export const getSelectedSnackInfo = (storeType: StoreType) =>
+  axios.get(`/api/snack/${storeType}`);
