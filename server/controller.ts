@@ -1,12 +1,10 @@
-import Snack from './model/Snack';
+import Shop from './model/Shop';
 import { Request, Response } from 'express';
-import { NewSnack } from './types';
 
-export const getAllSnacks = async (_: Request, res: Response) => {
-  console.log('server');
+export const getAllShop = async (_: Request, res: Response) => {
   try {
-    const allSnacks = await Snack.find({});
-    return res.status(200).json({ result: true, allSnacks });
+    const allShop = await Shop.find({});
+    return res.status(200).json({ result: true, allShop });
   } catch (error) {
     console.log(error);
     return res
@@ -15,13 +13,13 @@ export const getAllSnacks = async (_: Request, res: Response) => {
   }
 };
 
-export const getSelectedSnack = async (req: Request, res: Response) => {
+export const getSelectedShop = async (req: Request, res: Response) => {
   const {
-    params: { foodType },
+    params: { shopType }
   } = req;
   try {
-    const selectedSnack = await Snack.find({ food: foodType }).exec();
-    return res.status(200).json({ result: true, selectedSnack });
+    const selectedShop = await Shop.find({ type: shopType }).exec();
+    return res.status(200).json({ result: true, selectedShop });
   } catch (error) {
     console.log(error);
     return res
@@ -29,21 +27,21 @@ export const getSelectedSnack = async (req: Request, res: Response) => {
       .json({ result: false, message: '데이터를 얻어오지 못했습니다.' });
   }
 };
-export const postNewSnack = async (req: Request, res: Response) => {
+export const postNewShop = async (req: Request, res: Response) => {
   const {
     body: {
-      payload: { storeName, food, locationNum, location, time },
-    },
+      payload: { name, type, geoLocation, address, time }
+    }
   } = req;
   try {
-    const newSnack = await Snack.create({
-      storeName,
-      food,
-      locationNum,
-      location,
-      time,
+    const newShop = await Shop.create({
+      name,
+      type,
+      geoLocation,
+      address,
+      time
     });
-    return res.status(201).json({ result: true, newSnack });
+    return res.status(201).json({ result: true, newShop });
   } catch (error) {
     console.log(error);
     return res

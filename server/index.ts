@@ -2,7 +2,7 @@ import express from 'express';
 import helmet from 'helmet';
 import morgan from 'morgan';
 import bodyParser from 'body-parser';
-import snackRouter from './snackRouter';
+import shopRouter from './shopRouter';
 
 import './db';
 
@@ -14,7 +14,7 @@ app.use(morgan('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
-app.use('/api/snack', snackRouter);
+app.use('/api/shop', shopRouter);
 
 app.listen(PORT, () => {
   console.log(`✅ Listening on port: ${PORT}`);
