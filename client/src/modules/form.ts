@@ -1,46 +1,33 @@
 import { createAction, createReducer, ActionType } from 'typesafe-actions';
 import { takeLatest, call, put } from 'redux-saga/effects';
-import { postSnackInfo } from '../api/snack';
-import {
-  StoreName,
-  StoreType,
-  Time,
-  GeoLocation,
-  Address,
-  Snack,
-} from '../types';
+import { postShopInfo } from '../api/shop';
+import { Name, Type, Time, GeoLocation, Address, Shop } from '../types';
 
-const CREATE_SNACK = 'form/CREATE_SNACK';
-const CREATE_SNACK_SUCCESS = 'form/CREATE_SNACK_SUCCESS';
-const CREATE_SNACK_FAILURE = 'form/CREATE_SNACK_FAILURE';
+const CREATE_SHOP = 'form/CREATE_SHOP';
+const CREATE_SHOP_SUCCESS = 'form/CREATE_SHOP_SUCCESS';
+const CREATE_SHOP_FAILURE = 'form/CREATE_SHOP_FAILURE';
 
-const CHANGE_STORE_NAME = 'form/CHANGE_STORE_NAME';
-const CHANGE_STORE_TYPE = 'form/CHANGE_STORE_TYPE';
+const CHANGE_NAME = 'form/CHANGE_NAME';
+const CHANGE_TYPE = 'form/CHANGE_TYPE';
 const CHANGE_ADDRESS = 'form/CHANGE_ADDRESS';
 const CHANGE_GEO_LOCATION = 'form/CHANGE_GEO_LOCATION';
 const CHANGE_TIME = 'form/CHANGE_TIME';
 
-export const createSnack = createAction(
-  CREATE_SNACK,
-  (snackInfo) => snackInfo,
-)<Snack>();
-export const createSnackSuccess = createAction(
-  CREATE_SNACK_SUCCESS,
-  (snackInfo) => snackInfo,
-)<Snack>();
-export const createSnackFailure = createAction(
-  CREATE_SNACK_FAILURE,
+export const createShop = createAction(
+  CREATE_SHOP,
+  (shopInfo) => shopInfo,
+)<Shop>();
+export const createShopSuccess = createAction(
+  CREATE_SHOP_SUCCESS,
+  (shopInfo) => shopInfo,
+)<Shop>();
+export const createShopFailure = createAction(
+  CREATE_SHOP_FAILURE,
   (error) => error,
 )<Error>();
 
-export const changeStoreName = createAction(
-  CHANGE_STORE_NAME,
-  (storeName) => storeName,
-)<StoreName>();
-export const changeStoreType = createAction(
-  CHANGE_STORE_TYPE,
-  (storeType) => storeType,
-)<StoreType>();
+export const changeName = createAction(CHANGE_NAME, (name) => name)<Name>();
+export const changeType = createAction(CHANGE_TYPE, (type) => type)<Type>();
 export const changeAddress = createAction(
   CHANGE_ADDRESS,
   (address) => address,
@@ -53,63 +40,63 @@ export const changeGeoLocation = createAction(
 export const changeTime = createAction(CHANGE_TIME, (time: Time) => time)();
 
 const actions = {
-  createSnack,
-  createSnackSuccess,
-  createSnackFailure,
-  changeStoreName,
+  createShop,
+  createShopSuccess,
+  createShopFailure,
+  changeName,
   changeGeoLocation,
   changeAddress,
-  changeStoreType,
+  changeType,
   changeTime,
 };
 
-const createSnackActions = {
-  createSnack,
-  createSnackSuccess,
-  createSnackFailure,
+const createShopActions = {
+  createShop,
+  createShopSuccess,
+  createShopFailure,
 };
 
 type FormAction = ActionType<typeof actions>;
-type CreateSnackActions = ActionType<typeof createSnackActions>;
-type FormState = Snack;
+type CreateShopActions = ActionType<typeof createShopActions>;
+type FormState = Shop;
 
-function* createSnackSaga(storeInfo: CreateSnackActions) {
-  const { payload } = storeInfo;
+function* createShopSaga(shopInfo: CreateShopActions) {
+  const { payload } = shopInfo;
   try {
-    const result = yield call(postSnackInfo, payload);
-    yield put({ type: CREATE_SNACK_SUCCESS, payload: result });
+    const result = yield call(postShopInfo, payload);
+    yield put({ type: CREATE_SHOP_SUCCESS, payload: result });
   } catch (error) {
-    yield put({ type: CREATE_SNACK_FAILURE, payload: error });
+    yield put({ type: CREATE_SHOP_FAILURE, payload: error });
     console.log(error);
   }
 }
 
 export function* formSaga() {
-  yield takeLatest(CREATE_SNACK, createSnackSaga);
+  yield takeLatest(CREATE_SHOP, createShopSaga);
 }
 
 const initialState: FormState = {
-  storeName: '',
-  storeType: '',
+  name: '',
+  type: '',
   geoLocation: [0, 0],
   address: '',
   time: ['00:00', '00:00'],
 };
 
 export const form = createReducer<FormState, FormAction>(initialState, {
-  [CREATE_SNACK_SUCCESS]: (state, action) => {
+  [CREATE_SHOP_SUCCESS]: (state, action) => {
     return { ...state };
   },
-  [CREATE_SNACK_FAILURE]: (state, action) => ({
+  [CREATE_SHOP_FAILURE]: (state, action) => ({
     ...state,
   }),
-  [CHANGE_STORE_NAME]: (state, { payload: storeName }) => ({
+  [CHANGE_NAME]: (state, { payload: name }) => ({
     ...state,
-    storeName,
+    name,
   }),
-  [CHANGE_STORE_TYPE]: (state, { payload: storeType }) => ({
+  [CHANGE_TYPE]: (state, { payload: type }) => ({
     ...state,
-    storeType,
+    type,
   }),
   [CHANGE_GEO_LOCATION]: (state, { payload: geoLocation }) => ({
     ...state,

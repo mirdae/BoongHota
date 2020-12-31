@@ -1,6 +1,6 @@
 import React, { useRef, useEffect } from 'react';
 import useMap from '../../hooks/useMap';
-import useStores from '../../hooks/useStores';
+import useShop from '../../hooks/useShop';
 import { Link } from 'react-router-dom';
 import { HomeFilled } from '@ant-design/icons';
 
@@ -9,7 +9,7 @@ import './styles.scss';
 const MapPage = () => {
   const mapRef: any = useRef();
   const { drawMap } = useMap(window);
-  const { showAllSnacks, showSelectedSnacks } = useStores();
+  const { showAllShop, showSelectedShop } = useShop();
   useEffect(() => {
     drawMap(mapRef);
   }, [drawMap]);
@@ -26,28 +26,28 @@ const MapPage = () => {
         <li>
           <img
             src="https://media.vlpt.us/images/dolarge/post/aa3ea81d-4b5a-431a-9f22-090bdbea1a71/all.png"
-            onClick={showAllSnacks}
+            onClick={showAllShop}
             alt="select-all-button"
           />
         </li>
         <li>
           <img
             src="https://media.vlpt.us/images/dolarge/post/9df7aa9c-5827-4928-8711-25763612cc5f/%EB%B6%95%EC%96%B4.png"
-            onClick={() => showSelectedSnacks('boong')}
+            onClick={() => showSelectedShop('boong')}
             alt="boong-button"
           />
         </li>
         <li>
           <img
             src="https://media.vlpt.us/images/dolarge/post/18a0d072-1987-44e6-a8dc-74fb5d40a337/%ED%98%B8%EB%96%A1.png"
-            onClick={() => showSelectedSnacks('ho')}
+            onClick={() => showSelectedShop('ho')}
             alt="ho-button"
           />
         </li>
         <li>
           <img
             src="https://media.vlpt.us/images/dolarge/post/9afdecdf-2a14-4079-9c06-487d657c6c7e/%ED%83%80%EC%BD%94.png"
-            onClick={() => showSelectedSnacks('ta')}
+            onClick={() => showSelectedShop('ta')}
             alt="ta-button"
           />
         </li>

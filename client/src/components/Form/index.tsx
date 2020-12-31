@@ -9,27 +9,25 @@ import useMap from '../../hooks/useMap';
 import './styles.scss';
 const { RangePicker } = TimePicker;
 
-const ModalForm = () => {
+const Form = () => {
   const {
-    onChangeStoreName,
-    onChangeStoreType,
+    onChangeName,
+    onChangeType,
     onChangeTime,
     onSubmit,
     onCancel,
   } = useForm();
   const { findMyGeoLocation, findMapGeoLocation } = useMap(window);
-  const { storeName, storeType, time } = useSelector(
-    (state: RootState) => state.form,
-  );
+  const { name, type, time } = useSelector((state: RootState) => state.form);
   const { geoLocation, address } = useSelector((state: RootState) => state.map);
 
   const submitWithCheck = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    if (storeName === '') {
+    if (name === '') {
       alert('가게이름뭔데');
       return;
     }
-    if (storeType === '') {
+    if (type === '') {
       return;
     }
     if (address === '') {
@@ -38,12 +36,12 @@ const ModalForm = () => {
     if (time[0] === '00:00' || time[1] === '00:00') {
       return;
     }
-    onSubmit({ storeName, storeType, geoLocation, address, time });
+    onSubmit({ name, type, geoLocation, address, time });
   };
 
   useEffect(() => {
     console.log(789);
-  }, [storeName, storeType, geoLocation, address, time]);
+  }, [name, type, geoLocation, address, time]);
   const momentAny = useCallback((b: any): any => {
     return moment(b);
   }, []);
@@ -52,7 +50,7 @@ const ModalForm = () => {
     <form className="modal-form" onSubmit={submitWithCheck}>
       <div
         className="kind-box"
-        onChange={(e: any) => onChangeStoreType(e.target.value)}
+        onChange={(e: any) => onChangeType(e.target.value)}
       >
         <input
           name="food"
@@ -84,9 +82,9 @@ const ModalForm = () => {
           <label htmlFor="name">가게명</label>
           <input
             onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
-              onChangeStoreName(e.target.value)
+              onChangeName(e.target.value)
             }
-            value={storeName}
+            value={name}
             id="name"
             name="name"
           />
@@ -117,4 +115,4 @@ const ModalForm = () => {
   );
 };
 
-export default ModalForm;
+export default Form;

@@ -1,34 +1,34 @@
 import { useCallback } from 'react';
 import { useDispatch } from 'react-redux';
 import {
-  createSnack,
-  changeStoreName,
-  changeStoreType,
+  createShop,
+  changeName,
+  changeType,
   changeTime,
 } from '../modules/form';
 import { toggleModal } from '../modules/modal';
-import { StoreName, StoreType, Time, Snack } from '../types';
+import { Name, Type, Time, Shop } from '../types';
 
 const useForm = () => {
   const dispatch = useDispatch();
 
-  const onChangeStoreName = useCallback(
-    (storeName: StoreName) => {
-      dispatch(changeStoreName(storeName));
+  const onChangeName = useCallback(
+    (name: Name) => {
+      dispatch(changeName(name));
     },
     [dispatch],
   );
-  const onChangeStoreType = useCallback(
-    (storeType: StoreType) => dispatch(changeStoreType(storeType)),
-    [dispatch],
-  );
+  const onChangeType = useCallback((type: Type) => dispatch(changeType(type)), [
+    dispatch,
+  ]);
   const onChangeTime = useCallback((time: Time) => dispatch(changeTime(time)), [
     dispatch,
   ]);
   const onSubmit = useCallback(
-    (storeInfo: Snack) => {
+    (shopInfo: Shop) => {
       dispatch(toggleModal());
-      dispatch(createSnack(storeInfo));
+      console.log(shopInfo);
+      dispatch(createShop(shopInfo));
     },
     [dispatch],
   );
@@ -43,8 +43,8 @@ const useForm = () => {
   const onOpenForm = useCallback(() => dispatch(toggleModal()), [dispatch]);
 
   return {
-    onChangeStoreName,
-    onChangeStoreType,
+    onChangeName,
+    onChangeType,
     onChangeTime,
     onSubmit,
     onCancel,

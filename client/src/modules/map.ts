@@ -2,8 +2,8 @@ import { createAction, createReducer, ActionType } from 'typesafe-actions';
 import { Map, GeoLocation, Address } from '../types';
 
 const TOGGLE_MAP = 'map/TOGGLE_MAP';
-const CHANGE_GEO_LOCATION = 'newSnack/CHANGE_LOCATION';
-const CHANGE_ADDRESS = 'newSnack/CHANGE_LOCATION_NUM';
+const CHANGE_GEO_LOCATION = 'map/CHANGE_LOCATION';
+const CHANGE_ADDRESS = 'map/CHANGE_LOCATION_NUM';
 
 export const toggleMap = createAction(TOGGLE_MAP)();
 

@@ -1,4 +1,4 @@
-import { GeoLocation, Address } from './snack';
+import { GeoLocation, Address } from './shop';
 
 export type IsMapVisible = boolean;
 
