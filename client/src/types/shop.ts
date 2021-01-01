@@ -16,6 +16,6 @@ export type Shop = {
 
 //하아..이부분은 이름을 뭐라고할지 모르겠어서 이렇게해놓을게유...
 export type BunchOfShop = {
-  shopArr: Shop[];
+  severalShop: Shop[];
   type: Type;
 };

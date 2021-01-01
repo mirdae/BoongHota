@@ -48,10 +48,7 @@ const selectedShopActions = {
 
 type ShopAction = ActionType<typeof actions>;
 type SelectedShopAction = ActionType<typeof selectedShopActions>;
-type ShopState = {
-  severalShop: Shop[];
-  type: '';
-};
+type ShopState = BunchOfShop;
 
 // 데이터 얻어오는 거를 payload로 해줘야 리듀서에서 접근해서 사용할수 있더라구요ㅠㅜ
 // 제가 잘못쓴걸지도 모르지만 일단은 만들고 수정하겠습니다!
