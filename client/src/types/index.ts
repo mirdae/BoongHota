@@ -1,2 +1,3 @@
-export * from './newSnack';
-export * from './snacks';
+export * from './shop';
+export * from './map';
+export * from './modal';

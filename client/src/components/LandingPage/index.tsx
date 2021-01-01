@@ -4,16 +4,12 @@ import Boong from '../Animation/Boong';
 import Ho from '../Animation/Ho';
 import Ta from '../Animation/Ta';
 import Modal from '../Modal';
-import useSnackInput from '../../hooks/useSnackInput';
+import useForm from '../../hooks/useForm';
 
 import './styles.scss';
 
 const LandingPage = () => {
-  const {
-    inputs: { isModalVisible },
-    onOpenForm,
-  } = useSnackInput();
-
+  const { onOpenForm, isModalVisible } = useForm();
   return (
     <div className="landing-container">
       <main>

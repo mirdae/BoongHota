@@ -1,41 +1,51 @@
-import React, { useCallback } from 'react';
+import React, { useCallback, useEffect } from 'react';
 import moment from 'moment';
 import { TimePicker } from 'antd';
-import useSnackInput from '../../hooks/useSnackInput';
+import useForm from '../../hooks/useForm';
 import useMap from '../../hooks/useMap';
 
 import './styles.scss';
 const { RangePicker } = TimePicker;
 
-const ModalForm = () => {
+const Form = () => {
   const {
-    inputs,
-    onChangeStoreName,
-    onChangeFood,
+    name,
+    type,
+    time,
+    onChangeName,
+    onChangeType,
     onChangeTime,
     onSubmit,
     onCancel,
-  } = useSnackInput();
-  const { findMyAddress, findMapAddress } = useMap(window);
+  } = useForm();
+  const {
+    findMyGeoLocation,
+    findMapGeoLocation,
+    geoLocation,
+    address,
+  } = useMap(window);
 
   const submitWithCheck = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    if (inputs.storeName === '') {
+    if (name === '') {
       alert('가게이름뭔데');
       return;
     }
-    if (inputs.food === '') {
+    if (type === '') {
       return;
     }
-    if (inputs.location === '') {
+    if (address === '') {
       return;
     }
-    if (inputs.time[0] === '00:00' || inputs.time[1] === '00:00') {
+    if (time[0] === '00:00' || time[1] === '00:00') {
       return;
     }
-    onSubmit(inputs);
+    onSubmit({ name, type, geoLocation, address, time });
   };
 
+  useEffect(() => {
+    console.log(789);
+  }, [name, type, geoLocation, address, time]);
   const momentAny = useCallback((b: any): any => {
     return moment(b);
   }, []);
@@ -44,7 +54,7 @@ const ModalForm = () => {
     <form className="modal-form" onSubmit={submitWithCheck}>
       <div
         className="kind-box"
-        onChange={(e: any) => onChangeFood(e.target.value)}
+        onChange={(e: any) => onChangeType(e.target.value)}
       >
         <input
           name="food"
@@ -76,23 +86,19 @@ const ModalForm = () => {
           <label htmlFor="name">가게명</label>
           <input
             onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
-              onChangeStoreName(e.target.value)
+              onChangeName(e.target.value)
             }
-            value={inputs && inputs.storeName}
+            value={name}
             id="name"
             name="name"
           />
         </div>
         <div className="input-box_location">
           <label htmlFor="location">가게위치</label>
-          <input
-            id="location"
-            name="location"
-            value={inputs && inputs.location}
-          />
+          <input id="location" name="location" value={address} />
           <div className="button-box_location">
-            <button onClick={findMapAddress}>지도에서 찾기</button>
-            <button onClick={findMyAddress}>현재 위치</button>
+            <button onClick={findMapGeoLocation}>지도에서 찾기</button>
+            <button onClick={findMyGeoLocation}>현재 위치</button>
           </div>
         </div>
         <div className="input-box_time">
@@ -113,4 +119,4 @@ const ModalForm = () => {
   );
 };
 
-export default ModalForm;
+export default Form;

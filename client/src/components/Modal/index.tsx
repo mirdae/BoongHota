@@ -1,15 +1,14 @@
 import React from 'react';
 import useMap from '../../hooks/useMap';
-import Map from './Map';
-import ModalForm from './ModalForm';
+import Map from '../Map';
+import Form from '../Form';
+import './styles.scss';
 
-const Container = () => {
+const Modal = () => {
   const { isMapVisible } = useMap(window);
   return (
-    <div className={'modal-container'}>
-      {isMapVisible ? <Map /> : <ModalForm />}
-    </div>
+    <div className={'modal-container'}>{isMapVisible ? <Map /> : <Form />}</div>
   );
 };
 
-export default Container;
+export default Modal;
