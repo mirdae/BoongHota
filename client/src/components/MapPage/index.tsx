@@ -6,12 +6,17 @@ import { HomeFilled } from '@ant-design/icons';
 
 import './styles.scss';
 
-const MapPage = () => {
+const MapPage = ({
+  match: {
+    params: { id },
+  },
+}: any) => {
   const mapRef: any = useRef();
   const { drawMap } = useMap(window);
   const { showAllShop, showSelectedShop } = useShop();
   useEffect(() => {
     drawMap(mapRef);
+    showSelectedShop(id);
   }, [drawMap]);
 
   return (

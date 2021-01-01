@@ -13,7 +13,7 @@ const LandingPage = () => {
   return (
     <div className="landing-container">
       <main>
-        <Link to="/map/boong">
+        <Link to="/map/boong" id="boong">
           <Boong />
         </Link>
         <Link to="/map/ho">
