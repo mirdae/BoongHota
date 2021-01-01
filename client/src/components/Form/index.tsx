@@ -1,6 +1,4 @@
 import React, { useCallback, useEffect } from 'react';
-import { useSelector } from 'react-redux';
-import { RootState } from '../../modules';
 import moment from 'moment';
 import { TimePicker } from 'antd';
 import useForm from '../../hooks/useForm';
@@ -11,15 +9,21 @@ const { RangePicker } = TimePicker;
 
 const Form = () => {
   const {
+    name,
+    type,
+    time,
     onChangeName,
     onChangeType,
     onChangeTime,
     onSubmit,
     onCancel,
   } = useForm();
-  const { findMyGeoLocation, findMapGeoLocation } = useMap(window);
-  const { name, type, time } = useSelector((state: RootState) => state.form);
-  const { geoLocation, address } = useSelector((state: RootState) => state.map);
+  const {
+    findMyGeoLocation,
+    findMapGeoLocation,
+    geoLocation,
+    address,
+  } = useMap(window);
 
   const submitWithCheck = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();

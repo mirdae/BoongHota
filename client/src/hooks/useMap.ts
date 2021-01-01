@@ -6,7 +6,9 @@ import { RootState } from '../modules';
 const useMap = (window: any) => {
   const dispatch = useDispatch();
   const { kakao } = window;
-  const { geoLocation } = useSelector((state: RootState) => state.map);
+  const { geoLocation, address, isMapVisible } = useSelector(
+    (state: RootState) => state.map,
+  );
 
   const getAddress = useCallback(
     (lat: number, lon: number) => {
@@ -163,6 +165,8 @@ const useMap = (window: any) => {
 
   return {
     geoLocation,
+    address,
+    isMapVisible,
     getAddress,
     findMyGeoLocation,
     findMapGeoLocation,

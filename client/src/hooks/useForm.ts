@@ -1,5 +1,6 @@
 import { useCallback } from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
+import { RootState } from '../modules';
 import {
   createShop,
   changeName,
@@ -11,7 +12,8 @@ import { Name, Type, Time, Shop } from '../types';
 
 const useForm = () => {
   const dispatch = useDispatch();
-
+  const { name, type, time } = useSelector((state: RootState) => state.form);
+  const { isModalVisible } = useSelector((state: RootState) => state.modal);
   const onChangeName = useCallback(
     (name: Name) => {
       dispatch(changeName(name));
@@ -43,6 +45,10 @@ const useForm = () => {
   const onOpenForm = useCallback(() => dispatch(toggleModal()), [dispatch]);
 
   return {
+    name,
+    type,
+    time,
+    isModalVisible,
     onChangeName,
     onChangeType,
     onChangeTime,

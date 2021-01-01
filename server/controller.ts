@@ -2,6 +2,8 @@ import Shop from './model/Shop';
 import { Request, Response } from 'express';
 
 export const getAllShop = async (_: Request, res: Response) => {
+  console.log(_);
+
   try {
     const allShop = await Shop.find({});
     return res.status(200).json({ result: true, allShop });
@@ -27,12 +29,12 @@ export const getSelectedShop = async (req: Request, res: Response) => {
       .json({ result: false, message: '데이터를 얻어오지 못했습니다.' });
   }
 };
+
 export const postNewShop = async (req: Request, res: Response) => {
   const {
-    body: {
-      payload: { name, type, geoLocation, address, time }
-    }
+    body: { name, type, geoLocation, address, time }
   } = req;
+  console.log('여기까지 옴?');
   try {
     const newShop = await Shop.create({
       name,

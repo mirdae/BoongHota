@@ -1,14 +1,11 @@
 import React, { useRef, useEffect } from 'react';
-import { useSelector } from 'react-redux';
 import useMap from '../../hooks/useMap';
-import { RootState } from '../../modules';
 
 import './styles.scss';
 
 const Map = () => {
   const mapRef: any = useRef();
-  const isMapVisible = useSelector((state: RootState) => state.map);
-  const { addSelectedGeoLocation, showMap } = useMap(window);
+  const { addSelectedGeoLocation, showMap, isMapVisible } = useMap(window);
   useEffect(() => {
     if (isMapVisible) {
       showMap(mapRef);

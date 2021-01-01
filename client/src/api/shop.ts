@@ -5,4 +5,4 @@ export const postShopInfo = (shopInfo: any) =>
   axios.post('/api/shop', shopInfo);
 export const getAllShopInfo = () => axios.get('/api/shop');
 export const getSelectedShopInfo = (shopType: Type) =>
-  axios.get(`/api/snack/${shopType}`);
+  axios.get(`/api/shop/${shopType}`);

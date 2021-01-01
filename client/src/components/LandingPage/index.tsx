@@ -1,6 +1,4 @@
 import React from 'react';
-import { useSelector } from 'react-redux';
-import { RootState } from '../../modules';
 import { Link } from 'react-router-dom';
 import Boong from '../Animation/Boong';
 import Ho from '../Animation/Ho';
@@ -11,9 +9,7 @@ import useForm from '../../hooks/useForm';
 import './styles.scss';
 
 const LandingPage = () => {
-  const { onOpenForm } = useForm();
-  const { isModalVisible } = useSelector((state: RootState) => state.modal);
-
+  const { onOpenForm, isModalVisible } = useForm();
   return (
     <div className="landing-container">
       <main>
