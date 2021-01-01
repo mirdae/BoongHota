@@ -1,7 +1,7 @@
 import { createAction, createReducer, ActionType } from 'typesafe-actions';
 import { takeEvery, call, put } from 'redux-saga/effects';
 import { getAllShopInfo, getSelectedShopInfo } from '../api/shop';
-import { Shop, BunchOfShop, Type } from '../types';
+import { Shop, ShopState, Type } from '../types';
 
 const GET_ALL_SHOP = 'shop/GET_ALL_SHOP';
 const GET_ALL_SHOP_SUCCESS = 'shop/GET_ALL_SHOP_SUCCESS';
@@ -48,7 +48,6 @@ const selectedShopActions = {
 
 type ShopAction = ActionType<typeof actions>;
 type SelectedShopAction = ActionType<typeof selectedShopActions>;
-type ShopState = BunchOfShop;
 
 // 데이터 얻어오는 거를 payload로 해줘야 리듀서에서 접근해서 사용할수 있더라구요ㅠㅜ
 // 제가 잘못쓴걸지도 모르지만 일단은 만들고 수정하겠습니다!
@@ -82,13 +81,13 @@ export function* shopSaga() {
 }
 
 const initialState: ShopState = {
-  severalShop: [],
+  shopList: [],
   type: '',
 };
 
 export const shop = createReducer<ShopState, ShopAction>(initialState, {
   [GET_ALL_SHOP_SUCCESS]: (state, { payload }) => {
-    state.severalShop = [...payload];
+    state.shopList = [...payload];
     state.type = '';
     return { ...state };
   },
@@ -96,7 +95,7 @@ export const shop = createReducer<ShopState, ShopAction>(initialState, {
     return { ...state };
   },
   [GET_SELECTED_SHOP_SUCCESS]: (state, { payload }) => {
-    state.severalShop = [...payload];
+    state.shopList = [...payload];
     state.type = '';
     return { ...state };
   },
