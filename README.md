@@ -1,8 +1,12 @@
 # Project BoongHota
+<p align="center">
+ <img width="800" src="https://media.vlpt.us/images/dolarge/post/b756bdff-a536-41d9-9f76-766282981d92/ezgif.com-gif-maker%20(6).gif"/>
+</p>
 
 ### 어디있니 붕호타
 - 집 근처 붕어빵, 호떡, 타코야끼 가게를 찾아주는 서비스에요.  
 - 전국 붕세권, 호세권, 타세권(?)도 한 눈에 볼 수 있어요.
+<br/>
 
 ### 찾고 싶은 가게 유형을 선택할 수 있어요!
 <p align="center">
@@ -28,13 +32,6 @@
 ### 지도에서 내 주변 가게를 찾을 수 있어요!
 <p align="center">
  <img width="800" src="https://user-images.githubusercontent.com/34447105/103453160-4eb67180-4d1a-11eb-828b-5762e1f75853.PNG"/>
-</p>
-<br/>
-<br/>
-
-### 귀여운 애니메이션도 있어요^.^;;
-<p align="center">
- <img width="800" src="https://media.vlpt.us/images/dolarge/post/b756bdff-a536-41d9-9f76-766282981d92/ezgif.com-gif-maker%20(6).gif"/>
 </p>
 <br/>
 <br/>
