@@ -40,14 +40,6 @@
 <br/>
                                                                                                                         
 # 실행 방법
-### 클라이언트(리액트) dev 서버로 실행하기
-```git clone https://github.com/BoongHota/BoongHota.git  
-cd client  
-npm i  
-npm start  
-```
-
-### node 서버와 함께 실행하기
 ```git clone https://github.com/BoongHota/BoongHota.git  
 cd server  
 npm i  
