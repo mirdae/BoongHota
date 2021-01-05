@@ -103,7 +103,7 @@ const useShopList = (window: any, ref: any) => {
   const makeInfoWindow = useCallback(
     (shop: any) => {
       // 마커에 커서가 오버됐을 때 마커 위에 표시할 인포윈도우를 생성합니다
-      const iwContent = `<div style="padding:5px;"><p>${shop.name}</p><p>${shop.address}</p><p>${shop.time[0]}-${shop.time[1]}</p></div>`; // 인포윈도우에 표출될 내용으로 HTML 문자열이나 document element가 가능합니다
+      const iwContent = `<div class="marker-info"><p class="name">${shop.name}</p><p class="address">${shop.address}</p><p class="time">${shop.time[0]}-${shop.time[1]}</p></div>`; // 인포윈도우에 표출될 내용으로 HTML 문자열이나 document element가 가능합니다
 
       // 인포윈도우를 생성합니다
       var infowindow = new kakao.maps.InfoWindow({
