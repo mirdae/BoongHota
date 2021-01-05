@@ -9,7 +9,6 @@ const useMap = (window: any) => {
   const { geoLocation, address, isMapVisible } = useSelector(
     (state: RootState) => state.map,
   );
-
   const getAddress = useCallback(
     (lat: number, lon: number) => {
       const geocoder = new kakao.maps.services.Geocoder();
@@ -106,63 +105,6 @@ const useMap = (window: any) => {
     [dispatch, window, kakao],
   );
 
-  // map component에서 사용할 hooks
-
-  const displayMarker = useCallback(
-    (locPosition, message, map) => {
-      let marker = new kakao.maps.Marker({
-        map: map,
-        position: locPosition,
-      });
-
-      let iwContent = message;
-      let iwRemoveable = true;
-      let infowindow = new kakao.maps.InfoWindow({
-        content: iwContent,
-        removable: iwRemoveable,
-      });
-
-      infowindow.open(map, marker);
-      map.setCenter(locPosition);
-    },
-    [kakao],
-  );
-
-  const getDefaultAddress = useCallback(
-    (map) => {
-      if (window.navigator.geolocation) {
-        window.navigator.geolocation.getCurrentPosition(function (
-          position: any,
-        ) {
-          const lat = position.coords.latitude; // 위도
-          const lon = position.coords.longitude; // 경도
-          const locPosition = new kakao.maps.LatLng(lat, lon);
-          const message = '<div style="padding:5px; ">내 위치</div>';
-
-          displayMarker(locPosition, message, map);
-        });
-      } else {
-        const locPosition = new kakao.maps.LatLng(33.450701, 126.570667);
-        const message = 'geolocation을 사용할수 없어요..';
-
-        displayMarker(locPosition, message, map);
-      }
-    },
-    [displayMarker, kakao, window],
-  );
-
-  const drawMap = useCallback(
-    (ref) => {
-      const options = {
-        center: new kakao.maps.LatLng(33.450701, 126.570667),
-        level: 3,
-      };
-      const map = new kakao.maps.Map(ref.current, options);
-      getDefaultAddress(map);
-    },
-    [getDefaultAddress, kakao],
-  );
-
   return {
     geoLocation,
     address,
@@ -172,7 +114,6 @@ const useMap = (window: any) => {
     findMapGeoLocation,
     addSelectedGeoLocation,
     showMap,
-    drawMap,
   };
 };
 

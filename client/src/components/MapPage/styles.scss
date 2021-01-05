@@ -55,3 +55,30 @@
     }
   }
 }
+
+.marker-info {
+  background-color: #e8ded8;
+  background-size: 100%;
+  padding: 1em;
+  width: 148px;
+  height: 100px;
+  text-align: center;
+  border: 3px solid #8e8986;
+  color: #8e8986;
+  box-sizing: border-box;
+  font-size: 12px;
+  font-family: 'Noto Sans KR', sans-serif;
+  & .name {
+    font-size: 13px;
+    font-weight: 600;
+    color: #5d5959;
+  }
+  & .address {
+    font-size: 10px;
+    font-weight: 400;
+  }
+  & .time {
+    font-size: 12px;
+    font-weight: 500;
+  }
+}
