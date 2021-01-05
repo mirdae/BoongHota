@@ -3,10 +3,8 @@ import useShopList from '../../hooks/useShopList';
 import useShop from '../../hooks/useShop';
 import { Link } from 'react-router-dom';
 import { HomeFilled } from '@ant-design/icons';
-
-import './styles.scss';
 import { Type } from '../../types';
-import { shop } from '../../modules/shop';
+import './styles.scss';
 
 const MapPage = ({
   match: {
