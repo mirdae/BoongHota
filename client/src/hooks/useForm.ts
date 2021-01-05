@@ -7,6 +7,7 @@ import {
   changeType,
   changeTime,
 } from '../modules/form';
+import { initializeMapInfo } from '../modules/map';
 import { toggleModal } from '../modules/modal';
 import { Name, Type, Time, Shop } from '../types';
 
@@ -31,6 +32,7 @@ const useForm = () => {
       dispatch(toggleModal());
       console.log(shopInfo);
       dispatch(createShop(shopInfo));
+      dispatch(initializeMapInfo());
     },
     [dispatch],
   );

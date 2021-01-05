@@ -85,6 +85,7 @@ const initialState: FormState = {
 
 export const form = createReducer<FormState, FormAction>(initialState, {
   [CREATE_SHOP_SUCCESS]: (state, action) => {
+    state = initialState;
     return { ...state };
   },
   [CREATE_SHOP_FAILURE]: (state, action) => ({
