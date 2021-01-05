@@ -32,7 +32,6 @@ export const postNewShop = async (req: Request, res: Response) => {
   const {
     body: { name, type, geoLocation, address, time }
   } = req;
-  console.log('여기까지 옴?');
   try {
     const newShop = await Shop.create({
       name,

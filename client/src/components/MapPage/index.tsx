@@ -17,8 +17,8 @@ const MapPage = ({
   let markerArr: any[] = [];
 
   useEffect(() => {
-    drawMap();
     if (Object.keys(map).length > 1) {
+      drawMap();
       showSelectedShop(id);
     }
   }, [map, id, drawMap, showSelectedShop]);

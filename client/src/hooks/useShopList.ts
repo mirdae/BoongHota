@@ -18,7 +18,6 @@ const useShopList = (window: any, ref: any) => {
   );
   const { shopList } = useSelector((state: RootState) => state.shop);
   useEffect(() => {
-    console.log(map);
     if (Object.keys(map).length === 1) {
       setMap(
         new kakao.maps.Map(ref.current, {
