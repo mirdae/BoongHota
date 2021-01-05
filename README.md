@@ -10,25 +10,19 @@
 
 ### 찾고 싶은 가게 유형을 선택할 수 있어요!
 <p align="center">
- <img width="800" src="https://user-images.githubusercontent.com/34447105/103453156-49f1bd80-4d1a-11eb-80c4-b83ea1c4ede6.PNG"/>
+ <img width="800" src="https://media.vlpt.us/images/dolarge/post/b756bdff-a536-41d9-9f76-766282981d92/ezgif.com-gif-maker%20(6).gif"/>
 </p>
 <br/>
 
-### 사장님이라면 직접 가게를 등록하실 수도 있어요!
+### 사장님뿐만 아니라 누구나 직접 가게를 등록하실 수 있어요!
 <p align="center">
- <img width="800" src="https://user-images.githubusercontent.com/34447105/103453157-4bbb8100-4d1a-11eb-918c-341d572dd3f1.PNG"/>
-</p>
-<br/>
-
-### 아직 준비중이에요..
-<p align="center">
- <img width="800" src="https://user-images.githubusercontent.com/34447105/103453158-4cecae00-4d1a-11eb-9627-d2c7e30753eb.PNG"/>
+ <img width="800" src="https://user-images.githubusercontent.com/64346737/103617307-63d90d80-4f71-11eb-9d6b-89217b070b1c.gif"/>
 </p>
 <br/>
 
 ### 지도에서 내 주변 가게를 찾을 수 있어요!
 <p align="center">
- <img width="800" src="https://user-images.githubusercontent.com/34447105/103453160-4eb67180-4d1a-11eb-828b-5762e1f75853.PNG"/>
+ <img width="800" src="https://user-images.githubusercontent.com/64346737/103617301-620f4a00-4f71-11eb-8f21-c0cf2cddc1ea.gif"/>
 </p>
 <br/>
                                                                                                                         
