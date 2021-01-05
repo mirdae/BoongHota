@@ -73,7 +73,8 @@ npm start
 | - | - |
 | Frontend | ![](https://img.shields.io/badge/TypeScript-3178c6?style=flat-square&logo=TypeScript&logoColor=white) ![](https://img.shields.io/badge/React-61dafb?style=flat-square&logo=React&logoColor=white) ![](https://img.shields.io/badge/Redux-764abc?style=flat-square&logo=Redux&logoColor=white) ![](https://img.shields.io/badge/Sass-cc6699?style=flat-square&logo=Sass&logoColor=white) |
 | Backend | ![](https://img.shields.io/badge/TypeScript-3178c6?style=flat-square&logo=TypeScript&logoColor=white) ![](https://img.shields.io/badge/Node.js-339933?style=flat-square&logo=Node.js&logoColor=white) ![](https://img.shields.io/badge/MongoDB-47A248?style=flat-square&logo=MongoDB&logoColor=white)|
-
+| 버전관리 | ![](https://img.shields.io/badge/GitHub-181717?style=flat-square&logo=GitHub&logoColor=white)|
+| 인프라 | ![](https://img.shields.io/badge/Amazon&nbsp;AWS-232F3E?style=flat-square&logo=Amazon&nbsp;AWS&logoColor=white)|
 <br/>
 
 # Wiki
