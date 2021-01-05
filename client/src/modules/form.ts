@@ -78,7 +78,7 @@ export function* formSaga() {
 const initialState: FormState = {
   name: '',
   type: '',
-  geoLocation: [0, 0],
+  geoLocation: [33.450701, 126.570667],
   address: '',
   time: ['00:00', '00:00'],
 };

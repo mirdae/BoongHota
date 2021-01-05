@@ -2,8 +2,6 @@ import Shop from './model/Shop';
 import { Request, Response } from 'express';
 
 export const getAllShop = async (_: Request, res: Response) => {
-  console.log(_);
-
   try {
     const allShop = await Shop.find({});
     return res.status(200).json({ result: true, allShop });
