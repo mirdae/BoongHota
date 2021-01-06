@@ -1,16 +1,3 @@
-## 붕호타 두 번째 스프린트
-- 기한 : 2021년 1월 15일까지
-### 할 일
-- 사용자 인터페이스와 사용자 경험을 고려하여 디자인 개선
-- 코드 리팩토링 - 추후 확장이 용이한 구조로 개선
-- 기타 config 파일 내 설정을 꼼꼼하게 다시 보기
-- 테스트(jest & storybook)
-- webpack 및 babel 커스텀 설정
-- AWS에 배포(lightsail, S3?, lamda?)
-- CI/CD
-- (optional) Docker
-- (optional) github-actions, google-analytics, formik, domain name 구매, 크로스 브라우징, SEO
-
 # 어디있니 붕호타
 - 근처 붕어빵, 호떡, 타코야끼 가게를 찾아주는 서비스에요.  
 - 전국 붕세권, 호세권 그리고 타세권(?)까지 한 눈에 볼 수 있어요.
