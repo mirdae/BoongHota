@@ -11,7 +11,8 @@ const CHANGE_NAME = 'form/CHANGE_NAME';
 const CHANGE_TYPE = 'form/CHANGE_TYPE';
 const CHANGE_ADDRESS = 'form/CHANGE_ADDRESS';
 const CHANGE_GEO_LOCATION = 'form/CHANGE_GEO_LOCATION';
-const CHANGE_TIME = 'form/CHANGE_TIME';
+const CHANGE_OPEN_TIME = 'form/CHANGE_OPEN_TIME';
+const CHANGE_CLOSE_TIME = 'form/CHANGE_CLOSE_TIME';
 
 export const createShop = createAction(
   CREATE_SHOP,
@@ -37,7 +38,14 @@ export const changeGeoLocation = createAction(
   (geoLocation) => geoLocation,
 )<GeoLocation>();
 
-export const changeTime = createAction(CHANGE_TIME, (time: Time) => time)();
+export const changeOpenTime = createAction(
+  CHANGE_OPEN_TIME,
+  (time: Time) => time,
+)();
+export const changeCloseTime = createAction(
+  CHANGE_CLOSE_TIME,
+  (time: Time) => time,
+)();
 
 const actions = {
   createShop,
@@ -47,7 +55,8 @@ const actions = {
   changeGeoLocation,
   changeAddress,
   changeType,
-  changeTime,
+  changeOpenTime,
+  changeCloseTime,
 };
 
 const createShopActions = {
@@ -80,7 +89,8 @@ const initialState: FormState = {
   type: '',
   geoLocation: [33.450701, 126.570667],
   address: '',
-  time: ['00:00', '00:00'],
+  openTime: '',
+  closeTime: '',
 };
 
 export const form = createReducer<FormState, FormAction>(initialState, {
@@ -107,5 +117,12 @@ export const form = createReducer<FormState, FormAction>(initialState, {
     ...state,
     address,
   }),
-  [CHANGE_TIME]: (state, { payload: time }) => ({ ...state, time }),
+  [CHANGE_OPEN_TIME]: (state, { payload: openTime }) => ({
+    ...state,
+    openTime,
+  }),
+  [CHANGE_CLOSE_TIME]: (state, { payload: closeTime }) => ({
+    ...state,
+    closeTime,
+  }),
 });

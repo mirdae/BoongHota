@@ -5,7 +5,8 @@ import {
   createShop,
   changeName,
   changeType,
-  changeTime,
+  changeOpenTime,
+  changeCloseTime,
 } from '../modules/form';
 import { initializeMapInfo } from '../modules/map';
 import { toggleModal } from '../modules/modal';
@@ -13,8 +14,35 @@ import { Name, Type, Time, Shop } from '../types';
 
 const useForm = () => {
   const dispatch = useDispatch();
-  const { name, type, time } = useSelector((state: RootState) => state.form);
+  const { name, type, openTime, closeTime } = useSelector(
+    (state: RootState) => state.form,
+  );
   const { isModalVisible } = useSelector((state: RootState) => state.modal);
+
+  const changeTimeFormat = useCallback((time: string) => {
+    const timeFormat1 = /^([0-9]):([0-5][0-9])$/;
+    const timeFormat2 = /^([01][0-9]|2[0-3]):([0-5][0-9])$/;
+    const timeFormat3 = /^([01][0-9]|2[0-3]):([0-9])$/;
+    const timeFormat4 = /^([01][0-9]|2[0-3])$/;
+    const timeFormat5 = /^[0-9]*$/;
+    const splittedTime = time.split(':');
+    if (timeFormat1.test(time)) {
+      time = '0' + time;
+    } else if (timeFormat2.test(time)) {
+    } else if (timeFormat3.test(time)) {
+      time = splittedTime[0] + ':0' + splittedTime[1];
+    } else if (timeFormat4.test(time)) {
+      time += ':00';
+    } else if (timeFormat5.test(time)) {
+      time = '0' + splittedTime[0] + ':00';
+    } else {
+      console.log('없음');
+      return '';
+    }
+    console.log(time);
+    return time;
+  }, []);
+
   const onChangeName = useCallback(
     (name: Name) => {
       dispatch(changeName(name));
@@ -24,9 +52,22 @@ const useForm = () => {
   const onChangeType = useCallback((type: Type) => dispatch(changeType(type)), [
     dispatch,
   ]);
-  const onChangeTime = useCallback((time: Time) => dispatch(changeTime(time)), [
-    dispatch,
-  ]);
+  const onChangeOpenTime = useCallback(
+    (time: Time) => {
+      const formattedTime = changeTimeFormat(time);
+      dispatch(changeOpenTime(formattedTime));
+      return formattedTime;
+    },
+    [dispatch, changeTimeFormat],
+  );
+  const onChangeCloseTime = useCallback(
+    (time: Time) => {
+      const formattedTime = changeTimeFormat(time);
+      dispatch(changeCloseTime(formattedTime));
+      return formattedTime;
+    },
+    [dispatch, changeTimeFormat],
+  );
   const onSubmit = useCallback(
     (shopInfo: Shop) => {
       dispatch(toggleModal());
@@ -49,11 +90,14 @@ const useForm = () => {
   return {
     name,
     type,
-    time,
+    openTime,
+    closeTime,
     isModalVisible,
+    changeTimeFormat,
     onChangeName,
     onChangeType,
-    onChangeTime,
+    onChangeOpenTime,
+    onChangeCloseTime,
     onSubmit,
     onCancel,
     onOpenForm,

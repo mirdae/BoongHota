@@ -1,20 +1,20 @@
-import React, { useCallback, useEffect } from 'react';
-import moment from 'moment';
-import { TimePicker } from 'antd';
+import React, { useEffect, useRef } from 'react';
 import useForm from '../../hooks/useForm';
 import useMap from '../../hooks/useMap';
 
 import './styles.scss';
-const { RangePicker } = TimePicker;
 
 const Form = () => {
   const {
     name,
     type,
-    time,
+    openTime,
+    closeTime,
     onChangeName,
     onChangeType,
-    onChangeTime,
+    onChangeOpenTime,
+    onChangeCloseTime,
+    changeTimeFormat,
     onSubmit,
     onCancel,
   } = useForm();
@@ -37,18 +37,29 @@ const Form = () => {
     if (address === '') {
       return;
     }
-    if (time[0] === '00:00' || time[1] === '00:00') {
+    if (openTime === '00:00' || closeTime === '00:00') {
       return;
     }
-    onSubmit({ name, type, geoLocation, address, time });
+    onSubmit({ name, type, geoLocation, address, openTime, closeTime });
   };
 
+  const openTimeRef = useRef<HTMLInputElement>(null);
+  const closeTimeRef = useRef<HTMLInputElement>(null);
+  const setOpenTime = () => {
+    if (openTimeRef.current) {
+      const time = onChangeOpenTime(openTimeRef.current.value);
+      openTimeRef.current.value = time;
+    }
+  };
+  const setCloseTime = () => {
+    if (closeTimeRef.current) {
+      const time = onChangeCloseTime(closeTimeRef.current.value);
+      closeTimeRef.current.value = time;
+    }
+  };
   useEffect(() => {
     console.log(789);
-  }, [name, type, geoLocation, address, time]);
-  const momentAny = useCallback((b: any): any => {
-    return moment(b);
-  }, []);
+  }, [name, type, geoLocation, address, openTime, closeTime]);
 
   return (
     <form className="modal-form" onSubmit={submitWithCheck}>
@@ -103,12 +114,19 @@ const Form = () => {
         </div>
         <div className="input-box_time">
           <label htmlFor="time">영업시간</label>
-          <RangePicker
-            format="HH:mm"
-            bordered={false}
-            className="time"
-            onChange={(_, b) => onChangeTime(momentAny(b)._i)}
-          />
+          <div className="time">
+            <input
+              placeholder="open"
+              ref={openTimeRef}
+              onBlur={setOpenTime}
+            ></input>
+            <span>-</span>
+            <input
+              placeholder="close"
+              ref={closeTimeRef}
+              onBlur={setCloseTime}
+            ></input>
+          </div>
         </div>
       </div>
       <div className="button-box">
