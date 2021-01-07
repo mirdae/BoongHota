@@ -14,6 +14,8 @@ const CHANGE_GEO_LOCATION = 'form/CHANGE_GEO_LOCATION';
 const CHANGE_OPEN_TIME = 'form/CHANGE_OPEN_TIME';
 const CHANGE_CLOSE_TIME = 'form/CHANGE_CLOSE_TIME';
 
+const INITIALIZE_FORM_INFO = 'form/INITIALIZE_FORM_INFO';
+
 export const createShop = createAction(
   CREATE_SHOP,
   (shopInfo) => shopInfo,
@@ -47,6 +49,8 @@ export const changeCloseTime = createAction(
   (time: Time) => time,
 )();
 
+export const initializeFormInfo = createAction(INITIALIZE_FORM_INFO)();
+
 const actions = {
   createShop,
   createShopSuccess,
@@ -57,6 +61,7 @@ const actions = {
   changeType,
   changeOpenTime,
   changeCloseTime,
+  initializeFormInfo,
 };
 
 const createShopActions = {
@@ -94,11 +99,10 @@ const initialState: FormState = {
 };
 
 export const form = createReducer<FormState, FormAction>(initialState, {
-  [CREATE_SHOP_SUCCESS]: (state, action) => {
-    state = initialState;
+  [CREATE_SHOP_SUCCESS]: (state) => {
     return { ...state };
   },
-  [CREATE_SHOP_FAILURE]: (state, action) => ({
+  [CREATE_SHOP_FAILURE]: (state) => ({
     ...state,
   }),
   [CHANGE_NAME]: (state, { payload: name }) => ({
@@ -125,4 +129,8 @@ export const form = createReducer<FormState, FormAction>(initialState, {
     ...state,
     closeTime,
   }),
+  [INITIALIZE_FORM_INFO]: (state) => {
+    state = initialState;
+    return { ...state };
+  },
 });

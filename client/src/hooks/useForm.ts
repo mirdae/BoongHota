@@ -9,6 +9,7 @@ import {
   changeCloseTime,
 } from '../modules/form';
 import { initializeMapInfo } from '../modules/map';
+import { initializeFormInfo } from '../modules/form';
 import { toggleModal } from '../modules/modal';
 import { Name, Type, Time, Shop } from '../types';
 
@@ -74,6 +75,7 @@ const useForm = () => {
       console.log(shopInfo);
       dispatch(createShop(shopInfo));
       dispatch(initializeMapInfo());
+      dispatch(initializeFormInfo());
     },
     [dispatch],
   );
@@ -81,6 +83,8 @@ const useForm = () => {
     (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
       e.preventDefault();
       dispatch(toggleModal());
+      dispatch(initializeMapInfo());
+      dispatch(initializeFormInfo());
     },
     [dispatch],
   );
@@ -89,6 +93,8 @@ const useForm = () => {
     (e) => {
       if (e.target.className === 'modal-container') {
         dispatch(toggleModal());
+        dispatch(initializeMapInfo());
+        dispatch(initializeFormInfo());
       }
     },
     [dispatch],
