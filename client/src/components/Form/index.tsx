@@ -14,7 +14,6 @@ const Form = () => {
     onChangeType,
     onChangeOpenTime,
     onChangeCloseTime,
-    changeTimeFormat,
     onSubmit,
     onCancel,
   } = useForm();

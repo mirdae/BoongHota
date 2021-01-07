@@ -10,7 +10,7 @@ import {
 } from '../modules/form';
 import { initializeMapInfo, toggleMap } from '../modules/map';
 import { initializeFormInfo } from '../modules/form';
-import { toggleModal } from '../modules/modal';
+import { toggleModal, toggleAlert } from '../modules/modal';
 import { Name, Type, Time, Shop } from '../types';
 
 const useForm = () => {
@@ -18,7 +18,9 @@ const useForm = () => {
   const { name, type, openTime, closeTime } = useSelector(
     (state: RootState) => state.form,
   );
-  const { isModalVisible } = useSelector((state: RootState) => state.modal);
+  const { isModalVisible, isAlertVisible } = useSelector(
+    (state: RootState) => state.modal,
+  );
 
   const changeTimeFormat = useCallback((time: string) => {
     const timeFormat1 = /^([0-9]):([0-5][0-9])$/;
@@ -76,6 +78,8 @@ const useForm = () => {
       dispatch(createShop(shopInfo));
       dispatch(initializeMapInfo());
       dispatch(initializeFormInfo());
+      dispatch(toggleAlert());
+      setTimeout(() => dispatch(toggleAlert()), 2000);
     },
     [dispatch],
   );
@@ -108,6 +112,7 @@ const useForm = () => {
     openTime,
     closeTime,
     isModalVisible,
+    isAlertVisible,
     changeTimeFormat,
     onChangeName,
     onChangeType,

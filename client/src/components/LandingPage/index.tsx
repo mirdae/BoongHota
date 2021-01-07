@@ -4,6 +4,7 @@ import Boong from '../Animation/Boong';
 import Ho from '../Animation/Ho';
 import Ta from '../Animation/Ta';
 import Modal from '../Modal';
+import Alert from '../Alert';
 import useForm from '../../hooks/useForm';
 
 import './styles.scss';
@@ -25,6 +26,7 @@ const LandingPage = () => {
       </main>
       <button onClick={onOpenForm}>붕호타 + </button>
       {isModalVisible && <Modal />}
+      <Alert message="붕호타 등록 완료" />
     </div>
   );
 };
