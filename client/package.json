@@ -9,6 +9,7 @@
     "@testing-library/user-event": "^12.1.10",
     "antd": "^4.9.3",
     "axios": "^0.21.1",
+    "cross-env": "^7.0.3",
     "css-loader": "^5.0.1",
     "moment": "^2.29.1",
     "node-sass": "^4.14.1",
@@ -27,7 +28,7 @@
   },
   "scripts": {
     "start": "react-scripts start",
-    "build": "react-scripts build",
+    "build": "cross-env INLINE_RUNTIME_CHUNK=false react-scripts build",
     "predeploy": "npm run build",
     "deploy": "NODE_ENV=production pm2 start npm -- start",
     "test": "react-scripts test",
