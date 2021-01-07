@@ -85,6 +85,14 @@ const useForm = () => {
     [dispatch],
   );
 
+  const onClose = useCallback(
+    (e) => {
+      if (e.target.className === 'modal-container') {
+        dispatch(toggleModal());
+      }
+    },
+    [dispatch],
+  );
   const onOpenForm = useCallback(() => dispatch(toggleModal()), [dispatch]);
 
   return {
@@ -101,6 +109,7 @@ const useForm = () => {
     onSubmit,
     onCancel,
     onOpenForm,
+    onClose,
   };
 };
 
