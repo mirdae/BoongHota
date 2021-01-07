@@ -8,7 +8,7 @@ import {
   changeOpenTime,
   changeCloseTime,
 } from '../modules/form';
-import { initializeMapInfo } from '../modules/map';
+import { initializeMapInfo, toggleMap } from '../modules/map';
 import { initializeFormInfo } from '../modules/form';
 import { toggleModal } from '../modules/modal';
 import { Name, Type, Time, Shop } from '../types';
@@ -92,6 +92,7 @@ const useForm = () => {
   const onClose = useCallback(
     (e) => {
       if (e.target.className === 'modal-container') {
+        dispatch(toggleMap());
         dispatch(toggleModal());
         dispatch(initializeMapInfo());
         dispatch(initializeFormInfo());
