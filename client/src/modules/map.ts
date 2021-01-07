@@ -4,6 +4,7 @@ import { Map, GeoLocation, Address } from '../types';
 const TOGGLE_MAP = 'map/TOGGLE_MAP';
 const CHANGE_GEO_LOCATION = 'map/CHANGE_LOCATION';
 const CHANGE_ADDRESS = 'map/CHANGE_LOCATION_NUM';
+const INITIALIZE_MAP_INFO = 'map/INITIALIZE_MAP_INFO';
 
 export const toggleMap = createAction(TOGGLE_MAP)();
 
@@ -17,10 +18,13 @@ export const changeAddress = createAction(
   (address) => address,
 )<Address>();
 
+export const initializeMapInfo = createAction(INITIALIZE_MAP_INFO)();
+
 const actions = {
   toggleMap,
   changeGeoLocation,
   changeAddress,
+  initializeMapInfo,
 };
 
 type MapAction = ActionType<typeof actions>;
@@ -44,4 +48,9 @@ export const map = createReducer<MapState, MapAction>(initialState, {
     ...state,
     address,
   }),
+  [INITIALIZE_MAP_INFO]: (state) => {
+    state.geoLocation = initialState.geoLocation;
+    state.address = initialState.address;
+    return { ...state };
+  },
 });

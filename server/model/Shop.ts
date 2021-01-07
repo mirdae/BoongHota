@@ -5,7 +5,8 @@ const shopSchema = new mongoose.Schema({
   type: { type: String, enum: ['boong', 'ho', 'ta'], required: true },
   geoLocation: { type: Array, required: true },
   address: { type: String, required: true },
-  time: { type: Array, required: true }
+  openTime: { type: String, required: true },
+  closeTime: { type: String, required: true }
 });
 
 const model: any = mongoose.model('Shop', shopSchema);

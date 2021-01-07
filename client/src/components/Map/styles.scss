@@ -16,15 +16,25 @@
       padding: 0;
       margin: 0;
       position: absolute;
-      top: 20px;
-      right: 20px;
       z-index: 999;
       border-radius: 50px;
       outline: none;
-      background-color: #4969da;
       font-size: 30px;
-      &:hover {
-        background-color: #1641dc;
+      &.back-btn {
+        top: 20px;
+        left: 20px;
+        background-color: #e4706c;
+        &:hover {
+          background-color: #bd5451;
+        }
+      }
+      &.add-btn {
+        top: 20px;
+        right: 20px;
+        background-color: #4969da;
+        &:hover {
+          background-color: #1641dc;
+        }
       }
     }
   }
