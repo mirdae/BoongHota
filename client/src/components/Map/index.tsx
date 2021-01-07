@@ -5,7 +5,12 @@ import './styles.scss';
 
 const Map = () => {
   const mapRef: any = useRef();
-  const { addSelectedGeoLocation, showMap, isMapVisible } = useMap(window);
+  const {
+    addSelectedGeoLocation,
+    notSelectLocation,
+    showMap,
+    isMapVisible,
+  } = useMap(window);
   useEffect(() => {
     if (isMapVisible) {
       showMap(mapRef);
@@ -15,6 +20,9 @@ const Map = () => {
   return (
     <div className="mini-map-container">
       <div ref={mapRef} className="mini-map-box"></div>
+      <button className="back-btn" onClick={notSelectLocation}>
+        <p>←</p>
+      </button>
       <button className="add-btn" onClick={addSelectedGeoLocation}>
         <p>+</p>
       </button>

@@ -51,6 +51,14 @@ const useMap = (window: any) => {
     [dispatch],
   );
 
+  const notSelectLocation = useCallback(
+    (e) => {
+      e.preventDefault();
+      dispatch(toggleMap());
+    },
+    [dispatch],
+  );
+
   const addSelectedGeoLocation = useCallback(
     (e) => {
       e.preventDefault();
@@ -114,6 +122,7 @@ const useMap = (window: any) => {
     findMapGeoLocation,
     addSelectedGeoLocation,
     showMap,
+    notSelectLocation,
   };
 };
 
