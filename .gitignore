@@ -11,6 +11,8 @@ node_modules
 # production
 /client/build
 /server/dist
+build
+dist
 
 # misc
 .DS_Store
