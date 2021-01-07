@@ -13,8 +13,8 @@
     "resolveJsonModule": true,
     "experimentalDecorators": true,
     "emitDecoratorMetadata": true,
-    "types": ["node", "jest"]
+    "types": ["node"]
   },
-  "include": ["/index.ts"],
+  "include": ["index.ts"],
   "exclude": ["node_modules", "build"]
 }
