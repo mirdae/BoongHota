@@ -12,7 +12,7 @@ import { initializeMapInfo, toggleMap } from '../modules/map';
 import { initializeFormInfo } from '../modules/form';
 import { openModal, closeModal, showAlert, hideAlert } from '../modules/modal';
 import { Name, Type, Time, Shop } from '../types';
-
+import { ALERT_DURATION_TIME } from '../constants/constants';
 const useForm = () => {
   const dispatch = useDispatch();
   const { name, type, openTime, closeTime } = useSelector(
@@ -81,7 +81,7 @@ const useForm = () => {
       dispatch(initializeMapInfo());
       dispatch(initializeFormInfo());
       dispatch(showAlert());
-      setTimeout(() => dispatch(hideAlert()), 2000);
+      setTimeout(() => dispatch(hideAlert()), ALERT_DURATION_TIME);
     },
     [dispatch],
   );
