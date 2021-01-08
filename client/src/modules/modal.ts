@@ -1,14 +1,21 @@
 import { createAction, createReducer, ActionType } from 'typesafe-actions';
 import { Modal } from '../types';
 
-const TOGGLE_MODAL = 'modal/TOGGLE_MODAL';
-const TOGGLE_ALERT = 'modal/TOGGLE_ALERT';
+const OPEN_MODAL = 'modal/OPEN_MODAL';
+const CLOSE_MODAL = 'modal/CLOSE_MODAL';
+const SHOW_ALERT = 'modal/SHOW_ALERT';
+const HIDE_ALERT = 'modal/HIDE_ALERT';
 
-export const toggleModal = createAction(TOGGLE_MODAL)();
-export const toggleAlert = createAction(TOGGLE_ALERT)();
+export const openModal = createAction(OPEN_MODAL)();
+export const closeModal = createAction(CLOSE_MODAL)();
+export const showAlert = createAction(SHOW_ALERT)();
+export const hideAlert = createAction(HIDE_ALERT)();
+
 const actions = {
-  toggleModal,
-  toggleAlert,
+  openModal,
+  closeModal,
+  showAlert,
+  hideAlert,
 };
 
 type ModalAction = ActionType<typeof actions>;
@@ -22,10 +29,16 @@ const initialState: ModalState = {
 };
 
 export const modal = createReducer<ModalState, ModalAction>(initialState, {
-  [TOGGLE_MODAL]: (state) => {
-    return { ...state, isModalVisible: !state.isModalVisible };
+  [OPEN_MODAL]: (state) => {
+    return { ...state, isModalVisible: true };
   },
-  [TOGGLE_ALERT]: (state) => {
-    return { ...state, isAlertVisible: !state.isAlertVisible };
+  [CLOSE_MODAL]: (state) => {
+    return { ...state, isModalVisible: false };
+  },
+  [SHOW_ALERT]: (state) => {
+    return { ...state, isAlertVisible: true };
+  },
+  [HIDE_ALERT]: (state) => {
+    return { ...state, isAlertVisible: false };
   },
 });

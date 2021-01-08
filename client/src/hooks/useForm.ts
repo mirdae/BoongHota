@@ -10,7 +10,7 @@ import {
 } from '../modules/form';
 import { initializeMapInfo, toggleMap } from '../modules/map';
 import { initializeFormInfo } from '../modules/form';
-import { toggleModal, toggleAlert } from '../modules/modal';
+import { openModal, closeModal, showAlert, hideAlert } from '../modules/modal';
 import { Name, Type, Time, Shop } from '../types';
 
 const useForm = () => {
@@ -63,6 +63,7 @@ const useForm = () => {
     },
     [dispatch, changeTimeFormat],
   );
+
   const onChangeCloseTime = useCallback(
     (time: Time) => {
       const formattedTime = changeTimeFormat(time);
@@ -71,22 +72,23 @@ const useForm = () => {
     },
     [dispatch, changeTimeFormat],
   );
+
   const onSubmit = useCallback(
     (shopInfo: Shop) => {
-      dispatch(toggleModal());
+      dispatch(closeModal());
       console.log(shopInfo);
       dispatch(createShop(shopInfo));
       dispatch(initializeMapInfo());
       dispatch(initializeFormInfo());
-      dispatch(toggleAlert());
-      setTimeout(() => dispatch(toggleAlert()), 2000);
+      dispatch(showAlert());
+      setTimeout(() => dispatch(hideAlert()), 2000);
     },
     [dispatch],
   );
   const onCancel = useCallback(
     (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
       e.preventDefault();
-      dispatch(toggleModal());
+      dispatch(closeModal());
       dispatch(initializeMapInfo());
       dispatch(initializeFormInfo());
     },
@@ -97,14 +99,14 @@ const useForm = () => {
     (e) => {
       if (e.target.className === 'modal-container') {
         dispatch(toggleMap());
-        dispatch(toggleModal());
+        dispatch(closeModal());
         dispatch(initializeMapInfo());
         dispatch(initializeFormInfo());
       }
     },
     [dispatch],
   );
-  const onOpenForm = useCallback(() => dispatch(toggleModal()), [dispatch]);
+  const onOpenForm = useCallback(() => dispatch(openModal()), [dispatch]);
 
   return {
     name,
