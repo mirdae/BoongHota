@@ -1,13 +1,15 @@
+@import '../utils/variables';
+
 .alert-container {
   width: 300px;
   height: 50px;
-  background-color: #e4d1c6;
+  background-color: $alert_box_color;
   color: rgb(93, 93, 93);
   display: flex;
   align-items: center;
   justify-content: center;
   border-radius: 3px;
-  box-shadow: 2px 2px 5px 5px rgba(0, 0, 0, 0.5);
+  box-shadow: 2px 2px 5px 5px rgba(194, 175, 166, 0.5);
   position: absolute;
   left: 50%;
   margin-left: -150px;

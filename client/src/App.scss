@@ -1,8 +1,9 @@
 @import 'antd/dist/antd.css';
 @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500&display=swap');
+@import './components/utils/variables';
 
 body {
-  background-color: #e8ded8;
+  background-color: $bg_color;
   overflow: hidden;
   font-family: 'Noto Sans KR', sans-serif;
 }
