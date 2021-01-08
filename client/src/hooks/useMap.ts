@@ -1,6 +1,11 @@
 import { useCallback } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { changeGeoLocation, changeAddress, toggleMap } from '../modules/map';
+import {
+  changeGeoLocation,
+  changeAddress,
+  openMap,
+  closeMap,
+} from '../modules/map';
 import { RootState } from '../modules';
 
 const useMap = (window: any) => {
@@ -46,7 +51,7 @@ const useMap = (window: any) => {
   const findMapGeoLocation = useCallback(
     (e) => {
       e.preventDefault();
-      dispatch(toggleMap());
+      dispatch(openMap());
     },
     [dispatch],
   );
@@ -54,7 +59,7 @@ const useMap = (window: any) => {
   const notSelectLocation = useCallback(
     (e) => {
       e.preventDefault();
-      dispatch(toggleMap());
+      dispatch(closeMap());
     },
     [dispatch],
   );
@@ -62,7 +67,7 @@ const useMap = (window: any) => {
   const addSelectedGeoLocation = useCallback(
     (e) => {
       e.preventDefault();
-      dispatch(toggleMap());
+      dispatch(closeMap());
       getAddress(...geoLocation);
     },
     [dispatch, geoLocation, getAddress],
