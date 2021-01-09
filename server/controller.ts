@@ -30,16 +30,16 @@ export const getSelectedShop = async (req: Request, res: Response) => {
 
 export const postNewShop = async (req: Request, res: Response) => {
   const {
-    body: { name, type, geoLocation, address, time }
+    body: { name, type, geoLocation, address, openTime, closeTime }
   } = req;
-  console.log('여기까지 옴?');
   try {
     const newShop = await Shop.create({
       name,
       type,
       geoLocation,
       address,
-      time
+      openTime,
+      closeTime
     });
     return res.status(201).json({ result: true, newShop });
   } catch (error) {

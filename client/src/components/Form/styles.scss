@@ -85,16 +85,22 @@
     .input-box_time {
       .time {
         width: 100%;
-      }
-      .ant-picker-focused .ant-picker-active-bar {
-        display: none;
+        display: flex;
+        justify-content: space-between;
+        input {
+          width: 45%;
+          text-align: center;
+        }
+        span {
+          font-size: 30px;
+        }
       }
     }
     label {
       width: 100%;
       display: block;
       font-size: 1.1rem;
-      font-weight: 500;
+      font-weight: 400;
     }
     input {
       border: none;
