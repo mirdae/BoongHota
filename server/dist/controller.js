@@ -33,15 +33,15 @@ const getSelectedShop = async (req, res) => {
 };
 exports.getSelectedShop = getSelectedShop;
 const postNewShop = async (req, res) => {
-    const { body: { name, type, geoLocation, address, time } } = req;
-    console.log('여기까지 옴?');
+    const { body: { name, type, geoLocation, address, openTime, closeTime } } = req;
     try {
         const newShop = await Shop_1.default.create({
             name,
             type,
             geoLocation,
             address,
-            time
+            openTime,
+            closeTime
         });
         return res.status(201).json({ result: true, newShop });
     }

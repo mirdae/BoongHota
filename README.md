@@ -46,16 +46,19 @@ npm start
   ├  src  
    ├  api  # Api call functions  
    ├  components  # UI components  
+   ├  constants  # constant state  
    ├  hooks  # Custom hooks  
    ├  modules  # Redux actions, reducers, saga  
+   ├  types  # type definitions  
    ├  App.js  
    ├  index.js    
  ├ server  
   ├  model # Data model(mongoose)  
+  ├  types  # type definitions  
   ├  controller.js # Controller
   ├  db.js # Db connection  
   ├  index.js  
-  ├  snackRouter.js # router  
+  ├  shopRouter.js # router  
 ```
 <br/>
 

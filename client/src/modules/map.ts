@@ -1,12 +1,14 @@
 import { createAction, createReducer, ActionType } from 'typesafe-actions';
 import { Map, GeoLocation, Address } from '../types';
 
-const TOGGLE_MAP = 'map/TOGGLE_MAP';
+const OPEN_MAP = 'map/OPEN_MAP';
+const CLOSE_MAP = 'map/CLOSE_MAP';
 const CHANGE_GEO_LOCATION = 'map/CHANGE_LOCATION';
 const CHANGE_ADDRESS = 'map/CHANGE_LOCATION_NUM';
 const INITIALIZE_MAP_INFO = 'map/INITIALIZE_MAP_INFO';
 
-export const toggleMap = createAction(TOGGLE_MAP)();
+export const openMap = createAction(OPEN_MAP)();
+export const closeMap = createAction(CLOSE_MAP)();
 
 export const changeGeoLocation = createAction(
   CHANGE_GEO_LOCATION,
@@ -21,7 +23,8 @@ export const changeAddress = createAction(
 export const initializeMapInfo = createAction(INITIALIZE_MAP_INFO)();
 
 const actions = {
-  toggleMap,
+  openMap,
+  closeMap,
   changeGeoLocation,
   changeAddress,
   initializeMapInfo,
@@ -37,8 +40,11 @@ const initialState: MapState = {
 };
 
 export const map = createReducer<MapState, MapAction>(initialState, {
-  [TOGGLE_MAP]: (state) => {
-    return { ...state, isMapVisible: !state.isMapVisible };
+  [OPEN_MAP]: (state) => {
+    return { ...state, isMapVisible: true };
+  },
+  [CLOSE_MAP]: (state) => {
+    return { ...state, isMapVisible: false };
   },
   [CHANGE_GEO_LOCATION]: (state, { payload: geoLocation }) => ({
     ...state,
