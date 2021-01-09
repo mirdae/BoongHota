@@ -115,16 +115,18 @@ const Form = () => {
           <label htmlFor="time">영업시간</label>
           <div className="time">
             <input
-              placeholder="open"
+              placeholder="00:00"
               ref={openTimeRef}
               onBlur={setOpenTime}
             ></input>
+            <label className="open">open</label>
             <span>-</span>
             <input
-              placeholder="close"
+              placeholder="00:00"
               ref={closeTimeRef}
               onBlur={setCloseTime}
             ></input>
+            <label className="close">close</label>
           </div>
         </div>
       </div>

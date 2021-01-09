@@ -87,12 +87,26 @@
         width: 100%;
         display: flex;
         justify-content: space-between;
+        position: relative;
         input {
           width: 45%;
+          margin-top: 20px;
           text-align: center;
         }
         span {
           font-size: 30px;
+        }
+        label {
+          width: 50px;
+          position: absolute;
+          font-size: 5px;
+          color: #635959;
+          &.open {
+            left: 0px;
+          }
+          &.close {
+            left: 55%;
+          }
         }
       }
     }
