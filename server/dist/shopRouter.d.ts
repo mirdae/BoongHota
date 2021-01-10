@@ -1,2 +1,2 @@
-declare const shopRouter: import("express-serve-static-core").Router;
+declare const shopRouter: any;
 export default shopRouter;

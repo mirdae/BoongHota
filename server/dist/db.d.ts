@@ -1,3 +1,2 @@
-import mongoose from 'mongoose';
-declare const db: mongoose.Connection;
+declare const db: any;
 export default db;

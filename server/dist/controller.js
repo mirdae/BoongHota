@@ -5,7 +5,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.postNewShop = exports.getSelectedShop = exports.getAllShop = void 0;
 const Shop_1 = __importDefault(require("./model/Shop"));
-const getAllShop = async (_, res) => {
+exports.getAllShop = async (_, res) => {
     try {
         const allShop = await Shop_1.default.find({});
         return res.status(200).json({ result: true, allShop });
@@ -17,8 +17,7 @@ const getAllShop = async (_, res) => {
             .json({ result: false, message: '데이터를 얻어오지 못했습니다.' });
     }
 };
-exports.getAllShop = getAllShop;
-const getSelectedShop = async (req, res) => {
+exports.getSelectedShop = async (req, res) => {
     const { params: { shopType } } = req;
     try {
         const selectedShop = await Shop_1.default.find({ type: shopType }).exec();
@@ -31,8 +30,7 @@ const getSelectedShop = async (req, res) => {
             .json({ result: false, message: '데이터를 얻어오지 못했습니다.' });
     }
 };
-exports.getSelectedShop = getSelectedShop;
-const postNewShop = async (req, res) => {
+exports.postNewShop = async (req, res) => {
     const { body: { name, type, geoLocation, address, openTime, closeTime } } = req;
     try {
         const newShop = await Shop_1.default.create({
@@ -52,4 +50,3 @@ const postNewShop = async (req, res) => {
             .json({ result: false, message: '데이터 생성에 실패했습니다' });
     }
 };
-exports.postNewShop = postNewShop;
