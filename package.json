@@ -4,7 +4,7 @@
   "description": "붕호타",
   "main": "index.js",
   "scripts": {
-    "start": "server/dist/index.js"
+    "start": "NODE_ENV=production pm2 start server/dist/index.js"
   },
   "repository": {
     "type": "git",
