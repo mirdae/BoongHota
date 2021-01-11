@@ -12,8 +12,8 @@ const Form = () => {
     onChangeType,
     onSubmit,
     onCancel,
-    changeHourFormat,
-    changeMinuteFormat,
+    setTime,
+    combineHourAndMinute,
   } = useForm();
   const {
     findMyGeoLocation,
@@ -22,36 +22,10 @@ const Form = () => {
     address,
   } = useMap(window);
 
-  const openHour = useRef<HTMLInputElement>(null);
-  const openMinute = useRef<HTMLInputElement>(null);
-  const closeHour = useRef<HTMLInputElement>(null);
-  const closeMinute = useRef<HTMLInputElement>(null);
-
-  const setHour = (time: String) => {
-    let formatted;
-    if (time === 'open' && openHour.current) {
-      formatted = changeHourFormat(openHour.current.value);
-      openHour.current.value = formatted;
-    } else if (time === 'close' && closeHour.current) {
-      formatted = changeHourFormat(closeHour.current.value);
-      closeHour.current.value = formatted;
-    } else {
-      console.log('잘못된 동작입니다.');
-    }
-  };
-
-  const setMinute = (time: String) => {
-    let formatted;
-    if (time === 'open' && openMinute.current) {
-      formatted = changeMinuteFormat(openMinute.current.value);
-      openMinute.current.value = formatted;
-    } else if (time === 'close' && closeMinute.current) {
-      formatted = changeMinuteFormat(closeMinute.current.value);
-      closeMinute.current.value = formatted;
-    } else {
-      console.log('잘못된 동작입니다.');
-    }
-  };
+  const openHourRef = useRef<HTMLInputElement>(null);
+  const openMinuteRef = useRef<HTMLInputElement>(null);
+  const closeHourRef = useRef<HTMLInputElement>(null);
+  const closeMinuteRef = useRef<HTMLInputElement>(null);
 
   const submitWithCheck = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -65,8 +39,8 @@ const Form = () => {
     if (address === '') {
       return;
     }
-    if (openHour.current && closeHour.current) {
-      if (!openHour.current.value || !closeHour.current.value) {
+    if (openHourRef.current && closeHourRef.current) {
+      if (!openHourRef.current.value || !closeHourRef.current.value) {
         alert('시간뭔데');
         return;
       }
@@ -76,16 +50,8 @@ const Form = () => {
       type,
       geoLocation,
       address,
-      openTime: `${openHour.current ? openHour.current.value : '00'}:${
-        openMinute.current && openMinute.current.value
-          ? openMinute.current.value
-          : '00'
-      }`,
-      closeTime: `${closeHour.current ? closeHour.current.value : '00'}:${
-        closeMinute.current && closeMinute.current.value
-          ? closeMinute.current.value
-          : '00'
-      }`,
+      openTime: combineHourAndMinute(openHourRef, openMinuteRef),
+      closeTime: combineHourAndMinute(closeHourRef, closeMinuteRef),
     });
   };
 
@@ -149,28 +115,28 @@ const Form = () => {
               <label className="open">open</label>
               <input
                 placeholder="00"
-                ref={openHour}
-                onBlur={() => setHour('open')}
+                ref={openHourRef}
+                onBlur={() => setTime('hour', openHourRef)}
               />
               <span>:</span>
               <input
                 placeholder="00"
-                ref={openMinute}
-                onBlur={() => setMinute('open')}
+                ref={openMinuteRef}
+                onBlur={() => setTime('minute', openMinuteRef)}
               />
             </div>
             <div className="close-time">
               <label className="close">close</label>
               <input
                 placeholder="00"
-                ref={closeHour}
-                onBlur={() => setHour('close')}
+                ref={closeHourRef}
+                onBlur={() => setTime('hour', closeHourRef)}
               />
               <span>:</span>
               <input
                 placeholder="00"
-                ref={closeMinute}
-                onBlur={() => setMinute('close')}
+                ref={closeMinuteRef}
+                onBlur={() => setTime('minute', closeMinuteRef)}
               />
             </div>
           </div>

@@ -7,6 +7,7 @@ import { initializeFormInfo } from '../modules/form';
 import { openModal, closeModal, showAlert, hideAlert } from '../modules/modal';
 import { Name, Type, Time, Shop } from '../types';
 import { ALERT_DURATION_TIME } from '../constants/constants';
+
 const useForm = () => {
   const dispatch = useDispatch();
   const { name, type, openTime, closeTime } = useSelector(
@@ -17,7 +18,7 @@ const useForm = () => {
   );
 
   const changeHourFormat = useCallback((hour: Time) => {
-    if (isNaN(parseInt(hour)) || parseInt(hour) > 12 || parseInt(hour) < 0) {
+    if (isNaN(parseInt(hour)) || parseInt(hour) > 24 || parseInt(hour) < 0) {
       return '';
     }
     if (hour.length === 1) {
@@ -39,6 +40,33 @@ const useForm = () => {
     }
     return minute;
   }, []);
+
+  const combineHourAndMinute = useCallback((hourRef, minuteRef): string => {
+    const hour =
+      hourRef.current && hourRef.current.value ? hourRef.current.value : '00';
+    const minute =
+      minuteRef.current && minuteRef.current.value
+        ? minuteRef.current.value
+        : '00';
+    console.log(`${hour}:${minute}`);
+    return `${hour}:${minute}`;
+  }, []);
+
+  const setTime = useCallback(
+    (timeState: string, timeRef: any) => {
+      let formatted;
+      if (timeState === 'hour' && timeRef.current) {
+        formatted = changeHourFormat(timeRef.current.value);
+        timeRef.current.value = formatted;
+      } else if (timeState === 'minute' && timeRef.current) {
+        formatted = changeMinuteFormat(timeRef.current.value);
+        timeRef.current.value = formatted;
+      } else {
+        console.log('잘못된 동작입니다.');
+      }
+    },
+    [changeHourFormat, changeMinuteFormat],
+  );
 
   const onChangeName = useCallback(
     (name: Name) => {
@@ -92,14 +120,14 @@ const useForm = () => {
     closeTime,
     isModalVisible,
     isAlertVisible,
-    changeHourFormat,
-    changeMinuteFormat,
     onChangeName,
     onChangeType,
     onSubmit,
     onCancel,
     onOpenForm,
     onClose,
+    combineHourAndMinute,
+    setTime,
   };
 };
 
