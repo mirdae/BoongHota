@@ -54,16 +54,10 @@ const useForm = () => {
 
   const setTime = useCallback(
     (timeState: string, timeRef: any) => {
-      let formatted;
-      if (timeState === 'hour' && timeRef.current) {
-        formatted = changeHourFormat(timeRef.current.value);
-        timeRef.current.value = formatted;
-      } else if (timeState === 'minute' && timeRef.current) {
-        formatted = changeMinuteFormat(timeRef.current.value);
-        timeRef.current.value = formatted;
-      } else {
-        console.log('잘못된 동작입니다.');
-      }
+      timeRef.current.value =
+        timeState === 'hour'
+          ? changeHourFormat(timeRef.current.value)
+          : changeMinuteFormat(timeRef.current.value);
     },
     [changeHourFormat, changeMinuteFormat],
   );
