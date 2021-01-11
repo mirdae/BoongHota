@@ -1,25 +1,12 @@
 import { useCallback } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from '../modules';
-import {
-  createShop,
-  changeName,
-  changeType,
-  changeOpenTime,
-  changeCloseTime,
-} from '../modules/form';
+import { createShop, changeName, changeType } from '../modules/form';
 import { initializeMapInfo, closeMap } from '../modules/map';
 import { initializeFormInfo } from '../modules/form';
 import { openModal, closeModal, showAlert, hideAlert } from '../modules/modal';
 import { Name, Type, Time, Shop } from '../types';
 import { ALERT_DURATION_TIME } from '../constants/constants';
-import {
-  TIME_FORMAT_1,
-  TIME_FORMAT_2,
-  TIME_FORMAT_3,
-  TIME_FORMAT_4,
-  TIME_FORMAT_5,
-} from '../constants/regex';
 const useForm = () => {
   const dispatch = useDispatch();
   const { name, type, openTime, closeTime } = useSelector(
@@ -29,39 +16,28 @@ const useForm = () => {
     (state: RootState) => state.modal,
   );
 
-  const changeTimeFormat = useCallback((time: string) => {
-    const splittedTime = time.split(':');
+  const changeHourFormat = useCallback((hour: Time) => {
+    if (isNaN(parseInt(hour)) || parseInt(hour) > 12 || parseInt(hour) < 0) {
+      return '';
+    }
+    if (hour.length === 1) {
+      return '0' + hour;
+    }
+    return hour;
+  }, []);
+
+  const changeMinuteFormat = useCallback((minute: Time) => {
     if (
-      isNaN(parseInt(splittedTime[0])) ||
-      (splittedTime[1] && isNaN(parseInt(splittedTime[1])))
-    ) {
-      return '';
-    } else if (
-      parseInt(splittedTime[0]) > 24 ||
-      (splittedTime[1] && parseInt(splittedTime[1]) > 60)
-    ) {
-      return '';
-    } else if (
-      splittedTime[0].length > 2 ||
-      (splittedTime[1] && splittedTime[1].length > 2)
+      isNaN(parseInt(minute)) ||
+      parseInt(minute) > 59 ||
+      parseInt(minute) < 0
     ) {
       return '';
     }
-    if (TIME_FORMAT_1.test(time)) {
-      time = '0' + time;
-    } else if (TIME_FORMAT_2.test(time)) {
-    } else if (TIME_FORMAT_3.test(time)) {
-      time = splittedTime[0] + ':0' + splittedTime[1];
-    } else if (TIME_FORMAT_4.test(time)) {
-      time += ':00';
-    } else if (TIME_FORMAT_5.test(time)) {
-      time = '0' + splittedTime[0] + ':00';
-    } else {
-      console.log('없음');
-      return '';
+    if (minute.length === 1) {
+      return '0' + minute;
     }
-    console.log(time);
-    return time;
+    return minute;
   }, []);
 
   const onChangeName = useCallback(
@@ -73,23 +49,6 @@ const useForm = () => {
   const onChangeType = useCallback((type: Type) => dispatch(changeType(type)), [
     dispatch,
   ]);
-  const onChangeOpenTime = useCallback(
-    (time: Time) => {
-      const formattedTime = changeTimeFormat(time);
-      dispatch(changeOpenTime(formattedTime));
-      return formattedTime;
-    },
-    [dispatch, changeTimeFormat],
-  );
-
-  const onChangeCloseTime = useCallback(
-    (time: Time) => {
-      const formattedTime = changeTimeFormat(time);
-      dispatch(changeCloseTime(formattedTime));
-      return formattedTime;
-    },
-    [dispatch, changeTimeFormat],
-  );
 
   const onSubmit = useCallback(
     (shopInfo: Shop) => {
@@ -133,11 +92,10 @@ const useForm = () => {
     closeTime,
     isModalVisible,
     isAlertVisible,
-    changeTimeFormat,
+    changeHourFormat,
+    changeMinuteFormat,
     onChangeName,
     onChangeType,
-    onChangeOpenTime,
-    onChangeCloseTime,
     onSubmit,
     onCancel,
     onOpenForm,
