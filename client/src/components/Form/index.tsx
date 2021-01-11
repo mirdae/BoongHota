@@ -8,14 +8,12 @@ const Form = () => {
   const {
     name,
     type,
-    openTime,
-    closeTime,
     onChangeName,
     onChangeType,
-    onChangeOpenTime,
-    onChangeCloseTime,
     onSubmit,
     onCancel,
+    changeHourFormat,
+    changeMinuteFormat,
   } = useForm();
   const {
     findMyGeoLocation,
@@ -23,6 +21,37 @@ const Form = () => {
     geoLocation,
     address,
   } = useMap(window);
+
+  const openHour = useRef<HTMLInputElement>(null);
+  const openMinute = useRef<HTMLInputElement>(null);
+  const closeHour = useRef<HTMLInputElement>(null);
+  const closeMinute = useRef<HTMLInputElement>(null);
+
+  const setHour = (time: String) => {
+    let formatted;
+    if (time === 'open' && openHour.current) {
+      formatted = changeHourFormat(openHour.current.value);
+      openHour.current.value = formatted;
+    } else if (time === 'close' && closeHour.current) {
+      formatted = changeHourFormat(closeHour.current.value);
+      closeHour.current.value = formatted;
+    } else {
+      console.log('잘못된 동작입니다.');
+    }
+  };
+
+  const setMinute = (time: String) => {
+    let formatted;
+    if (time === 'open' && openMinute.current) {
+      formatted = changeMinuteFormat(openMinute.current.value);
+      openMinute.current.value = formatted;
+    } else if (time === 'close' && closeMinute.current) {
+      formatted = changeMinuteFormat(closeMinute.current.value);
+      closeMinute.current.value = formatted;
+    } else {
+      console.log('잘못된 동작입니다.');
+    }
+  };
 
   const submitWithCheck = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -36,29 +65,31 @@ const Form = () => {
     if (address === '') {
       return;
     }
-    if (openTime === '00:00' || closeTime === '00:00') {
-      return;
+    if (openHour.current && closeHour.current) {
+      if (!openHour.current.value || !closeHour.current.value) {
+        alert('시간뭔데');
+        return;
+      }
     }
-    onSubmit({ name, type, geoLocation, address, openTime, closeTime });
+    onSubmit({
+      name,
+      type,
+      geoLocation,
+      address,
+      openTime: `${openHour.current ? openHour.current.value : '00'}:${
+        openMinute.current && openMinute.current.value
+          ? openMinute.current.value
+          : '00'
+      }`,
+      closeTime: `${closeHour.current ? closeHour.current.value : '00'}:${
+        closeMinute.current && closeMinute.current.value
+          ? closeMinute.current.value
+          : '00'
+      }`,
+    });
   };
 
-  const openTimeRef = useRef<HTMLInputElement>(null);
-  const closeTimeRef = useRef<HTMLInputElement>(null);
-  const setOpenTime = () => {
-    if (openTimeRef.current) {
-      const time = onChangeOpenTime(openTimeRef.current.value);
-      openTimeRef.current.value = time;
-    }
-  };
-  const setCloseTime = () => {
-    if (closeTimeRef.current) {
-      const time = onChangeCloseTime(closeTimeRef.current.value);
-      closeTimeRef.current.value = time;
-    }
-  };
-  useEffect(() => {
-    console.log(789);
-  }, [name, type, geoLocation, address, openTime, closeTime]);
+  useEffect(() => {}, [name, type, geoLocation, address]);
 
   return (
     <form className="modal-form" onSubmit={submitWithCheck}>
@@ -114,19 +145,34 @@ const Form = () => {
         <div className="input-box_time">
           <label htmlFor="time">영업시간</label>
           <div className="time">
-            <input
-              placeholder="00:00"
-              ref={openTimeRef}
-              onBlur={setOpenTime}
-            ></input>
-            <label className="open">open</label>
-            <span>-</span>
-            <input
-              placeholder="00:00"
-              ref={closeTimeRef}
-              onBlur={setCloseTime}
-            ></input>
-            <label className="close">close</label>
+            <div className="open-time">
+              <label className="open">open</label>
+              <input
+                placeholder="00"
+                ref={openHour}
+                onBlur={() => setHour('open')}
+              />
+              <span>:</span>
+              <input
+                placeholder="00"
+                ref={openMinute}
+                onBlur={() => setMinute('open')}
+              />
+            </div>
+            <div className="close-time">
+              <label className="close">close</label>
+              <input
+                placeholder="00"
+                ref={closeHour}
+                onBlur={() => setHour('close')}
+              />
+              <span>:</span>
+              <input
+                placeholder="00"
+                ref={closeMinute}
+                onBlur={() => setMinute('close')}
+              />
+            </div>
           </div>
         </div>
       </div>

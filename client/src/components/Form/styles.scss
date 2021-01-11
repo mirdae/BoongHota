@@ -1,3 +1,5 @@
+@import '../utils/variables';
+
 .modal-form {
   width: 50%;
   min-height: 65vh;
@@ -87,26 +89,27 @@
         width: 100%;
         display: flex;
         justify-content: space-between;
-        position: relative;
-        input {
+        div {
           width: 45%;
-          margin-top: 20px;
-          text-align: center;
-        }
-        span {
-          font-size: 30px;
+          border-bottom: $input_border;
+          position: relative;
+          input {
+            width: 48%;
+            margin-top: 20px;
+            border: none;
+            text-align: center;
+          }
+          span {
+            font-size: 15px;
+            font-weight: 300;
+          }
         }
         label {
           width: 50px;
           position: absolute;
           font-size: 5px;
           color: #635959;
-          &.open {
-            left: 0px;
-          }
-          &.close {
-            left: 55%;
-          }
+          left: 0px;
         }
       }
     }
@@ -118,7 +121,7 @@
     }
     input {
       border: none;
-      border-bottom: 1px solid #8c7c65;
+      border-bottom: $input_border;
       background: none;
       padding: 7px 10px;
       outline: none;
