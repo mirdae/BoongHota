@@ -1,6 +1,7 @@
 {
   "name": "BoongHota",
   "version": "1.0.0",
+<<<<<<< HEAD
   "description": "",
   "main": "./server/dist/index.js",
   "scripts": {
@@ -9,12 +10,28 @@
   "repository": {
     "type": "git",
     "url": "git+https://github.com/BoongHota/BoongHotaClient.git"
+=======
+  "description": "붕호타",
+  "main": "index.js",
+  "scripts": {
+    "start": "NODE_ENV=production pm2 start server/dist/index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/BoongHota/BoongHota.git"
+>>>>>>> dc0bbb2153b314f7d7f6d6310b80d968a5ad846a
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "bugs": {
+<<<<<<< HEAD
     "url": "https://github.com/BoongHota/BoongHotaClient/issues"
   },
   "homepage": "https://github.com/BoongHota/BoongHotaClient#readme"
+=======
+    "url": "https://github.com/BoongHota/BoongHota/issues"
+  },
+  "homepage": "https://github.com/BoongHota/BoongHota#readme"
+>>>>>>> dc0bbb2153b314f7d7f6d6310b80d968a5ad846a
 }

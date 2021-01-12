@@ -1,18 +1,13 @@
 import { useCallback } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from '../modules';
-import {
-  createShop,
-  changeName,
-  changeType,
-  changeOpenTime,
-  changeCloseTime,
-} from '../modules/form';
+import { createShop, changeName, changeType } from '../modules/form';
 import { initializeMapInfo, closeMap } from '../modules/map';
 import { initializeFormInfo } from '../modules/form';
 import { openModal, closeModal, showAlert, hideAlert } from '../modules/modal';
 import { Name, Type, Time, Shop } from '../types';
 import { ALERT_DURATION_TIME } from '../constants/constants';
+
 const useForm = () => {
   const dispatch = useDispatch();
   const { name, type, openTime, closeTime } = useSelector(
@@ -22,29 +17,50 @@ const useForm = () => {
     (state: RootState) => state.modal,
   );
 
-  const changeTimeFormat = useCallback((time: string) => {
-    const timeFormat1 = /^([0-9]):([0-5][0-9])$/;
-    const timeFormat2 = /^([01][0-9]|2[0-3]):([0-5][0-9])$/;
-    const timeFormat3 = /^([01][0-9]|2[0-3]):([0-9])$/;
-    const timeFormat4 = /^([01][0-9]|2[0-3])$/;
-    const timeFormat5 = /^[0-9]*$/;
-    const splittedTime = time.split(':');
-    if (timeFormat1.test(time)) {
-      time = '0' + time;
-    } else if (timeFormat2.test(time)) {
-    } else if (timeFormat3.test(time)) {
-      time = splittedTime[0] + ':0' + splittedTime[1];
-    } else if (timeFormat4.test(time)) {
-      time += ':00';
-    } else if (timeFormat5.test(time)) {
-      time = '0' + splittedTime[0] + ':00';
-    } else {
-      console.log('없음');
+  const changeHourFormat = useCallback((hour: Time) => {
+    if (isNaN(parseInt(hour)) || parseInt(hour) > 24 || parseInt(hour) < 0) {
       return '';
     }
-    console.log(time);
-    return time;
+    if (hour.length === 1) {
+      return '0' + hour;
+    }
+    return hour;
   }, []);
+
+  const changeMinuteFormat = useCallback((minute: Time) => {
+    if (
+      isNaN(parseInt(minute)) ||
+      parseInt(minute) > 59 ||
+      parseInt(minute) < 0
+    ) {
+      return '';
+    }
+    if (minute.length === 1) {
+      return '0' + minute;
+    }
+    return minute;
+  }, []);
+
+  const combineHourAndMinute = useCallback((hourRef, minuteRef): string => {
+    const hour =
+      hourRef.current && hourRef.current.value ? hourRef.current.value : '00';
+    const minute =
+      minuteRef.current && minuteRef.current.value
+        ? minuteRef.current.value
+        : '00';
+    console.log(`${hour}:${minute}`);
+    return `${hour}:${minute}`;
+  }, []);
+
+  const setTime = useCallback(
+    (timeState: string, timeRef: any) => {
+      timeRef.current.value =
+        timeState === 'hour'
+          ? changeHourFormat(timeRef.current.value)
+          : changeMinuteFormat(timeRef.current.value);
+    },
+    [changeHourFormat, changeMinuteFormat],
+  );
 
   const onChangeName = useCallback(
     (name: Name) => {
@@ -55,23 +71,6 @@ const useForm = () => {
   const onChangeType = useCallback((type: Type) => dispatch(changeType(type)), [
     dispatch,
   ]);
-  const onChangeOpenTime = useCallback(
-    (time: Time) => {
-      const formattedTime = changeTimeFormat(time);
-      dispatch(changeOpenTime(formattedTime));
-      return formattedTime;
-    },
-    [dispatch, changeTimeFormat],
-  );
-
-  const onChangeCloseTime = useCallback(
-    (time: Time) => {
-      const formattedTime = changeTimeFormat(time);
-      dispatch(changeCloseTime(formattedTime));
-      return formattedTime;
-    },
-    [dispatch, changeTimeFormat],
-  );
 
   const onSubmit = useCallback(
     (shopInfo: Shop) => {
@@ -115,15 +114,14 @@ const useForm = () => {
     closeTime,
     isModalVisible,
     isAlertVisible,
-    changeTimeFormat,
     onChangeName,
     onChangeType,
-    onChangeOpenTime,
-    onChangeCloseTime,
     onSubmit,
     onCancel,
     onOpenForm,
     onClose,
+    combineHourAndMinute,
+    setTime,
   };
 };
 

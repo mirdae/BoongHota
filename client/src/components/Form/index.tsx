@@ -8,14 +8,12 @@ const Form = () => {
   const {
     name,
     type,
-    openTime,
-    closeTime,
     onChangeName,
     onChangeType,
-    onChangeOpenTime,
-    onChangeCloseTime,
     onSubmit,
     onCancel,
+    setTime,
+    combineHourAndMinute,
   } = useForm();
   const {
     findMyGeoLocation,
@@ -23,6 +21,11 @@ const Form = () => {
     geoLocation,
     address,
   } = useMap(window);
+
+  const openHourRef = useRef<HTMLInputElement>(null);
+  const openMinuteRef = useRef<HTMLInputElement>(null);
+  const closeHourRef = useRef<HTMLInputElement>(null);
+  const closeMinuteRef = useRef<HTMLInputElement>(null);
 
   const submitWithCheck = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -36,29 +39,23 @@ const Form = () => {
     if (address === '') {
       return;
     }
-    if (openTime === '00:00' || closeTime === '00:00') {
-      return;
+    if (openHourRef.current && closeHourRef.current) {
+      if (!openHourRef.current.value || !closeHourRef.current.value) {
+        alert('시간뭔데');
+        return;
+      }
     }
-    onSubmit({ name, type, geoLocation, address, openTime, closeTime });
+    onSubmit({
+      name,
+      type,
+      geoLocation,
+      address,
+      openTime: combineHourAndMinute(openHourRef, openMinuteRef),
+      closeTime: combineHourAndMinute(closeHourRef, closeMinuteRef),
+    });
   };
 
-  const openTimeRef = useRef<HTMLInputElement>(null);
-  const closeTimeRef = useRef<HTMLInputElement>(null);
-  const setOpenTime = () => {
-    if (openTimeRef.current) {
-      const time = onChangeOpenTime(openTimeRef.current.value);
-      openTimeRef.current.value = time;
-    }
-  };
-  const setCloseTime = () => {
-    if (closeTimeRef.current) {
-      const time = onChangeCloseTime(closeTimeRef.current.value);
-      closeTimeRef.current.value = time;
-    }
-  };
-  useEffect(() => {
-    console.log(789);
-  }, [name, type, geoLocation, address, openTime, closeTime]);
+  useEffect(() => {}, [name, type, geoLocation, address]);
 
   return (
     <form className="modal-form" onSubmit={submitWithCheck}>
@@ -114,17 +111,34 @@ const Form = () => {
         <div className="input-box_time">
           <label htmlFor="time">영업시간</label>
           <div className="time">
-            <input
-              placeholder="open"
-              ref={openTimeRef}
-              onBlur={setOpenTime}
-            ></input>
-            <span>-</span>
-            <input
-              placeholder="close"
-              ref={closeTimeRef}
-              onBlur={setCloseTime}
-            ></input>
+            <div className="open-time">
+              <label className="open">open</label>
+              <input
+                placeholder="00"
+                ref={openHourRef}
+                onBlur={() => setTime('hour', openHourRef)}
+              />
+              <span>:</span>
+              <input
+                placeholder="00"
+                ref={openMinuteRef}
+                onBlur={() => setTime('minute', openMinuteRef)}
+              />
+            </div>
+            <div className="close-time">
+              <label className="close">close</label>
+              <input
+                placeholder="00"
+                ref={closeHourRef}
+                onBlur={() => setTime('hour', closeHourRef)}
+              />
+              <span>:</span>
+              <input
+                placeholder="00"
+                ref={closeMinuteRef}
+                onBlur={() => setTime('minute', closeMinuteRef)}
+              />
+            </div>
           </div>
         </div>
       </div>
