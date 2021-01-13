@@ -74,4 +74,4 @@ npm start
 # Wiki
 - [Convention](https://github.com/BoongHota/BoongHota/wiki/Git-&-Github)
 - [API docs](https://github.com/BoongHota/BoongHotaClient/wiki/API-%EB%AA%85%EC%84%B8%EC%84%9C)
-- [개발 시 어려웠던 점](https://github.com/BoongHota/BoongHota/wiki/%ED%94%84%EB%A1%9C%EC%A0%9D%ED%8A%B8-%EC%A7%84%ED%96%89%EC%8B%9C-%EC%96%B4%EB%A0%A4%EC%9B%A0%EB%8D%98-%EC%A0%90)
+- [어려웠던 점](https://github.com/BoongHota/BoongHota/wiki/%ED%94%84%EB%A1%9C%EC%A0%9D%ED%8A%B8-%EC%A7%84%ED%96%89%EC%8B%9C-%EC%96%B4%EB%A0%A4%EC%9B%A0%EB%8D%98-%EC%A0%90)
