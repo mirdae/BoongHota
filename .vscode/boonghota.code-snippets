@@ -1,0 +1,25 @@
+{
+  "TSX React Default Export Component": {
+    "scope": "typescriptreact",
+    "prefix": "comp",
+    "description": "Export default component",
+    "body": [
+      "import React from 'react'",
+      "import './style.scss'",
+      "",
+      "export type $1Props = ${2:unknown}",
+      "",
+      "const ${1:Component}: React.FC<$1Props> = ($3) => {",
+      "  return <div className=\"$4\">$0</div>",
+      "}",
+      "",
+      "export default $1",
+      ""
+    ]
+  },
+  "Import style.scss": {
+    "scope": "typescriptreact",
+    "prefix": "styl",
+    "body": "import './${1:style}.scss'"
+  },
+}
