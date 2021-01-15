@@ -85,8 +85,8 @@ const useMap = (window: any) => {
             center: new kakao.maps.LatLng(lat, lon),
             level: 3,
           };
-          let map = new kakao.maps.Map(ref.current, options);
-          let marker = new kakao.maps.Marker({
+          const map = new kakao.maps.Map(ref.current, options);
+          const marker = new kakao.maps.Marker({
             // 지도 중심좌표에 마커를 생성합니다
             position: map.getCenter(),
             clickable: true, // 마커를 클릭했을 때 지도의 클릭 이벤트가 발생하지 않도록 설정합니다
@@ -100,9 +100,9 @@ const useMap = (window: any) => {
             'click',
             function (mouseEvent: any) {
               // 클릭한 위도, 경도 정보를 가져옵니다
-              let latlng = mouseEvent.latLng;
-              let lat = latlng.getLat();
-              let lon = latlng.getLng();
+              const latlng = mouseEvent.latLng;
+              const lat = latlng.getLat();
+              const lon = latlng.getLng();
               dispatch(changeGeoLocation([lat, lon]));
               // 마커 위치를 클릭한 위치로 옮깁니다
               marker.setPosition(latlng);
