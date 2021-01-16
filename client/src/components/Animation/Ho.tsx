@@ -1,26 +1,22 @@
 import React, { useState } from 'react';
-import './styles.scss';
+import * as S from './AnimationStyle';
+
 const Ho = () => {
-  const [isFall, setIsFall] = useState(false);
+  const [showSmoke, setShowSmoke] = useState(false);
   const mouseOver = () => {
-    if (!isFall) {
-      setIsFall(true);
-      setTimeout(() => setIsFall(false), 2000);
+    if (!showSmoke) {
+      setShowSmoke(true);
+      setTimeout(() => setShowSmoke(false), 2000);
     }
   };
 
   return (
-    <div
-      className={'ho icon ' + (isFall ? 'fall' : '')}
-      onMouseOver={mouseOver}
-    >
-      {isFall && (
-        <img
-          src="https://media.vlpt.us/images/dolarge/post/b97ad49f-d383-46dd-aa09-bdb33372eb2b/smoke.png"
-          alt="smoke"
-        />
-      )}
-    </div>
+    <S.Ho showSmoke={showSmoke} onMouseOver={mouseOver}>
+      <img
+        src="https://media.vlpt.us/images/dolarge/post/b97ad49f-d383-46dd-aa09-bdb33372eb2b/smoke.png"
+        alt="smoke"
+      />
+    </S.Ho>
   );
 };
 
