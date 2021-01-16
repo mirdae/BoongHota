@@ -1,7 +1,6 @@
 import React, { useRef, useEffect } from 'react';
 import useMap from '../../hooks/useMap';
-
-import './styles.scss';
+import { MapContainer, MapBox, BackButton, AddButton } from './MapStyle';
 
 const Map = () => {
   const mapRef: any = useRef();
@@ -18,15 +17,11 @@ const Map = () => {
   }, []);
 
   return (
-    <div className="mini-map-container">
-      <div ref={mapRef} className="mini-map-box"></div>
-      <button className="back-btn" onClick={notSelectLocation}>
-        <p>←</p>
-      </button>
-      <button className="add-btn" onClick={addSelectedGeoLocation}>
-        <p>+</p>
-      </button>
-    </div>
+    <MapContainer>
+      <MapBox ref={mapRef} />
+      <BackButton onClick={notSelectLocation}> ← </BackButton>
+      <AddButton onClick={addSelectedGeoLocation}> + </AddButton>
+    </MapContainer>
   );
 };
 
