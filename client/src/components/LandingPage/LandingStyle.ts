@@ -21,6 +21,7 @@ export const Main = styled.main`
 
 export const OpenModalButton = styled(Button)`
   background-color: #e5b589;
+  margin-top: 20vh;
   &:hover {
     background-color: ${darken(0.1, '#e5b589')};
   }
