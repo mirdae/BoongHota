@@ -1,9 +1,13 @@
-@import '../utils/variables';
+import styled from 'styled-components';
 
-.alert-container {
+type AlertProps = {
+  isAlertVisible: boolean;
+};
+
+export const AlertContainer = styled.div`
   width: 300px;
   height: 50px;
-  background-color: $alert_box_color;
+  background-color: #e4d1c6;
   color: rgb(93, 93, 93);
   display: flex;
   align-items: center;
@@ -15,10 +19,6 @@
   margin-left: -150px;
   z-index: 888;
   transition: 0.5s;
-}
-.show {
-  bottom: 60px;
-}
-.hide {
-  bottom: -100px;
-}
+  bottom: ${({ isAlertVisible }: AlertProps) =>
+    isAlertVisible ? '60px' : '-100px'};
+`;
