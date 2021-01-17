@@ -1,5 +1,5 @@
-import styled from 'styled-components';
-import { HomeFilled } from '@ant-design/icons';
+import styled, { css } from 'styled-components';
+import { HomeFilled as AntdHomeFilled } from '@ant-design/icons';
 
 export const MapContainer = styled.div`
   width: 100%;
@@ -15,7 +15,7 @@ export const MapBox = styled.div`
   left: 0;
 `;
 
-export const StyledHomeFilled = styled(HomeFilled)`
+export const HomeFilled = styled(AntdHomeFilled)`
   color: rgb(191, 163, 133);
   svg {
     width: 1.7em;
@@ -23,33 +23,33 @@ export const StyledHomeFilled = styled(HomeFilled)`
   }
 `;
 
-// 이 부분도 겹치는 부분이기때문에 리팩토링이 필요함
-export const IconImage = styled.img`
+export const IconImage = styled.li`
+  img {
   cursor: pointer;
-`;
-
-export const IconImage2 = styled.li`
-  img {
-    width: 1.9em;
-    height: 1.9em;
-  }
-`;
-export const IconImage3 = styled.li`
-  img {
-    width: 2em;
-    height: 1.4em;
-  }
-`;
-export const IconImage4 = styled.li`
-  img {
-    width: 1.8em;
-    height: 1.4em;
-  }
-`;
-export const IconImage5 = styled.li`
-  img {
-    width: 1.6em;
-    height: 1.5em;
+    ${(props) =>
+      props.id === 'all' &&
+      css`
+        width: 1.9em;
+        height: 1.9em;
+      `}
+    ${(props) =>
+      props.id === 'boong' &&
+      css`
+        width: 2em;
+        height: 1.4em;
+      `}
+    ${(props) =>
+      props.id === 'ho' &&
+      css`
+        width: 1.8em;
+        height: 1.4em;
+      `}
+    ${(props) =>
+      props.id === 'ta' &&
+      css`
+        width: 1.6em;
+        height: 1.5em;
+      `}
   }
 `;
 

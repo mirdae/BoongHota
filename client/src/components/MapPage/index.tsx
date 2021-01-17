@@ -4,6 +4,7 @@ import useShop from '../../hooks/useShop';
 import { Link } from 'react-router-dom';
 import { Type } from '../../types';
 import * as S from './MapPageStyle';
+import { ALL_IMG, BOONG_IMG, HO_IMG, TA_IMG } from '../../styles/img';
 
 const MapPage = ({
   match: {
@@ -43,38 +44,37 @@ const MapPage = ({
       <S.MapButtonBox>
         <li>
           <Link to="/">
-            <S.StyledHomeFilled />
+            <S.HomeFilled />
           </Link>
         </li>
-        <S.IconImage2>
-          <S.IconImage
-            src="https://media.vlpt.us/images/dolarge/post/aa3ea81d-4b5a-431a-9f22-090bdbea1a71/all.png"
+        <S.IconImage id="all">
+          <img
+            src={`${ALL_IMG}`}
             onClick={() => changeType('')}
             alt="select-all-button"
           />
-        </S.IconImage2>
-        <S.IconImage3>
-          <S.IconImage
-            src="https://media.vlpt.us/images/dolarge/post/9df7aa9c-5827-4928-8711-25763612cc5f/%EB%B6%95%EC%96%B4.png"
+        </S.IconImage>
+        <S.IconImage id="boong">
+          <img
+            src={`${BOONG_IMG}`}
             onClick={() => changeType('boong')}
             alt="boong-button"
           />
-        </S.IconImage3>
-
-        <S.IconImage4>
-          <S.IconImage
-            src="https://media.vlpt.us/images/dolarge/post/18a0d072-1987-44e6-a8dc-74fb5d40a337/%ED%98%B8%EB%96%A1.png"
+        </S.IconImage>
+        <S.IconImage id="ho">
+          <img
+            src={`${HO_IMG}`}
             onClick={() => changeType('ho')}
             alt="ho-button"
           />
-        </S.IconImage4>
-        <S.IconImage5>
-          <S.IconImage
-            src="https://media.vlpt.us/images/dolarge/post/9afdecdf-2a14-4079-9c06-487d657c6c7e/%ED%83%80%EC%BD%94.png"
+        </S.IconImage>
+        <S.IconImage id="ta">
+          <img
+            src={`${TA_IMG}`}
             onClick={() => changeType('ta')}
             alt="ta-button"
           />
-        </S.IconImage5>
+        </S.IconImage>
       </S.MapButtonBox>
     </S.MapContainer>
   );
