@@ -1,6 +1,6 @@
 import styled, { keyframes, css } from 'styled-components';
 import { animated } from 'react-spring';
-import { BOONG_URL, HO_URL, TA_URL } from '../../constants/constants';
+import { BOONG_IMG, HO_IMG, TA_IMG } from '../../styles/img';
 
 const taMove = keyframes`
     0% {
@@ -45,7 +45,7 @@ const hoSmoke = keyframes`
 export const Boong = styled(animated.div)`
   height: 170px;
   width: 220px;
-  background-image: url(${BOONG_URL});
+  background-image: url(${BOONG_IMG});
   background-size: cover;
   background-position: center center;
   will-change: transform;
@@ -59,7 +59,7 @@ export const Ho = styled.div`
   background-size: 100% 100%;
   height: 200px;
   width: 200px;
-  background-image: url(${HO_URL});
+  background-image: url(${HO_IMG});
   position: relative;
   img {
     ${({ showSmoke }: hoProps) => {
@@ -86,7 +86,7 @@ type TaProps = {
 
 export const Ta = styled.div`
   background-size: 100% 100%;
-  background-image: url(${TA_URL});
+  background-image: url(${TA_IMG});
   position: absolute;
   box-sizing: border-box;
   height: 200px;

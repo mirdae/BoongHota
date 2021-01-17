@@ -1,5 +1,6 @@
 import styled from 'styled-components';
 import Button from '../common/Button';
+import PALETTE from '../../styles/color-variables';
 import { darken } from 'polished';
 
 export const LandingContainer = styled.div`
@@ -20,9 +21,9 @@ export const Main = styled.main`
 `;
 
 export const OpenModalButton = styled(Button)`
-  background-color: #e5b589;
+  background-color: ${PALETTE.POINT};
   margin-top: 20vh;
   &:hover {
-    background-color: ${darken(0.1, '#e5b589')};
+    background-color: ${darken(0.1, PALETTE.POINT)};
   }
 `;

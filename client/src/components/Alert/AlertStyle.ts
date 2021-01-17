@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import PALETTE from '../../styles/color-variables';
 
 type AlertProps = {
   isAlertVisible: boolean;
@@ -7,7 +8,7 @@ type AlertProps = {
 export const AlertContainer = styled.div`
   width: 300px;
   height: 50px;
-  background-color: #e4d1c6;
+  background-color: ${PALETTE.POINT};
   color: rgb(93, 93, 93);
   display: flex;
   align-items: center;
