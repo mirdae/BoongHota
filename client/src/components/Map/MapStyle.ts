@@ -1,4 +1,6 @@
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
+import { darken } from 'polished';
+import PALETTE from '../../styles/color-variables';
 
 export const MapContainer = styled.div`
   width: 50%;
@@ -13,8 +15,7 @@ export const MapBox = styled.div`
   position: relative;
 `;
 
-// 겹치는 부분이 많으니 리팩토링 할 예정!
-export const BackButton = styled.button`
+export const Button = styled.button`
   height: 50px;
   width: 50px;
   padding: 0;
@@ -25,34 +26,26 @@ export const BackButton = styled.button`
   border: none;
   color: white;
   font-size: 1.3rem;
-  top: 23%;
-  left: 27%;
-  outline: none;
   cursor: pointer;
-  background-color: #e4706c;
-  &:hover {
-    background-color: #bd5451;
-  }
-`;
+  outline: none;
+  top: 25%;
+  ${(props) =>
+    props.value === 'back' &&
+    css`
+      left: 27%;
+      background-color: ${PALETTE.MAP_BUTTON[0]};
+      &:hover {
+        background-color: ${darken(0.1, PALETTE.MAP_BUTTON[0])};
+      }
+    `}
 
-export const AddButton = styled.button`
-  height: 50px;
-  width: 50px;
-  padding: 0;
-  margin: 0;
-  position: absolute;
-  z-index: 999;
-  border-radius: 50px;
-  font-size: 30px;
-  outline: none;
-  border: none;
-  color: white;
-  cursor: pointer;
-  font-size: 1.3rem;
-  top: 23%;
-  right: 27%;
-  background-color: #4969da;
-  &:hover {
-    background-color: #1641dc;
-  }
+  ${(props) =>
+    props.value === 'add' &&
+    css`
+      right: 27%;
+      background-color: ${PALETTE.MAP_BUTTON[1]};
+      &:hover {
+        background-color: ${darken(0.1, PALETTE.MAP_BUTTON[1])};
+      }
+    `}
 `;
