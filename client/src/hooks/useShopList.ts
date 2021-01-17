@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useState } from 'react';
+import { useCallback, useState, useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import { RootState } from '../modules';
 import { Shop } from '../types';
@@ -12,7 +12,6 @@ const taImg =
 
 const useShopList = (window: any, ref: any) => {
   const { kakao } = window;
-  // eslint-disable-next-line @typescript-eslint/no-empty-function
   const [map, setMap] = useState({ setCenter: (test: any) => {} });
   const { geoLocation, address, isMapVisible } = useSelector(
     (state: RootState) => state.map,
@@ -32,14 +31,14 @@ const useShopList = (window: any, ref: any) => {
   const displayMarker = useCallback(
     (locPosition, message) => {
       if (Object.keys(map).length > 1) {
-        const marker = new kakao.maps.Marker({
+        let marker = new kakao.maps.Marker({
           map: map,
           position: locPosition,
         });
 
-        const iwContent = message;
-        const iwRemoveable = true;
-        const infowindow = new kakao.maps.InfoWindow({
+        let iwContent = message;
+        let iwRemoveable = true;
+        let infowindow = new kakao.maps.InfoWindow({
           content: iwContent,
           removable: iwRemoveable,
         });
@@ -106,7 +105,7 @@ const useShopList = (window: any, ref: any) => {
       const iwContent = `<div class="marker-info"><p class="name">${shop.name}</p><p class="address">${shop.address}</p><p class="time">${shop.openTime}-${shop.closeTime}</p></div>`; // 인포윈도우에 표출될 내용으로 HTML 문자열이나 document element가 가능합니다
 
       // 인포윈도우를 생성합니다
-      const infowindow = new kakao.maps.InfoWindow({
+      var infowindow = new kakao.maps.InfoWindow({
         content: iwContent,
       });
       return infowindow;
@@ -116,15 +115,15 @@ const useShopList = (window: any, ref: any) => {
 
   const drawMarkers = useCallback(
     (shopList: Shop[]) => {
-      const markerArr: any[] = [];
+      let markerArr: any[] = [];
       if (Object.keys(map).length > 1) {
-        for (let i = 0; i < shopList.length; i++) {
+        for (var i = 0; i < shopList.length; i++) {
           const [imageSrc, imageSize] = setImage(shopList[i].type);
 
-          const markerImage = new kakao.maps.MarkerImage(imageSrc, imageSize);
+          var markerImage = new kakao.maps.MarkerImage(imageSrc, imageSize);
 
           // 마커를 생성합니다
-          const marker = new kakao.maps.Marker({
+          var marker = new kakao.maps.Marker({
             map: map,
             position: new kakao.maps.LatLng(...shopList[i].geoLocation),
             image: markerImage,

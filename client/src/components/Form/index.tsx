@@ -55,7 +55,7 @@ const Form = () => {
     });
   };
 
-  // useEffect(() => {}, [name, type, geoLocation, address]);
+  useEffect(() => {}, [name, type, geoLocation, address]);
 
   return (
     <form className="modal-form" onSubmit={submitWithCheck}>
