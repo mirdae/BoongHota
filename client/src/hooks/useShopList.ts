@@ -3,12 +3,7 @@ import { useSelector } from 'react-redux';
 import { RootState } from '../modules';
 import { Shop } from '../types';
 
-const boongImg =
-  'https://media.vlpt.us/images/dolarge/post/9df7aa9c-5827-4928-8711-25763612cc5f/%EB%B6%95%EC%96%B4.png';
-const hoImg =
-  'https://media.vlpt.us/images/dolarge/post/18a0d072-1987-44e6-a8dc-74fb5d40a337/%ED%98%B8%EB%96%A1.png';
-const taImg =
-  'https://media.vlpt.us/images/dolarge/post/9afdecdf-2a14-4079-9c06-487d657c6c7e/%ED%83%80%EC%BD%94.png';
+import { BOONG_IMG, HO_IMG, TA_IMG, MARKER } from '../styles/img';
 
 const useShopList = (window: any, ref: any) => {
   const { kakao } = window;
@@ -79,20 +74,19 @@ const useShopList = (window: any, ref: any) => {
       let imageSize: any;
       switch (type) {
         case 'boong':
-          imageSrc = boongImg;
+          imageSrc = BOONG_IMG;
           imageSize = new kakao.maps.Size(35, 24);
           break;
         case 'ho':
-          imageSrc = hoImg;
+          imageSrc = HO_IMG;
           imageSize = new kakao.maps.Size(30, 30);
           break;
         case 'ta':
-          imageSrc = taImg;
+          imageSrc = TA_IMG;
           imageSize = new kakao.maps.Size(30, 30);
           break;
         default:
-          imageSrc =
-            'https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/markerStar.png';
+          imageSrc = MARKER;
           imageSize = new kakao.maps.Size(24, 35);
       }
       return [imageSrc, imageSize];

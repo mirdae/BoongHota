@@ -6,3 +6,5 @@ export const TA_IMG =
   'https://media.vlpt.us/images/dolarge/post/9afdecdf-2a14-4079-9c06-487d657c6c7e/%ED%83%80%EC%BD%94.png';
 export const ALL_IMG =
   'https://media.vlpt.us/images/dolarge/post/aa3ea81d-4b5a-431a-9f22-090bdbea1a71/all.png';
+export const MARKER =
+  'https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/markerStar.png';
