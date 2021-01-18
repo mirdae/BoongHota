@@ -1,8 +1,8 @@
-import React, { useEffect, useRef } from 'react';
+import React, { useRef } from 'react';
 import useForm from '../../hooks/useForm';
 import useMap from '../../hooks/useMap';
-
-import './styles.scss';
+import * as S from './FormStyle';
+import { BOONG_IMG, HO_IMG, TA_IMG } from '../../styles/img';
 
 const Form = () => {
   const {
@@ -55,98 +55,79 @@ const Form = () => {
     });
   };
 
-  // useEffect(() => {}, [name, type, geoLocation, address]);
-
   return (
-    <form className="modal-form" onSubmit={submitWithCheck}>
-      <div
-        className="kind-box"
-        onChange={(e: any) => onChangeType(e.target.value)}
-      >
-        <input
-          name="food"
-          type="radio"
-          value="boong"
-          id="boong"
-          className="boong-mini"
+    <S.ModalForm>
+      <S.TypeBox>
+        <S.BoongType
+          checked={type === 'boong'}
+          onClick={() => onChangeType('boong')}
+        >
+          <img src={`${BOONG_IMG}`} alt="boong" />
+        </S.BoongType>
+        <S.HoType checked={type === 'ho'} onClick={() => onChangeType('ho')}>
+          <img src={`${HO_IMG}`} alt="ho" />
+        </S.HoType>
+        <S.TaType checked={type === 'ta'} onClick={() => onChangeType('ta')}>
+          <img src={`${TA_IMG}`} alt="ta" />
+        </S.TaType>
+      </S.TypeBox>
+      <S.InputBox>
+        <S.Label htmlFor="name">가게명</S.Label>
+        <S.Input
+          onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
+            onChangeName(e.target.value)
+          }
+          value={name}
+          id="name"
+          name="name"
         />
-        <label className="boong-label" htmlFor="boong" />
-        <input
-          name="food"
-          type="radio"
-          id="ho"
-          value="ho"
-          className="ho-mini"
-        />
-        <label className="ho-label" htmlFor="ho" />
-        <input
-          name="food"
-          type="radio"
-          id="ta"
-          value="ta"
-          className="ta-mini"
-        />
-        <label className="ta-label" htmlFor="ta" />
-      </div>
-      <div className="input-box">
-        <div className="input-box_name">
-          <label htmlFor="name">가게명</label>
-          <input
-            onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
-              onChangeName(e.target.value)
-            }
-            value={name}
-            id="name"
-            name="name"
-          />
-        </div>
-        <div className="input-box_location">
-          <label htmlFor="location">가게위치</label>
-          <input id="location" name="location" value={address} />
-          <div className="button-box_location">
-            <button onClick={findMapGeoLocation}>지도에서 찾기</button>
-            <button onClick={findMyGeoLocation}>현재 위치</button>
-          </div>
-        </div>
-        <div className="input-box_time">
-          <label htmlFor="time">영업시간</label>
-          <div className="time">
-            <div className="open-time">
-              <label className="open">open</label>
-              <input
-                placeholder="00"
-                ref={openHourRef}
-                onBlur={() => setTime('hour', openHourRef)}
-              />
-              <span>:</span>
-              <input
-                placeholder="00"
-                ref={openMinuteRef}
-                onBlur={() => setTime('minute', openMinuteRef)}
-              />
-            </div>
-            <div className="close-time">
-              <label className="close">close</label>
-              <input
-                placeholder="00"
-                ref={closeHourRef}
-                onBlur={() => setTime('hour', closeHourRef)}
-              />
-              <span>:</span>
-              <input
-                placeholder="00"
-                ref={closeMinuteRef}
-                onBlur={() => setTime('minute', closeMinuteRef)}
-              />
-            </div>
-          </div>
-        </div>
-      </div>
-      <div className="button-box">
-        <button onClick={onCancel}>뒤로가기</button>
-        <button type="submit">등록하기</button>
-      </div>
-    </form>
+      </S.InputBox>
+      <S.InputBox>
+        <S.Label htmlFor="location">가게위치</S.Label>
+        <S.Input id="location" name="location" value={address} />
+        <S.LocationButtonBox>
+          <S.MapButton onClick={findMapGeoLocation} message="지도에서 찾기" />
+          <S.MapButton onClick={findMyGeoLocation} message="현재 위치" />
+        </S.LocationButtonBox>
+      </S.InputBox>
+      <S.InputBox>
+        <S.Label htmlFor="time">영업시간</S.Label>
+        <S.TimeLayoutBox>
+          <S.TimeEachBox>
+            <S.TimeInputLabel>open</S.TimeInputLabel>
+            <S.TimeInput
+              placeholder="00"
+              ref={openHourRef}
+              onBlur={() => setTime('hour', openHourRef)}
+            />
+            <S.TimeSpan>:</S.TimeSpan>
+            <S.TimeInput
+              placeholder="00"
+              ref={openMinuteRef}
+              onBlur={() => setTime('minute', openMinuteRef)}
+            />
+          </S.TimeEachBox>
+          <S.TimeEachBox>
+            <S.TimeInputLabel>close</S.TimeInputLabel>
+            <S.TimeInput
+              placeholder="00"
+              ref={closeHourRef}
+              onBlur={() => setTime('hour', closeHourRef)}
+            />
+            <S.TimeSpan>:</S.TimeSpan>
+            <S.TimeInput
+              placeholder="00"
+              ref={closeMinuteRef}
+              onBlur={() => setTime('minute', closeMinuteRef)}
+            />
+          </S.TimeEachBox>
+        </S.TimeLayoutBox>
+      </S.InputBox>
+      <S.ButtonBox>
+        <S.FormButton onClick={onCancel} message="뒤로가기" />
+        <S.FormButton onClick={submitWithCheck} message="등록하기" />
+      </S.ButtonBox>
+    </S.ModalForm>
   );
 };
 
