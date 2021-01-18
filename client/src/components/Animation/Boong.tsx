@@ -1,6 +1,6 @@
 import React from 'react';
-import { useSpring, animated } from 'react-spring';
-import './styles.scss';
+import { useSpring } from 'react-spring';
+import * as S from './AnimationStyle';
 
 const calc = (x: number, y: number): number[] => [
   -(y - window.innerHeight / 2) / 20,
@@ -17,12 +17,11 @@ const Boong = () => {
   }));
 
   return (
-    <animated.div
-      className="boong"
+    <S.Boong
       onMouseMove={({ clientX: x, clientY: y }) => set({ xys: calc(x, y) })}
       onMouseLeave={() => set({ xys: [0, 0, 1] })}
       style={{ transform: props.xys.interpolate(trans) }}
-    ></animated.div>
+    ></S.Boong>
   );
 };
 

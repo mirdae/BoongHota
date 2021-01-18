@@ -6,14 +6,13 @@ import Ta from '../Animation/Ta';
 import Modal from '../Modal';
 import Alert from '../Alert';
 import useForm from '../../hooks/useForm';
-
-import './styles.scss';
+import * as S from './LandingStyle';
 
 const LandingPage = () => {
   const { onOpenForm, isModalVisible } = useForm();
   return (
-    <div className="landing-container">
-      <main>
+    <S.LandingContainer className="landing-container">
+      <S.Main>
         <Link to="/map/boong">
           <Boong />
         </Link>
@@ -23,11 +22,11 @@ const LandingPage = () => {
         <Link to="/map/ta">
           <Ta />
         </Link>
-      </main>
-      <button onClick={onOpenForm}>붕호타 + </button>
+      </S.Main>
+      <S.OpenModalButton message="붕호타 + " onClick={onOpenForm} />
       {isModalVisible && <Modal />}
       <Alert message="붕호타 등록 완료" />
-    </div>
+    </S.LandingContainer>
   );
 };
 

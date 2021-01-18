@@ -1,7 +1,7 @@
 import React from 'react';
 import useForm from '../../hooks/useForm';
 
-import './styles.scss';
+import * as S from './AlertStyle';
 
 type AlertProps = {
   message: string;
@@ -10,9 +10,9 @@ type AlertProps = {
 const Alert = ({ message }: AlertProps) => {
   const { isAlertVisible } = useForm();
   return (
-    <div className={'alert-container ' + (isAlertVisible ? 'show' : 'hide')}>
+    <S.AlertContainer isAlertVisible={isAlertVisible}>
       {message}
-    </div>
+    </S.AlertContainer>
   );
 };
 

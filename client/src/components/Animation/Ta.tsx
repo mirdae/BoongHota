@@ -1,20 +1,17 @@
 import React, { useState } from 'react';
-import './styles.scss';
+import * as S from './AnimationStyle';
 
 const Ta = () => {
   const [isRoll, setIsRoll] = useState(false);
 
   const mouseOver = () => {
-    console.log(123);
-    setIsRoll(true);
-    setTimeout(() => setIsRoll(false), 2000);
+    if (!isRoll) {
+      setIsRoll(true);
+      setTimeout(() => setIsRoll(false), 2000);
+    }
   };
-  return (
-    <div
-      className={'ta icon ' + (isRoll ? 'roll' : '')}
-      onMouseOver={mouseOver}
-    ></div>
-  );
+
+  return <S.Ta onMouseOver={mouseOver} isRoll={isRoll}></S.Ta>;
 };
 
 export default Ta;

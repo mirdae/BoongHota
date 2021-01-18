@@ -2,9 +2,9 @@ import React, { useRef, useEffect } from 'react';
 import useShopList from '../../hooks/useShopList';
 import useShop from '../../hooks/useShop';
 import { Link } from 'react-router-dom';
-import { HomeFilled } from '@ant-design/icons';
 import { Type } from '../../types';
-import './styles.scss';
+import * as S from './MapPageStyle';
+import { ALL_IMG, BOONG_IMG, HO_IMG, TA_IMG } from '../../styles/img';
 
 const MapPage = ({
   match: {
@@ -39,44 +39,44 @@ const MapPage = ({
   };
 
   return (
-    <div className="map-container">
-      <div id="map" className="map-box" ref={mapRef}></div>
-      <ul className="button-box">
+    <S.MapContainer>
+      <S.MapBox id="map" ref={mapRef}></S.MapBox>
+      <S.MapButtonBox>
         <li>
           <Link to="/">
-            <HomeFilled className="home-icon" />
+            <S.HomeFilled />
           </Link>
         </li>
-        <li>
+        <S.IconImage id="all">
           <img
-            src="https://media.vlpt.us/images/dolarge/post/aa3ea81d-4b5a-431a-9f22-090bdbea1a71/all.png"
+            src={`${ALL_IMG}`}
             onClick={() => changeType('')}
             alt="select-all-button"
           />
-        </li>
-        <li>
+        </S.IconImage>
+        <S.IconImage id="boong">
           <img
-            src="https://media.vlpt.us/images/dolarge/post/9df7aa9c-5827-4928-8711-25763612cc5f/%EB%B6%95%EC%96%B4.png"
+            src={`${BOONG_IMG}`}
             onClick={() => changeType('boong')}
             alt="boong-button"
           />
-        </li>
-        <li>
+        </S.IconImage>
+        <S.IconImage id="ho">
           <img
-            src="https://media.vlpt.us/images/dolarge/post/18a0d072-1987-44e6-a8dc-74fb5d40a337/%ED%98%B8%EB%96%A1.png"
+            src={`${HO_IMG}`}
             onClick={() => changeType('ho')}
             alt="ho-button"
           />
-        </li>
-        <li>
+        </S.IconImage>
+        <S.IconImage id="ta">
           <img
-            src="https://media.vlpt.us/images/dolarge/post/9afdecdf-2a14-4079-9c06-487d657c6c7e/%ED%83%80%EC%BD%94.png"
+            src={`${TA_IMG}`}
             onClick={() => changeType('ta')}
             alt="ta-button"
           />
-        </li>
-      </ul>
-    </div>
+        </S.IconImage>
+      </S.MapButtonBox>
+    </S.MapContainer>
   );
 };
 
