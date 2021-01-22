@@ -2,13 +2,7 @@ import { useCallback, useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 import { RootState } from '../modules';
 import { Shop } from '../types';
-
-const boongImg =
-  'https://media.vlpt.us/images/dolarge/post/9df7aa9c-5827-4928-8711-25763612cc5f/%EB%B6%95%EC%96%B4.png';
-const hoImg =
-  'https://media.vlpt.us/images/dolarge/post/18a0d072-1987-44e6-a8dc-74fb5d40a337/%ED%98%B8%EB%96%A1.png';
-const taImg =
-  'https://media.vlpt.us/images/dolarge/post/9afdecdf-2a14-4079-9c06-487d657c6c7e/%ED%83%80%EC%BD%94.png';
+import { BOONG_IMG, HO_IMG, TA_IMG, MARKER } from '../styles/img';
 
 const useShopList = (window: any, ref: any) => {
   const { kakao } = window;
@@ -79,20 +73,19 @@ const useShopList = (window: any, ref: any) => {
       let imageSize: any;
       switch (type) {
         case 'boong':
-          imageSrc = boongImg;
+          imageSrc = BOONG_IMG;
           imageSize = new kakao.maps.Size(35, 24);
           break;
         case 'ho':
-          imageSrc = hoImg;
+          imageSrc = HO_IMG;
           imageSize = new kakao.maps.Size(30, 30);
           break;
         case 'ta':
-          imageSrc = taImg;
+          imageSrc = TA_IMG;
           imageSize = new kakao.maps.Size(30, 30);
           break;
         default:
-          imageSrc =
-            'https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/markerStar.png';
+          imageSrc = MARKER;
           imageSize = new kakao.maps.Size(24, 35);
       }
       return [imageSrc, imageSize];
@@ -103,8 +96,37 @@ const useShopList = (window: any, ref: any) => {
   const makeInfoWindow = useCallback(
     (shop: any) => {
       // 마커에 커서가 오버됐을 때 마커 위에 표시할 인포윈도우를 생성합니다
-      const iwContent = `<div class="marker-info"><p class="name">${shop.name}</p><p class="address">${shop.address}</p><p class="time">${shop.openTime}-${shop.closeTime}</p></div>`; // 인포윈도우에 표출될 내용으로 HTML 문자열이나 document element가 가능합니다
-
+      const iwContent = `
+        <div style="
+          background-color: #e8ded8;
+          background-size: 100%;
+          padding: 1em;
+          width: 148px;
+          height: 100px;
+          text-align: center;
+          border: 3px solid #8e8986;
+          color: #8e8986;
+          box-sizing: border-box;
+          color: #5d5959;
+          display:flex;
+          flex-direction:column;
+          align-items:center;
+          justify-content:center
+          ">
+          <p style="
+            font-size:1rem;" >
+            ${shop.name}
+          </p>
+          <p style="
+            font-size:12px;
+            margin:5px 0">
+            ${shop.address}
+          </p>
+          <p style="
+            font-size:11px;">
+            ${shop.openTime}-${shop.closeTime}
+          </p>
+        </div>`;
       // 인포윈도우를 생성합니다
       const infowindow = new kakao.maps.InfoWindow({
         content: iwContent,
